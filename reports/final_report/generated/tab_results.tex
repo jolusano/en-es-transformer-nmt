@@ -4,6 +4,9 @@
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
 System & BLEU & chrF2 & BLEU & chrF2 & Mean BLEU \\
 \midrule
-\multicolumn{6}{c}{\itshape no evaluations found} \\
+BPE 16k, learned embeddings & 49.99 & 68.50 & 56.83 & 71.43 & 53.41 \\
+Word 32k, random init & 45.42 & 65.57 & 52.62 & 68.22 & 49.02 \\
+Word 32k, MUSE init & 18.15 & 42.35 & 23.57 & 43.62 & 20.86 \\
+LSTM + Bahdanau attention & 46.15 & 65.71 & 49.73 & 66.37 & 47.94 \\
 \bottomrule
 \end{tabular}

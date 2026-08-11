@@ -186,10 +186,22 @@ class Trainer:
         towards zero suppresses the signal the layer is meant to pass through.
         Only genuine weight matrices are decayed.
         """
+        # Every parameter is registered, including any that are currently
+        # frozen. Filtering on `requires_grad` here would force the optimiser
+        # to be rebuilt whenever something is unfrozen mid-run -- and rebuilding
+        # it silently detaches the LR scheduler, which is bound to the original
+        # optimiser object. That is what sent the MUSE run to NaN: the fresh
+        # optimiser kept its raw base lr of 1.0 (the config value is a *gain* on
+        # the inverse-sqrt schedule, not a peak), roughly 4,000x too high, while
+        # `scheduler.get_last_lr()` went on reporting the old optimiser's sane
+        # value so the log looked healthy.
+        #
+        # A frozen parameter simply never receives a gradient, and both Adam and
+        # AdamW skip parameters whose `.grad` is None -- including the decoupled
+        # weight decay -- so registering it costs nothing and unfreezing needs no
+        # surgery. See tests/test_metrics_and_training.py::test_unfreezing_*.
         decay, no_decay = [], []
         for name, parameter in self.model.named_parameters():
-            if not parameter.requires_grad:
-                continue
             if parameter.ndim <= 1 or name.endswith(".bias"):
                 no_decay.append(parameter)
             else:
@@ -350,10 +362,15 @@ class Trainer:
                 and hasattr(self.model, "freeze_embeddings")
             ):
                 self.model.freeze_embeddings(False)
-                logger.info("Unfroze embeddings at epoch %d", epoch)
-                # Rebuild the optimiser so the newly-trainable embedding
-                # parameters are actually placed in a parameter group.
-                self.optimizer = self._build_optimizer()
+                # The optimiser already holds the embedding parameters (see
+                # _build_optimizer), so flipping requires_grad is all that is
+                # needed. Rebuilding the optimiser here would orphan the LR
+                # scheduler and restore the base learning rate.
+                logger.info(
+                    "Unfroze embeddings at epoch %d (lr stays on schedule at %.2e)",
+                    epoch,
+                    self.scheduler.get_last_lr()[0],
+                )
 
             train_metrics = self.train_epoch(epoch)
             validation_metrics = self.evaluate()

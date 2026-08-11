@@ -1,0 +1,281 @@
+{
+  "name": "word_muse",
+  "description": "Word-level 32k vocabulary with 300-d embeddings initialised from MUSE cross-lingually aligned vectors, frozen for two epochs then fine-tuned.\n",
+  "config": {
+    "name": "word_muse",
+    "description": "Word-level 32k vocabulary with 300-d embeddings initialised from MUSE cross-lingually aligned vectors, frozen for two epochs then fine-tuned.\n",
+    "model": {
+      "architecture": "transformer",
+      "vocab_size": 32000,
+      "d_model": 512,
+      "num_heads": 8,
+      "d_ff": 2048,
+      "num_encoder_layers": 4,
+      "num_decoder_layers": 4,
+      "dropout": 0.1,
+      "attention_dropout": 0.1,
+      "activation": "relu",
+      "positional_encoding": "sinusoidal",
+      "max_position": 512,
+      "norm_first": true,
+      "tie_embeddings": true,
+      "embedding_dim": 300,
+      "pretrained_embeddings": "/content/en-es-transformer-nmt/artifacts/tokenizers/muse_embeddings.npy",
+      "freeze_embeddings_epochs": 2,
+      "lstm_hidden_size": 512,
+      "lstm_num_layers": 2
+    },
+    "data": {
+      "processed_dir": "/content/en-es-transformer-nmt/data/processed",
+      "tokenizer": "/content/en-es-transformer-nmt/artifacts/tokenizers/word_vocab.json",
+      "max_length": 128,
+      "max_tokens_per_batch": 8192,
+      "eval_batch_size": 64,
+      "num_workers": 2,
+      "limit_train_pairs": null
+    },
+    "optim": {
+      "optimizer": "adamw",
+      "learning_rate": 1.0,
+      "weight_decay": 0.01,
+      "betas": [
+        0.9,
+        0.98
+      ],
+      "eps": 1e-09,
+      "scheduler": "inverse_sqrt",
+      "warmup_steps": 4000,
+      "label_smoothing": 0.1,
+      "max_grad_norm": 1.0,
+      "gradient_accumulation_steps": 1
+    },
+    "train": {
+      "epochs": 20,
+      "seed": 42,
+      "device": "auto",
+      "amp": true,
+      "log_every": 200,
+      "evals_per_epoch": 1,
+      "early_stopping_patience": 4,
+      "keep_last_checkpoints": 2,
+      "validation_bleu_samples": 500,
+      "checkpoint_dir": "/content/en-es-transformer-nmt/artifacts/checkpoints/word_muse",
+      "results_dir": "/content/en-es-transformer-nmt/artifacts/results/word_muse"
+    }
+  },
+  "device": {
+    "type": "cuda",
+    "torch_version": "2.11.0+cu128",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "name": "Tesla T4",
+    "total_memory_gb": 14.56,
+    "capability": "7.5"
+  },
+  "parameters": {
+    "total": 39366912,
+    "trainable": 29766912,
+    "frozen": 9600000
+  },
+  "amp": true,
+  "steps_per_epoch": 717,
+  "planned_total_steps": 14340,
+  "history": [
+    {
+      "event": "epoch",
+      "epoch": 1,
+      "step": 719,
+      "train": {
+        "loss": 6.389364248805969,
+        "nll": 5.751109293149431,
+        "accuracy": 0.2829261745353887,
+        "perplexity": 314.5393371582031,
+        "tokens": 4850237,
+        "seconds": 191.28364992141724,
+        "tokens_per_second": 25356.25497522953,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 4.7641251067987005,
+        "nll": 3.7995152337346845,
+        "accuracy": 0.4287934870255409,
+        "perplexity": 44.67951965332031,
+        "tokens": 102933,
+        "seconds": 4.861554384231567,
+        "tokens_per_second": 21172.857869051673,
+        "bleu": 5.07125503614693
+      },
+      "bleu_detail": {
+        "en-es": 4.349563383741382,
+        "es-en": 5.792946688552477,
+        "bleu": 5.07125503614693
+      },
+      "learning_rate": 0.000125604130923621,
+      "elapsed_seconds": 210.7
+    },
+    {
+      "event": "epoch",
+      "epoch": 2,
+      "step": 1436,
+      "train": {
+        "loss": 4.2707136646683015,
+        "nll": 3.234725033856118,
+        "accuracy": 0.49524301595983866,
+        "perplexity": 25.399385452270508,
+        "tokens": 4850237,
+        "seconds": 190.57046937942505,
+        "tokens_per_second": 25451.146842395592,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 3.678989798346816,
+        "nll": 2.4907414172741795,
+        "accuracy": 0.5794643117367608,
+        "perplexity": 12.070222854614258,
+        "tokens": 102933,
+        "seconds": 4.170313119888306,
+        "tokens_per_second": 24682.31929854631,
+        "bleu": 20.36128589616745
+      },
+      "bleu_detail": {
+        "en-es": 17.421750545235625,
+        "es-en": 23.30082124709927,
+        "bleu": 20.36128589616745
+      },
+      "learning_rate": 0.0002508588762257577,
+      "elapsed_seconds": 429.4
+    },
+    {
+      "event": "epoch",
+      "epoch": 3,
+      "step": 2154,
+      "train": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0006906878983439366,
+        "perplexity": NaN,
+        "tokens": 4850237,
+        "seconds": 180.23104071617126,
+        "tokens_per_second": 26911.2189594365,
+        "bleu": null
+      },
+      "validation": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 102933,
+        "seconds": 4.132143020629883,
+        "tokens_per_second": 24910.318806997493,
+        "bleu": 0.0
+      },
+      "bleu_detail": {
+        "en-es": 0.0,
+        "es-en": 0.0,
+        "bleu": 0.0
+      },
+      "learning_rate": 0.0003762883143386365,
+      "elapsed_seconds": 651.3
+    },
+    {
+      "event": "epoch",
+      "epoch": 4,
+      "step": 2871,
+      "train": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 4850237,
+        "seconds": 186.07332277297974,
+        "tokens_per_second": 26066.267467677626,
+        "bleu": null
+      },
+      "validation": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 102933,
+        "seconds": 4.587299346923828,
+        "tokens_per_second": 22438.692619661997,
+        "bleu": 0.0
+      },
+      "bleu_detail": {
+        "en-es": 0.0,
+        "es-en": 0.0,
+        "bleu": 0.0
+      },
+      "learning_rate": 0.0005015430596407732,
+      "elapsed_seconds": 862.5
+    },
+    {
+      "event": "epoch",
+      "epoch": 5,
+      "step": 3589,
+      "train": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 4850237,
+        "seconds": 178.2235894203186,
+        "tokens_per_second": 27214.33798845397,
+        "bleu": null
+      },
+      "validation": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 102933,
+        "seconds": 4.116492033004761,
+        "tokens_per_second": 25005.02835295563,
+        "bleu": 0.0
+      },
+      "bleu_detail": {
+        "en-es": 0.0,
+        "es-en": 0.0,
+        "bleu": 0.0
+      },
+      "learning_rate": 0.000626972497753652,
+      "elapsed_seconds": 1065.7
+    },
+    {
+      "event": "epoch",
+      "epoch": 6,
+      "step": 4307,
+      "train": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 4850237,
+        "seconds": 178.65192365646362,
+        "tokens_per_second": 27149.08913786285,
+        "bleu": null
+      },
+      "validation": {
+        "loss": NaN,
+        "nll": NaN,
+        "accuracy": 0.0,
+        "perplexity": NaN,
+        "tokens": 102933,
+        "seconds": 4.1544106006622314,
+        "tokens_per_second": 24776.799862678963,
+        "bleu": 0.0
+      },
+      "bleu_detail": {
+        "en-es": 0.0,
+        "es-en": 0.0,
+        "bleu": 0.0
+      },
+      "learning_rate": 0.0006734069334903708,
+      "elapsed_seconds": 1268.8
+    }
+  ],
+  "best_validation_loss": 3.678989798346816,
+  "best_validation_bleu": 20.36128589616745,
+  "total_seconds": 1270.8,
+  "epochs_completed": 6
+}

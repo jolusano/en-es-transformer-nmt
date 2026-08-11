@@ -1,0 +1,58 @@
+name: word_random
+description: 'Word-level 32k vocabulary with 300-d embeddings initialised randomly.
+  Control condition for the MUSE pre-trained-embedding experiment.
+
+  '
+model:
+  architecture: transformer
+  vocab_size: 32000
+  d_model: 512
+  num_heads: 8
+  d_ff: 2048
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  dropout: 0.1
+  attention_dropout: 0.1
+  activation: relu
+  positional_encoding: sinusoidal
+  max_position: 512
+  norm_first: true
+  tie_embeddings: true
+  embedding_dim: 300
+  pretrained_embeddings: null
+  freeze_embeddings_epochs: 0
+  lstm_hidden_size: 512
+  lstm_num_layers: 2
+data:
+  processed_dir: /content/en-es-transformer-nmt/data/processed
+  tokenizer: /content/en-es-transformer-nmt/artifacts/tokenizers/word_vocab.json
+  max_length: 128
+  max_tokens_per_batch: 8192
+  eval_batch_size: 64
+  num_workers: 2
+  limit_train_pairs: null
+optim:
+  optimizer: adamw
+  learning_rate: 1.0
+  weight_decay: 0.01
+  betas:
+  - 0.9
+  - 0.98
+  eps: 1.0e-09
+  scheduler: inverse_sqrt
+  warmup_steps: 4000
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+train:
+  epochs: 20
+  seed: 42
+  device: auto
+  amp: true
+  log_every: 200
+  evals_per_epoch: 1
+  early_stopping_patience: 4
+  keep_last_checkpoints: 2
+  validation_bleu_samples: 500
+  checkpoint_dir: /content/en-es-transformer-nmt/artifacts/checkpoints/word_random
+  results_dir: /content/en-es-transformer-nmt/artifacts/results/word_random

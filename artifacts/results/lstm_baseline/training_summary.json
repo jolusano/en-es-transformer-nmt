@@ -1,0 +1,377 @@
+{
+  "name": "lstm_baseline",
+  "description": "Bidirectional-LSTM encoder, LSTM decoder with additive (Bahdanau) attention, matched to the transformer on vocabulary, data and parameter count.\n",
+  "config": {
+    "name": "lstm_baseline",
+    "description": "Bidirectional-LSTM encoder, LSTM decoder with additive (Bahdanau) attention, matched to the transformer on vocabulary, data and parameter count.\n",
+    "model": {
+      "architecture": "lstm",
+      "vocab_size": 16000,
+      "d_model": 512,
+      "num_heads": 8,
+      "d_ff": 2048,
+      "num_encoder_layers": 4,
+      "num_decoder_layers": 4,
+      "dropout": 0.2,
+      "attention_dropout": 0.1,
+      "activation": "relu",
+      "positional_encoding": "sinusoidal",
+      "max_position": 512,
+      "norm_first": true,
+      "tie_embeddings": true,
+      "embedding_dim": 512,
+      "pretrained_embeddings": null,
+      "freeze_embeddings_epochs": 0,
+      "lstm_hidden_size": 704,
+      "lstm_num_layers": 2
+    },
+    "data": {
+      "processed_dir": "/content/en-es-transformer-nmt/data/processed",
+      "tokenizer": "/content/en-es-transformer-nmt/artifacts/tokenizers/joint_bpe.model",
+      "max_length": 128,
+      "max_tokens_per_batch": 4096,
+      "eval_batch_size": 32,
+      "num_workers": 2,
+      "limit_train_pairs": null
+    },
+    "optim": {
+      "optimizer": "adamw",
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "betas": [
+        0.9,
+        0.98
+      ],
+      "eps": 1e-09,
+      "scheduler": "constant",
+      "warmup_steps": 500,
+      "label_smoothing": 0.1,
+      "max_grad_norm": 1.0,
+      "gradient_accumulation_steps": 1
+    },
+    "train": {
+      "epochs": 15,
+      "seed": 42,
+      "device": "auto",
+      "amp": true,
+      "log_every": 200,
+      "evals_per_epoch": 1,
+      "early_stopping_patience": 3,
+      "keep_last_checkpoints": 2,
+      "validation_bleu_samples": 500,
+      "checkpoint_dir": "/content/en-es-transformer-nmt/artifacts/checkpoints/lstm_baseline",
+      "results_dir": "/content/en-es-transformer-nmt/artifacts/results/lstm_baseline"
+    }
+  },
+  "device": {
+    "type": "cuda",
+    "torch_version": "2.11.0+cu128",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "name": "Tesla T4",
+    "total_memory_gb": 14.56,
+    "capability": "7.5"
+  },
+  "parameters": {
+    "total": 38921920,
+    "trainable": 38921920,
+    "frozen": 0
+  },
+  "amp": true,
+  "steps_per_epoch": 1614,
+  "planned_total_steps": 24210,
+  "history": [
+    {
+      "event": "epoch",
+      "epoch": 1,
+      "step": 1611,
+      "train": {
+        "loss": 4.923516149108695,
+        "nll": 4.153722469193973,
+        "accuracy": 0.4025239350547209,
+        "perplexity": 63.67055892944336,
+        "tokens": 5443167,
+        "seconds": 231.79935455322266,
+        "tokens_per_second": 23482.235360367293,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 3.8546915911017217,
+        "nll": 2.899506701521724,
+        "accuracy": 0.49206294430257436,
+        "perplexity": 18.165184020996094,
+        "tokens": 115912,
+        "seconds": 13.676058769226074,
+        "tokens_per_second": 8475.541232743579,
+        "bleu": 24.536555388250417
+      },
+      "bleu_detail": {
+        "en-es": 21.078048865016907,
+        "es-en": 27.995061911483926,
+        "bleu": 24.536555388250417
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 268.1
+    },
+    {
+      "event": "epoch",
+      "epoch": 2,
+      "step": 3221,
+      "train": {
+        "loss": 2.9293535818742447,
+        "nll": 1.8441301635192957,
+        "accuracy": 0.6846571123024519,
+        "perplexity": 6.322597980499268,
+        "tokens": 5443167,
+        "seconds": 233.13484406471252,
+        "tokens_per_second": 23347.719736347564,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 3.1982960972663195,
+        "nll": 2.17293219895263,
+        "accuracy": 0.5956328939195251,
+        "perplexity": 8.784002304077148,
+        "tokens": 115912,
+        "seconds": 12.650707006454468,
+        "tokens_per_second": 9162.491862380577,
+        "bleu": 39.44194539432438
+      },
+      "bleu_detail": {
+        "en-es": 37.81919638068206,
+        "es-en": 41.064694407966705,
+        "bleu": 39.44194539432438
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 542.3
+    },
+    {
+      "event": "epoch",
+      "epoch": 3,
+      "step": 4832,
+      "train": {
+        "loss": 2.5523240495754798,
+        "nll": 1.4231518612594942,
+        "accuracy": 0.7439466766314538,
+        "perplexity": 4.150180816650391,
+        "tokens": 5443167,
+        "seconds": 245.97869777679443,
+        "tokens_per_second": 22128.611335845144,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 3.029952175474552,
+        "nll": 1.9773906761084508,
+        "accuracy": 0.6169766719580372,
+        "perplexity": 7.2238688468933105,
+        "tokens": 115912,
+        "seconds": 12.682960987091064,
+        "tokens_per_second": 9139.190770828454,
+        "bleu": 42.41182967457122
+      },
+      "bleu_detail": {
+        "en-es": 39.97018815609267,
+        "es-en": 44.85347119304978,
+        "bleu": 42.41182967457122
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 818.6
+    },
+    {
+      "event": "epoch",
+      "epoch": 4,
+      "step": 6446,
+      "train": {
+        "loss": 2.3628604802016184,
+        "nll": 1.2123261267004235,
+        "accuracy": 0.7753860941617261,
+        "perplexity": 3.3612945079803467,
+        "tokens": 5443167,
+        "seconds": 242.14862275123596,
+        "tokens_per_second": 22478.62051890286,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 2.9605002581242226,
+        "nll": 1.8949468416527642,
+        "accuracy": 0.6309355373041617,
+        "perplexity": 6.652194499969482,
+        "tokens": 115912,
+        "seconds": 13.023337602615356,
+        "tokens_per_second": 8900.329818427072,
+        "bleu": 44.402470124293544
+      },
+      "bleu_detail": {
+        "en-es": 43.090334869253546,
+        "es-en": 45.714605379333534,
+        "bleu": 44.402470124293544
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 1090.5
+    },
+    {
+      "event": "epoch",
+      "epoch": 5,
+      "step": 8058,
+      "train": {
+        "loss": 2.2380601042196453,
+        "nll": 1.071988409134914,
+        "accuracy": 0.7976325179808005,
+        "perplexity": 2.92118239402771,
+        "tokens": 5443167,
+        "seconds": 246.92683482170105,
+        "tokens_per_second": 22043.643024584017,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 2.8826137861896806,
+        "nll": 1.8187351953656055,
+        "accuracy": 0.6523138242804887,
+        "perplexity": 6.16405725479126,
+        "tokens": 115912,
+        "seconds": 13.415833950042725,
+        "tokens_per_second": 8639.93997179958,
+        "bleu": 44.494208500476574
+      },
+      "bleu_detail": {
+        "en-es": 43.0460271170585,
+        "es-en": 45.942389883894656,
+        "bleu": 44.494208500476574
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 1371.6
+    },
+    {
+      "event": "epoch",
+      "epoch": 6,
+      "step": 9669,
+      "train": {
+        "loss": 2.1451714247311124,
+        "nll": 0.9664408623134916,
+        "accuracy": 0.8149623188118241,
+        "perplexity": 2.6285722255706787,
+        "tokens": 5443167,
+        "seconds": 249.94641280174255,
+        "tokens_per_second": 21777.33594567536,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 2.8794755639496925,
+        "nll": 1.8137509236867502,
+        "accuracy": 0.646904548278004,
+        "perplexity": 6.133410453796387,
+        "tokens": 115912,
+        "seconds": 12.534080505371094,
+        "tokens_per_second": 9247.746569868406,
+        "bleu": 45.115041784301404
+      },
+      "bleu_detail": {
+        "en-es": 43.956510259587475,
+        "es-en": 46.27357330901533,
+        "bleu": 45.115041784301404
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 1649.1
+    },
+    {
+      "event": "epoch",
+      "epoch": 7,
+      "step": 11280,
+      "train": {
+        "loss": 2.073356523436812,
+        "nll": 0.8839518740515575,
+        "accuracy": 0.828941313026038,
+        "perplexity": 2.4204461574554443,
+        "tokens": 5443167,
+        "seconds": 248.52531051635742,
+        "tokens_per_second": 21901.861780962314,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 3.009464379377646,
+        "nll": 1.9510899757014701,
+        "accuracy": 0.618822900131134,
+        "perplexity": 7.03635311126709,
+        "tokens": 115912,
+        "seconds": 12.753941059112549,
+        "tokens_per_second": 9088.328028392618,
+        "bleu": 45.34476838847172
+      },
+      "bleu_detail": {
+        "en-es": 43.30372939114744,
+        "es-en": 47.38580738579599,
+        "bleu": 45.34476838847172
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 1933.0
+    },
+    {
+      "event": "epoch",
+      "epoch": 8,
+      "step": 12892,
+      "train": {
+        "loss": 2.0166396452903332,
+        "nll": 0.818357532521964,
+        "accuracy": 0.8405408101570281,
+        "perplexity": 2.2667737007141113,
+        "tokens": 5443167,
+        "seconds": 241.40985918045044,
+        "tokens_per_second": 22547.409697676474,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 2.957276642275232,
+        "nll": 1.8859927889466928,
+        "accuracy": 0.6323590309890261,
+        "perplexity": 6.592896461486816,
+        "tokens": 115912,
+        "seconds": 12.54737138748169,
+        "tokens_per_second": 9237.950836112457,
+        "bleu": 45.48713537718028
+      },
+      "bleu_detail": {
+        "en-es": 43.05910954784987,
+        "es-en": 47.915161206510696,
+        "bleu": 45.48713537718028
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 2204.2
+    },
+    {
+      "event": "epoch",
+      "epoch": 9,
+      "step": 14504,
+      "train": {
+        "loss": 1.9682236561776252,
+        "nll": 0.7621078261333016,
+        "accuracy": 0.850741305567145,
+        "perplexity": 2.1427881717681885,
+        "tokens": 5443167,
+        "seconds": 242.38293886184692,
+        "tokens_per_second": 22456.890016926845,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 2.9804643505794823,
+        "nll": 1.9203744736387662,
+        "accuracy": 0.6259921319621782,
+        "perplexity": 6.823513507843018,
+        "tokens": 115912,
+        "seconds": 12.593327283859253,
+        "tokens_per_second": 9204.239466448498,
+        "bleu": 45.768750518672164
+      },
+      "bleu_detail": {
+        "en-es": 44.63431660984437,
+        "es-en": 46.90318442749995,
+        "bleu": 45.768750518672164
+      },
+      "learning_rate": 0.001,
+      "elapsed_seconds": 2472.5
+    }
+  ],
+  "best_validation_loss": 2.8794755639496925,
+  "best_validation_bleu": 45.768750518672164,
+  "total_seconds": 2484.8,
+  "epochs_completed": 9
+}

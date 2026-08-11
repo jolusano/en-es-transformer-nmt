@@ -1,0 +1,153 @@
+{
+  "name": "smoke",
+  "description": "Two-layer, 128-wide model on 2,000 pairs. Pipeline check only.",
+  "config": {
+    "name": "smoke",
+    "description": "Two-layer, 128-wide model on 2,000 pairs. Pipeline check only.",
+    "model": {
+      "architecture": "transformer",
+      "vocab_size": 16000,
+      "d_model": 128,
+      "num_heads": 4,
+      "d_ff": 256,
+      "num_encoder_layers": 2,
+      "num_decoder_layers": 2,
+      "dropout": 0.1,
+      "attention_dropout": 0.1,
+      "activation": "relu",
+      "positional_encoding": "sinusoidal",
+      "max_position": 512,
+      "norm_first": true,
+      "tie_embeddings": true,
+      "embedding_dim": null,
+      "pretrained_embeddings": null,
+      "freeze_embeddings_epochs": 0,
+      "lstm_hidden_size": 512,
+      "lstm_num_layers": 2
+    },
+    "data": {
+      "processed_dir": "/content/en-es-transformer-nmt/data/processed",
+      "tokenizer": "/content/en-es-transformer-nmt/artifacts/tokenizers/joint_bpe.model",
+      "max_length": 64,
+      "max_tokens_per_batch": 2048,
+      "eval_batch_size": 32,
+      "num_workers": 0,
+      "limit_train_pairs": 2000
+    },
+    "optim": {
+      "optimizer": "adamw",
+      "learning_rate": 1.0,
+      "weight_decay": 0.01,
+      "betas": [
+        0.9,
+        0.98
+      ],
+      "eps": 1e-09,
+      "scheduler": "inverse_sqrt",
+      "warmup_steps": 100,
+      "label_smoothing": 0.1,
+      "max_grad_norm": 1.0,
+      "gradient_accumulation_steps": 1
+    },
+    "train": {
+      "epochs": 2,
+      "seed": 42,
+      "device": "auto",
+      "amp": false,
+      "log_every": 20,
+      "evals_per_epoch": 1,
+      "early_stopping_patience": 10,
+      "keep_last_checkpoints": 2,
+      "validation_bleu_samples": 50,
+      "checkpoint_dir": "/content/en-es-transformer-nmt/artifacts/checkpoints/smoke",
+      "results_dir": "/content/en-es-transformer-nmt/artifacts/results/smoke"
+    }
+  },
+  "device": {
+    "type": "cuda",
+    "torch_version": "2.11.0+cu128",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+    "processor": "x86_64",
+    "name": "Tesla T4",
+    "total_memory_gb": 14.56,
+    "capability": "7.5"
+  },
+  "parameters": {
+    "total": 2727040,
+    "trainable": 2727040,
+    "frozen": 0
+  },
+  "amp": false,
+  "steps_per_epoch": 25,
+  "planned_total_steps": 50,
+  "history": [
+    {
+      "event": "epoch",
+      "epoch": 1,
+      "step": 25,
+      "train": {
+        "loss": 8.752445914825326,
+        "nll": 8.580858722235698,
+        "accuracy": 0.06950308541734329,
+        "perplexity": 5328.681640625,
+        "tokens": 40027,
+        "seconds": 1.8959932327270508,
+        "tokens_per_second": 21111.362271282076,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 7.304501712317601,
+        "nll": 6.917780563308283,
+        "accuracy": 0.16251220418355092,
+        "perplexity": 1010.0755615234375,
+        "tokens": 115739,
+        "seconds": 2.7048559188842773,
+        "tokens_per_second": 42789.34016113547,
+        "bleu": 0.0
+      },
+      "bleu_detail": {
+        "en-es": 0.0,
+        "es-en": 0.0,
+        "bleu": 0.0
+      },
+      "learning_rate": 0.0022097086912079614,
+      "elapsed_seconds": 4.7
+    },
+    {
+      "event": "epoch",
+      "epoch": 2,
+      "step": 50,
+      "train": {
+        "loss": 6.785625713545285,
+        "nll": 6.2761741049043644,
+        "accuracy": 0.18989681964673846,
+        "perplexity": 531.7503051757812,
+        "tokens": 40027,
+        "seconds": 0.7282788753509521,
+        "tokens_per_second": 54961.08888330901,
+        "bleu": null
+      },
+      "validation": {
+        "loss": 6.691353025976855,
+        "nll": 6.172423488867864,
+        "accuracy": 0.21019708136410373,
+        "perplexity": 479.3463439941406,
+        "tokens": 115739,
+        "seconds": 3.187575578689575,
+        "tokens_per_second": 36309.41357869882,
+        "bleu": 0.1578843380309616
+      },
+      "bleu_detail": {
+        "en-es": 0.3157686760619232,
+        "es-en": 0.0,
+        "bleu": 0.1578843380309616
+      },
+      "learning_rate": 0.004419417382415923,
+      "elapsed_seconds": 9.3
+    }
+  ],
+  "best_validation_loss": 6.691353025976855,
+  "best_validation_bleu": 0.1578843380309616,
+  "total_seconds": 10.0,
+  "epochs_completed": 2
+}

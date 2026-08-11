@@ -2,6 +2,9 @@
 \toprule
 System & Vocab & Emb. dim & Geometry & Params \\
 \midrule
-\multicolumn{5}{c}{\itshape no trained runs found} \\
+BPE 16k, learned embeddings & 16,000 & 512 & 4+4 layers, $d_{\mathrm{model}}=512$, 8 heads & 37.6M \\
+Word 32k, random init & 32,000 & 300 & 4+4 layers, $d_{\mathrm{model}}=512$, 8 heads & 39.4M \\
+Word 32k, MUSE init & 32,000 & 300 & 4+4 layers, $d_{\mathrm{model}}=512$, 8 heads & 39.4M \\
+LSTM + Bahdanau attention & 16,000 & 512 & 2 layers, hidden 704, bi-encoder & 38.9M \\
 \bottomrule
 \end{tabular}

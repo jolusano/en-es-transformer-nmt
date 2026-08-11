@@ -8,7 +8,7 @@ import pytest
 import torch
 
 from nmt.config import ModelConfig
-from nmt.constants import BOS_ID, PAD_ID
+from nmt.constants import BOS_ID, EOS_ID, PAD_ID
 from nmt.evaluation.bleu import corpus_bleu, sacrebleu_score, sentence_bleu, tokenize_13a
 from nmt.evaluation.error_analysis import classify
 from nmt.inference.search import DecodeConfig, greedy_decode
@@ -239,3 +239,103 @@ def test_decoding_never_exceeds_the_length_budget():
     output = greedy_decode(model, source, config=config)
 
     assert output.shape[1] <= 4 * 1.0 + 2 + 1
+
+
+# --- freezing / unfreezing --------------------------------------------------
+#
+# Regression tests for the bug that sent the MUSE run to NaN at epoch 3.
+
+
+def _tiny_trainer(tmp_path, freeze_epochs: int = 2):
+    """Build a Trainer over a two-batch dummy dataset."""
+    from torch.utils.data import DataLoader
+
+    from nmt.config import DataConfig, ExperimentConfig, OptimConfig, TrainConfig
+    from nmt.data.dataset import Example, collate_batch
+    from nmt.model.transformer import TranslationTransformer
+    from nmt.training.trainer import Trainer
+
+    config = ExperimentConfig(
+        name="freeze_test",
+        model=ModelConfig(
+            vocab_size=60, d_model=32, num_heads=4, d_ff=64,
+            num_encoder_layers=1, num_decoder_layers=1,
+            dropout=0.0, attention_dropout=0.0,
+            freeze_embeddings_epochs=freeze_epochs,
+        ),
+        data=DataConfig(),
+        optim=OptimConfig(learning_rate=1.0, warmup_steps=100),
+        train=TrainConfig(epochs=4, device="cpu", amp=False, log_every=1000,
+                          checkpoint_dir=str(tmp_path / "ckpt"),
+                          results_dir=str(tmp_path / "res")),
+    )
+
+    examples = [
+        Example([10, 11, EOS_ID], [BOS_ID, 20, 21, EOS_ID], "en-es", "a", "b")
+        for _ in range(4)
+    ]
+    loader = DataLoader(examples, batch_size=2, collate_fn=collate_batch)
+
+    model = TranslationTransformer(config.model)
+    model.freeze_embeddings(True)
+    return Trainer(model, config, loader, loader, device=torch.device("cpu")), model
+
+
+def test_optimizer_registers_frozen_parameters(tmp_path):
+    """Frozen parameters must still be in the optimiser.
+
+    If they are not, unfreezing them later requires rebuilding the optimiser,
+    which orphans the LR scheduler.
+    """
+    trainer, model = _tiny_trainer(tmp_path)
+
+    registered = {id(p) for group in trainer.optimizer.param_groups for p in group["params"]}
+    assert not model.embedding.weight.requires_grad, "fixture should start frozen"
+    assert id(model.embedding.weight) in registered
+
+
+def test_unfreezing_does_not_reset_the_learning_rate(tmp_path):
+    """The scheduler must keep driving the same optimiser across an unfreeze.
+
+    The failure this guards against is silent: `get_last_lr()` reads whichever
+    optimiser the scheduler holds, so a detached optimiser keeps reporting a
+    healthy learning rate while actually stepping at the base value.
+    """
+    trainer, model = _tiny_trainer(tmp_path)
+
+    for _ in range(50):
+        trainer.scheduler.step()
+    scheduled = trainer.optimizer.param_groups[0]["lr"]
+    assert scheduled < 0.01, "the schedule should be well below the base lr by now"
+
+    optimizer_before = trainer.optimizer
+    model.freeze_embeddings(False)
+
+    assert trainer.optimizer is optimizer_before, "the optimiser must not be replaced"
+    assert trainer.scheduler.optimizer is trainer.optimizer
+    assert trainer.optimizer.param_groups[0]["lr"] == pytest.approx(scheduled)
+
+
+def test_frozen_embedding_does_not_change_but_unfrozen_one_does(tmp_path):
+    """The freeze must actually hold, and release cleanly."""
+    trainer, model = _tiny_trainer(tmp_path)
+
+    before = model.embedding.weight.detach().clone()
+    trainer.train_epoch(1)
+    assert torch.equal(model.embedding.weight, before), "frozen embedding moved"
+
+    model.freeze_embeddings(False)
+    trainer.train_epoch(2)
+    assert not torch.equal(model.embedding.weight, before), "unfrozen embedding did not move"
+
+
+def test_training_stays_finite_across_an_unfreeze(tmp_path):
+    """End-to-end guard: no NaN when the unfreeze boundary is crossed."""
+    trainer, model = _tiny_trainer(tmp_path, freeze_epochs=1)
+
+    for epoch in (1, 2, 3):
+        if epoch == 2:
+            model.freeze_embeddings(False)
+        metrics = trainer.train_epoch(epoch)
+        assert math.isfinite(metrics.loss), f"loss became {metrics.loss} at epoch {epoch}"
+    assert torch.isfinite(model.embedding.weight).all()

@@ -1055,7 +1055,7 @@
     "validation_fraction": 0.02,
     "test_fraction": 0.02,
     "seed": 42,
-    "skip_download": true,
+    "skip_download": false,
     "limit": null,
     "rules": {
       "min_tokens": 1,
@@ -1070,5 +1070,5 @@
       "require_letters": true
     }
   },
-  "elapsed_seconds": 6.2
+  "elapsed_seconds": 124.2
 }

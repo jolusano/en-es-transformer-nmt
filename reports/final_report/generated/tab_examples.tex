@@ -1,1 +1,177 @@
-\textit{No evaluation results available yet.}
+\subsection*{EN $\rightarrow$ ES}
+\begin{longtable}{@{}rp{0.7cm}p{11cm}@{}}
+\toprule
+\# & sBLEU & Source / reference / model output / failure modes \\
+\midrule
+\endhead
+1 & 0.0 & \small Slow down! \\
+& & \small\itshape ref: ¡Despacio! \\
+& & \small\ttfamily out: ¡Qué despacio! \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+2 & 0.0 & \small I am Japanese. \\
+& & \small\itshape ref: Soy japonesa. \\
+& & \small\ttfamily out: Soy japonés. \\
+& & \scriptsize other \\\addlinespace
+3 & 0.0 & \small I hate it. \\
+& & \small\itshape ref: Me la seca. \\
+& & \small\ttfamily out: Lo odio. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+4 & 0.0 & \small I followed him. \\
+& & \small\itshape ref: Le seguí. \\
+& & \small\ttfamily out: Le seguí. \\
+& & \scriptsize other \\\addlinespace
+5 & 0.0 & \small We're credible. \\
+& & \small\itshape ref: Somos confiables. \\
+& & \small\ttfamily out: Somos creíbles. \\
+& & \scriptsize other \\\addlinespace
+6 & 0.0 & \small I belched. \\
+& & \small\itshape ref: Eructé. \\
+& & \small\ttfamily out: Me dolía. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+7 & 0.0 & \small I'll dance. \\
+& & \small\itshape ref: Bailaré. \\
+& & \small\ttfamily out: Bailaré. \\
+& & \scriptsize other \\\addlinespace
+8 & 0.0 & \small I am Japanese. \\
+& & \small\itshape ref: Soy japonés. \\
+& & \small\ttfamily out: Soy japonés. \\
+& & \scriptsize other \\\addlinespace
+9 & 0.0 & \small Surprise me. \\
+& & \small\itshape ref: Sorprendedme. \\
+& & \small\ttfamily out: Me sorprende. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+10 & 0.0 & \small I learn fast. \\
+& & \small\itshape ref: Aprendo rápido. \\
+& & \small\ttfamily out: Aprendo rápido. \\
+& & \scriptsize other \\\addlinespace
+11 & 0.0 & \small I want to come in. \\
+& & \small\itshape ref: Quiero entrar. \\
+& & \small\ttfamily out: Quiero entrar. \\
+& & \scriptsize other \\\addlinespace
+12 & 0.0 & \small I have gained weight. \\
+& & \small\itshape ref: He ganado peso. \\
+& & \small\ttfamily out: He engordado. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+13 & 0.0 & \small I need answers. \\
+& & \small\itshape ref: Necesito respuestas. \\
+& & \small\ttfamily out: Necesito respuestas. \\
+& & \scriptsize other \\\addlinespace
+14 & 0.0 & \small Tom waited. \\
+& & \small\itshape ref: Tomás esperó. \\
+& & \small\ttfamily out: Tom esperó. \\
+& & \scriptsize other \\\addlinespace
+15 & 0.0 & \small I hate it. \\
+& & \small\itshape ref: Me la baja. \\
+& & \small\ttfamily out: Lo odio. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+16 & 0.0 & \small It's July. \\
+& & \small\itshape ref: Ahora es julio. \\
+& & \small\ttfamily out: Es julio. \\
+& & \scriptsize other \\\addlinespace
+17 & 0.0 & \small Did you find anything? \\
+& & \small\itshape ref: ¿Descubriste algo? \\
+& & \small\ttfamily out: ¿Encontraste algo? \\
+& & \scriptsize other \\\addlinespace
+18 & 0.0 & \small Are you beginners? \\
+& & \small\itshape ref: ¿Sois principiantes? \\
+& & \small\ttfamily out: ¿Eres principiante? \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+19 & 0.0 & \small They need instructions. \\
+& & \small\itshape ref: Ellos necesitan instrucciones. \\
+& & \small\ttfamily out: Necesitan instrucciones. \\
+& & \scriptsize other \\\addlinespace
+20 & 0.0 & \small I bought one. \\
+& & \small\itshape ref: Compré uno. \\
+& & \small\ttfamily out: Compré uno. \\
+& & \scriptsize other \\\addlinespace
+\bottomrule
+\end{longtable}
+
+\subsection*{ES $\rightarrow$ EN}
+\begin{longtable}{@{}rp{0.7cm}p{11cm}@{}}
+\toprule
+\# & sBLEU & Source / reference / model output / failure modes \\
+\midrule
+\endhead
+1 & 0.0 & \small Escaparon todos. \\
+& & \small\itshape ref: Everyone escaped. \\
+& & \small\ttfamily out: Everyone escaped. \\
+& & \scriptsize other \\\addlinespace
+2 & 0.0 & \small Gracias de todos modos. \\
+& & \small\itshape ref: Thank you just the same. \\
+& & \small\ttfamily out: Thanks anyway. \\
+& & \scriptsize truncation, no\_content\_overlap \\\addlinespace
+3 & 0.0 & \small ¡Despacio! \\
+& & \small\itshape ref: Slow down! \\
+& & \small\ttfamily out: Easy down! \\
+& & \scriptsize other \\\addlinespace
+4 & 0.0 & \small Soy japonesa. \\
+& & \small\itshape ref: I am Japanese. \\
+& & \small\ttfamily out: I'm Japanese. \\
+& & \scriptsize other \\\addlinespace
+5 & 0.0 & \small Me la seca. \\
+& & \small\itshape ref: I hate it. \\
+& & \small\ttfamily out: My dry. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+6 & 0.0 & \small Somos confiables. \\
+& & \small\itshape ref: We're credible. \\
+& & \small\ttfamily out: We're confiable. \\
+& & \scriptsize other \\\addlinespace
+7 & 0.0 & \small Eructé. \\
+& & \small\itshape ref: I belched. \\
+& & \small\ttfamily out: I burped. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+8 & 0.0 & \small Bailaré. \\
+& & \small\itshape ref: I'll dance. \\
+& & \small\ttfamily out: I'll dance. \\
+& & \scriptsize other \\\addlinespace
+9 & 0.0 & \small Los políticos mienten. \\
+& & \small\itshape ref: Politicians lie. \\
+& & \small\ttfamily out: Politicians lie. \\
+& & \scriptsize other \\\addlinespace
+10 & 0.0 & \small Soy japonés. \\
+& & \small\itshape ref: I am Japanese. \\
+& & \small\ttfamily out: I'm Japanese. \\
+& & \scriptsize other \\\addlinespace
+11 & 0.0 & \small Él es veloz. \\
+& & \small\itshape ref: He's fast. \\
+& & \small\ttfamily out: He's fast. \\
+& & \scriptsize other \\\addlinespace
+12 & 0.0 & \small Ella es tranquila. \\
+& & \small\itshape ref: She is quiet. \\
+& & \small\ttfamily out: She's quiet. \\
+& & \scriptsize other \\\addlinespace
+13 & 0.0 & \small Ven a casa. \\
+& & \small\itshape ref: Come home. \\
+& & \small\ttfamily out: Come home. \\
+& & \scriptsize other \\\addlinespace
+14 & 0.0 & \small Tomás esperó. \\
+& & \small\itshape ref: Tom waited. \\
+& & \small\ttfamily out: Tom waited. \\
+& & \scriptsize other \\\addlinespace
+15 & 0.0 & \small Me la baja. \\
+& & \small\itshape ref: I hate it. \\
+& & \small\ttfamily out: I'm short. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+16 & 0.0 & \small Estupendo. \\
+& & \small\itshape ref: I stayed up late. \\
+& & \small\ttfamily out: I stretch. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+17 & 0.0 & \small Elige sabiamente. \\
+& & \small\itshape ref: Choose carefully. \\
+& & \small\ttfamily out: Choose wisely. \\
+& & \scriptsize other \\\addlinespace
+18 & 0.0 & \small Vitorearon. \\
+& & \small\itshape ref: They cheered. \\
+& & \small\ttfamily out: They dressed. \\
+& & \scriptsize no\_content\_overlap \\\addlinespace
+19 & 0.0 & \small ¿Quién se está riendo? \\
+& & \small\itshape ref: Who's laughing? \\
+& & \small\ttfamily out: Who's laughing? \\
+& & \scriptsize other \\\addlinespace
+20 & 0.0 & \small Somos pacientes. \\
+& & \small\itshape ref: We're patients. \\
+& & \small\ttfamily out: We're patients. \\
+& & \scriptsize other \\\addlinespace
+\bottomrule
+\end{longtable}

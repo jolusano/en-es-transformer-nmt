@@ -1,0 +1,22 @@
+{
+  "train_pairs": 271473,
+  "validation_pairs": 5656,
+  "train_examples": 542946,
+  "validation_examples": 11312,
+  "tokens": {
+    "source_tokens": 5986113,
+    "target_tokens": 5986113,
+    "examples": 542946
+  },
+  "batches_per_epoch": 806,
+  "estimated_steps_per_epoch": 779,
+  "padding": {
+    "batches": 19,
+    "mean_batch_size": 595.3684210526316,
+    "min_batch_size": 4,
+    "max_batch_size": 1024,
+    "real_tokens": 135496,
+    "padded_tokens": 145506,
+    "padding_fraction": 0.06879441397605601
+  }
+}
