@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-11T17:07:09.175338</dc:date>
+    <dc:date>2026-08-11T17:51:10.440017</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -42,96 +42,96 @@ z
    <g id="patch_3">
     <path d="M 129.347899 230.275333 
 Q 129.347899 215.059009 129.347899 201.072522 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 127.147899 205.472522 
 L 129.347899 201.072522 
 L 131.547899 205.472522 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
     <path d="M 129.347899 171.276093 
 Q 129.347899 160.978527 129.347899 151.910798 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 127.147899 156.310798 
 L 129.347899 151.910798 
 L 131.547899 156.310798 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="patch_5">
     <path d="M 129.347899 127.029003 
 Q 129.347899 116.731437 129.347899 107.663708 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 127.147899 112.063708 
 L 129.347899 107.663708 
 L 131.547899 112.063708 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="line2d_1">
     <path d="M 84.437935 242.097362 
 L 54.497959 242.097362 
 L 54.497959 138.854153 
 L 84.437935 138.854153 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke-dasharray: 3,2; stroke-dashoffset: 0; stroke: #898781"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke-dasharray: 3,2; stroke-dashoffset: 0; stroke: #898781"/>
    </g>
    <g id="patch_6">
     <path d="M 56.000075 138.854153 
 Q 69.467443 138.854153 81.816777 138.854153 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #898781; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #898781; stroke-linecap: round"/>
     <path d="M 77.416777 136.654153 
 L 81.816777 138.854153 
 L 77.416777 141.054153 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #898781; stroke: #898781; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #898781; stroke: #898781; stroke-linecap: round"/>
    </g>
    <g id="patch_7">
     <path d="M 416.771669 230.275333 
 Q 416.771669 215.059009 416.771669 201.072522 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 414.571669 205.472522 
 L 416.771669 201.072522 
 L 418.971669 205.472522 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="patch_8">
     <path d="M 416.771669 171.276093 
 Q 416.771669 160.978527 416.771669 151.910798 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 414.571669 156.310798 
 L 416.771669 151.910798 
 L 418.971669 156.310798 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="patch_9">
     <path d="M 416.771669 122.112659 
 Q 416.771669 111.815093 416.771669 102.747365 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
     <path d="M 414.571669 107.147365 
 L 416.771669 102.747365 
 L 418.971669 107.147365 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
    </g>
    <g id="line2d_2">
     <path d="M 371.861705 242.097362 
 L 340.12533 242.097362 
 L 340.12533 89.690719 
 L 371.861705 89.690719 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
    </g>
    <g id="patch_10">
     <path d="M 341.624595 89.690719 
 Q 355.992021 89.690719 368.682395 89.690719 
-" clip-path="url(#p6c6cb85f8d)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
     <path d="M 364.282395 87.490719 
 L 368.682395 89.690719 
 L 364.282395 91.890719 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #2a78d6; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+" clip-path="url(#pfd17a70509)" style="fill: #2a78d6; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
    </g>
    <g id="text_1">
     <text style="font-weight: 600; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="129.347899" y="42.493823" transform="rotate(-0 129.347899 42.493823)">Post-LN   (original paper)</text>
@@ -147,7 +147,7 @@ Q 84.437935 231.773041 84.437935 236.689385
 L 84.437935 247.50534 
 Q 84.437935 252.421683 90.42593 252.421683 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
     <path d="M 90.42593 198.341907 
@@ -160,7 +160,7 @@ Q 84.437935 172.776922 84.437935 177.693265
 L 84.437935 193.425564 
 Q 84.437935 198.341907 90.42593 198.341907 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
     <path d="M 90.42593 149.178474 
@@ -173,7 +173,7 @@ Q 84.437935 128.529832 84.437935 133.446175
 L 84.437935 144.26213 
 Q 84.437935 149.178474 90.42593 149.178474 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
     <path d="M 90.42593 104.931384 
@@ -186,7 +186,7 @@ Q 84.437935 79.366398 84.437935 84.282742
 L 84.437935 100.01504 
 Q 84.437935 104.931384 90.42593 104.931384 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="text_2">
     <text style="font-size: 7.4px; font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle; fill: #52514e" x="129.347899" y="70.51698" transform="rotate(-0 129.347899 70.51698)">x ← LayerNorm(x + Sublayer(x))</text>
@@ -205,7 +205,7 @@ Q 371.861705 231.773041 371.861705 236.689385
 L 371.861705 247.50534 
 Q 371.861705 252.421683 377.8497 252.421683 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
     <path d="M 377.8497 198.341907 
@@ -218,7 +218,7 @@ Q 371.861705 172.776922 371.861705 177.693265
 L 371.861705 193.425564 
 Q 371.861705 198.341907 377.8497 198.341907 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
     <path d="M 377.8497 149.178474 
@@ -231,7 +231,7 @@ Q 371.861705 123.613488 371.861705 128.529832
 L 371.861705 144.26213 
 Q 371.861705 149.178474 377.8497 149.178474 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
     <path d="M 377.8497 100.01504 
@@ -244,7 +244,7 @@ Q 371.861705 79.366398 371.861705 84.282742
 L 371.861705 95.098697 
 Q 371.861705 100.01504 377.8497 100.01504 
 z
-" clip-path="url(#p6c6cb85f8d)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+" clip-path="url(#pfd17a70509)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
    </g>
    <g id="text_4">
     <text style="font-size: 7.4px; font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle; fill: #52514e" x="416.771669" y="70.51698" transform="rotate(-0 416.771669 70.51698)">x ← x + Sublayer(LayerNorm(x))</text>
@@ -254,10 +254,10 @@ z
     <text style="font-size: 7px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #2a78d6" transform="translate(268.719683 177.757878)">residual highway</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 288.607303)">In post-LN every residual addition passes through a normalisation on its way to the next layer, so the gradient reaching</text>
-    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 299.62095)">layer 1 is attenuated once per layer above it — which is why post-LN needs a long, carefully tuned warmup to avoid diverging.</text>
-    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 310.634596)">In pre-LN the residual path runs from input to output untouched, gradients arrive undamped, and training is stable at higher</text>
-    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 321.765271)">learning rates with a shorter warmup. That is why this project uses it: a Colab run that diverges at step 300 is an hour lost.</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(109.981487 288.607303)">In post-LN every residual addition passes through a normalisation on its way to the next layer, so the gradient reaching</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(97.656463 300.148032)">layer 1 is attenuated once per layer above it — which is why post-LN needs a long, carefully tuned warmup to avoid diverging.</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(102.384354 311.688762)">In pre-LN the residual path runs from input to output untouched, gradients arrive undamped, and training is stable at higher</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(104.755713 323.353021)">learning rates with a shorter warmup. That is why this project uses it: a Colab run that diverges at step 300 is an hour lost.</text>
    </g>
    <g id="text_7">
     <text style="font-weight: 600; font-size: 11.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="3.6" y="11.811719" transform="rotate(-0 3.6 11.811719)">Where to put the layer normalisation</text>
@@ -299,7 +299,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p6c6cb85f8d">
+  <clipPath id="pfd17a70509">
    <rect x="3.6" y="23.811719" width="598.79952" height="312.187801"/>
   </clipPath>
  </defs>

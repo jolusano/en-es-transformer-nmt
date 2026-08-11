@@ -83,9 +83,6 @@ def plot_training_curves(summary: dict, output: Path) -> list[Path]:
     axes[1].set_title("Perplexity", fontsize=9.5)
     axes[1].set_yscale("log")
     axes[1].legend()
-    # Log-scale gridlines crowd together at the top of the decade and read as
-    # hatching rather than as reference lines.
-    axes[1].grid(False)
 
     if has_bleu:
         values = [v for v in bleu if v is not None]
@@ -155,12 +152,13 @@ def plot_learning_rate(log_records: list[dict], output: Path,
     axes[1].set_ylabel("relative learning rate")
     axes[1].set_title(r"Inverse-square-root schedule", fontsize=9.5)
     axes[1].text(
-        0.40, 0.30,
+        0.38, 0.33,
         "Linear ramp, then decay as 1/√t.\n"
         "Early gradients are mostly noise because\n"
         "attention starts near-uniform — large steps\n"
         "then are large in an arbitrary direction.",
-        transform=axes[1].transAxes, fontsize=7.0, color=INK_MUTED, linespacing=1.6,
+        transform=axes[1].transAxes, fontsize=7.0, color=INK_MUTED,
+        linespacing=1.6, va="top",
     )
 
     fig.suptitle("Learning-rate schedule", fontsize=11.5, x=0.02, ha="left")
@@ -189,7 +187,6 @@ def plot_gradient_norms(log_records: list[dict], output: Path) -> list[Path]:
     ax.set_xlabel("optimiser step")
     ax.set_ylabel("global gradient norm")
     ax.set_yscale("log")
-    ax.grid(False)
     ax.set_title("Gradient norms and the clipping threshold", fontsize=11)
     return save(fig, output)
 

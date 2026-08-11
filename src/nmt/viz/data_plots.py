@@ -144,17 +144,23 @@ def plot_vocabulary_growth(stats: dict, output: Path) -> list[Path]:
         # Label only the endpoints, placed clear of the marker: the first to
         # the right and below, the last to the left and above, so the two
         # language curves never write over each other.
+        # Left endpoint: both labels below-right, where the curves are far
+        # apart and the space is empty.
         axes[1].annotate(f"{coverage[0]:.1f}%", (cutoffs[0], coverage[0]),
-                         textcoords="offset points", xytext=(7, -9),
+                         textcoords="offset points", xytext=(7, -10),
                          fontsize=7, color=colour, ha="left")
+        # Right endpoint: the two curves converge to within a point of each
+        # other, so the labels are split above (English) and below (Spanish)
+        # or they overprint.
         axes[1].annotate(f"{coverage[-1]:.1f}%", (cutoffs[-1], coverage[-1]),
-                         textcoords="offset points", xytext=(-6, -11),
+                         textcoords="offset points",
+                         xytext=(-7, 7 if language == "en" else -13),
                          fontsize=7, color=colour, ha="right")
     axes[1].set_xscale("log")
     axes[1].set_xlabel("vocabulary size (most frequent types)")
     axes[1].set_ylabel("% of running tokens covered")
     axes[1].set_title("Coverage of running text", fontsize=9.5)
-    axes[1].set_ylim(70, 102)
+    axes[1].set_ylim(70, 104)
     axes[1].legend(loc="lower right")
 
     # --- panel 3: OOV rates ----------------------------------------------

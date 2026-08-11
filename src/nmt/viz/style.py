@@ -146,7 +146,7 @@ def use_style() -> None:
             # Titles sit left-aligned above the plot, as in a printed article,
             # rather than centred over the axes.
             "axes.titlelocation": "left",
-            "axes.titlepad": 10,
+            "axes.titlepad": 15,
             "axes.titleweight": "semibold",
             "text.color": INK_PRIMARY,
             "axes.labelcolor": INK_SECONDARY,
@@ -161,7 +161,13 @@ def use_style() -> None:
             "axes.grid": True,
             "axes.grid.axis": "y",
             "grid.color": GRIDLINE,
-            "grid.linewidth": 0.6,
+            # Hairline weight. The rule across the document is that *every*
+            # data plot carries gridlines and they are all this thin -- a mix
+            # of gridded and ungridded panels reads as carelessness, whereas a
+            # consistent hairline recedes and stops being noticed at all.
+            # Diagrams and heatmaps have no value axis, so they are the only
+            # figures that switch them off.
+            "grid.linewidth": 0.4,
             "grid.alpha": 1.0,
             # Gridlines belong *behind* the data. matplotlib's default draws
             # them on top, which puts hairlines across every bar -- the single

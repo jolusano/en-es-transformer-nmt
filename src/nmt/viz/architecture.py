@@ -304,28 +304,28 @@ def draw_transformer_architecture(path: Path | str) -> list[Path]:
     # Both blocks sit inside one hairline panel so the empty upper-left of the
     # canvas reads as a deliberate key rather than as stray floating text.
     ax.add_patch(FancyBboxPatch(
-        (0.02, 7.42), 4.05, 3.18,
+        (0.72, 7.62), 3.45, 2.85,
         boxstyle="round,pad=0,rounding_size=0.10",
         linewidth=0.9, edgecolor=GRIDLINE, facecolor="#f6f5f1", zorder=0))
 
-    legend_y = 9.45
-    ax.text(0.15, legend_y + 0.75, "Reading the diagram", fontsize=8.5,
+    legend_y = 9.42
+    ax.text(0.88, legend_y + 0.68, "Reading the diagram", fontsize=8.2,
             fontweight="semibold", color=INK_PRIMARY)
     for offset, (line, text) in enumerate([
         ("solid", "data flow"),
         ("dashed", "residual connection"),
         ("cross", "encoder to decoder"),
     ]):
-        y = legend_y + 0.40 - offset * 0.32
+        y = legend_y + 0.34 - offset * 0.29
         if line == "cross":
-            ax.plot([0.18, 0.62], [y, y], color=BLOCK_EDGE["encoder"],
+            ax.plot([0.90, 1.30], [y, y], color=BLOCK_EDGE["encoder"],
                     linewidth=1.3, linestyle=(0, (5, 3)))
         else:
-            ax.plot([0.18, 0.62], [y, y], color=INK_SECONDARY, linewidth=1.1,
+            ax.plot([0.90, 1.30], [y, y], color=INK_SECONDARY, linewidth=1.1,
                     linestyle="solid" if line == "solid" else (0, (3, 2)))
-        ax.text(0.72, y, text, fontsize=7.4, color=INK_SECONDARY, va="center")
+        ax.text(1.40, y, text, fontsize=7.2, color=INK_SECONDARY, va="center")
 
-    ax.text(0.15, 8.72,
+    ax.text(0.88, 8.74,
             "37.6M parameters\n"
             "4 encoder + 4 decoder layers\n"
             "d_model 512,  8 heads,  d_ff 2048\n"
@@ -458,10 +458,10 @@ def draw_multi_head_split(path: Path | str) -> list[Path]:
     _box(ax, 3.6, 0.20, 2.8, 0.50, "output   (L, 512)", "io", fontsize=8.5)
     _arrow(ax, (5.0, 1.05), (5.0, 0.70))
 
-    ax.text(0.1, 3.55,
+    ax.text(0.05, 4.62,
             "Each head gets its own\n" + r"$W^Q, W^K, W^V$" + " projections\ninto a 64-dim subspace.",
             fontsize=7.4, color=INK_SECONDARY, va="center", linespacing=1.7)
-    ax.text(9.9, 3.55,
+    ax.text(9.95, 4.62,
             "512 = 8 × 64, so\nthe split is free:\nsame total compute.",
             fontsize=7.4, color=INK_SECONDARY, va="center", ha="right", linespacing=1.7)
 
@@ -522,11 +522,11 @@ def draw_masking(path: Path | str) -> list[Path]:
 
         for spine in ax.spines.values():
             spine.set_visible(False)
-        ax.text(0.5, -0.42, subtitle, transform=ax.transAxes, ha="center", va="top",
+        ax.text(0.5, -0.30, subtitle, transform=ax.transAxes, ha="center", va="top",
                 fontsize=7, color=INK_MUTED, linespacing=1.6)
 
     fig.suptitle("Attention masks:  1 = may attend,  0 = blocked",
-                 fontsize=11.5, x=0.02, ha="left")
+                 fontsize=11.5, x=0.02, ha="left", y=1.04)
     return save(fig, path)
 
 
@@ -564,9 +564,11 @@ def draw_positional_encoding(path: Path | str, *, d_model: int = 128,
                      linewidth=1.7, label=f"dim {dimension}")
     axes[1].set_xlabel("position")
     axes[1].set_ylabel("value")
-    # A sinusoid is read by its shape, not off a value axis; the gridlines
-    # only compete with the four curves.
+    # A sinusoid is read by its shape, not off a value axis, so the full grid
+    # only competes with the four curves -- but zero is a genuine reference
+    # here, so it stays as a hairline behind them.
     axes[1].grid(False)
+    axes[1].axhline(0.0, color=GRIDLINE, linewidth=0.6, zorder=0)
     axes[1].set_title("Four of the underlying waves", fontsize=9.5)
     axes[1].legend(ncols=2, loc="lower right")
     axes[1].set_ylim(-1.45, 1.75)
@@ -627,12 +629,12 @@ def draw_residual_norm(path: Path | str) -> list[Path]:
     ax.text(5.30, 2.0, "un-normalised\nresidual highway", fontsize=7,
             color=BLOCK_EDGE["encoder"], ha="right", va="center", linespacing=1.6)
 
-    ax.text(0.15, -0.28,
+    ax.text(5.0, -0.28,
             "In post-LN every residual addition passes through a normalisation on its way to the next layer, so the gradient reaching\n"
             "layer 1 is attenuated once per layer above it — which is why post-LN needs a long, carefully tuned warmup to avoid diverging.\n"
             "In pre-LN the residual path runs from input to output untouched, gradients arrive undamped, and training is stable at higher\n"
             "learning rates with a shorter warmup. That is why this project uses it: a Colab run that diverges at step 300 is an hour lost.",
-            fontsize=7.3, va="top", color=INK_SECONDARY, linespacing=1.8)
+            fontsize=7.3, va="top", ha="center", color=INK_SECONDARY, linespacing=1.9)
 
     ax.set_title("Where to put the layer normalisation", fontsize=11.5, pad=12)
     return save(fig, path)
@@ -692,12 +694,12 @@ def draw_beam_search(path: Path | str) -> list[Path]:
                             linewidth=1.0 if kept else 0.7,
                             alpha=0.85 if kept else 0.6, zorder=1)
 
-    ax.text(0.15, 0.80, "beam size 2:  keep the two best partial hypotheses at every step",
-            fontsize=8, color=INK_PRIMARY, fontweight="semibold")
-    ax.text(0.15, 0.52,
+    ax.text(5.0, 0.80, "beam size 2:  keep the two best partial hypotheses at every step",
+            fontsize=8, color=INK_PRIMARY, fontweight="semibold", ha="center")
+    ax.text(5.0, 0.52,
             "Scores are cumulative log-probabilities — every one is negative, so a longer hypothesis is penalised purely for being\n"
             "longer. Dividing by length^0.6 before the final comparison corrects that; without it beam search systematically truncates.",
-            fontsize=7.3, va="top", color=INK_SECONDARY, linespacing=1.75)
+            fontsize=7.3, va="top", ha="center", color=INK_SECONDARY, linespacing=1.85)
 
     ax.text(9.95, 5.05, "greyed = pruned", fontsize=7.2, color=INK_MUTED, ha="right")
     ax.set_title("Beam search over the target vocabulary", fontsize=11.5, pad=12)

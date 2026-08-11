@@ -64,22 +64,30 @@ EXAMPLES = [
 ]
 
 CSS = """
-/* Gradio applies its own light/dark theme through component classes, not
-   through `prefers-color-scheme`, so a media query here would never fire.
-   Secondary text therefore *inherits* the theme's ink and is dimmed with
-   opacity, which adapts to either scheme; the token chips are the exception --
-   their wash is a fixed brand colour, so they pin their own foreground to keep
-   contrast (~16:1) rather than inheriting near-white ink onto a pale chip,
-   which is what made them unreadable before. */
+/* The interface uses the same warm off-white surface and ink as the report
+   figures, so the demo and the document read as one piece of work. Gradio
+   otherwise follows the viewer's system theme; FORCE_LIGHT_JS below pins it to
+   light so the palette is predictable and the figures never sit in a dark
+   frame. */
 .gradio-container {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    max-width: 1180px !important;
+    max-width: 1120px !important;
+    margin: 0 auto !important;      /* centre the column in the viewport */
+    background: #fcfcfb;
 }
+body, gradio-app { background: #f4f3ef; }
 
-#title h1 { margin-bottom: 0.15rem; font-weight: 650; letter-spacing: -0.01em; }
-#subtitle p { font-size: 0.95rem; margin: 0 0 0.15rem 0; opacity: 0.78; }
-#byline p   { font-size: 0.82rem; margin: 0 0 0.9rem 0; opacity: 0.58; }
+#title h1 {
+    margin-bottom: 0.15rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: #0b0b0b;
+}
+#subtitle p { font-size: 0.95rem; margin: 0 0 0.15rem 0; color: #52514e; }
+#byline p   { font-size: 0.82rem; margin: 0 0 1.1rem 0; color: #898781; }
 
+/* Token chips pin both foreground and background: inheriting either one is
+   what made them unreadable before. */
 .token-row { line-height: 2.15; margin-bottom: 2px; }
 .token-chip {
     display: inline-block;
@@ -105,11 +113,25 @@ CSS = """
     font-weight: 600;
     letter-spacing: 0.02em;
     margin: 12px 0 3px 0;
-    opacity: 0.85;
+    color: #52514e;
 }
-.stat { font-size: 0.85rem; margin: 4px 0; opacity: 0.72; }
-.hint { font-size: 0.82rem; font-style: italic; margin-top: 8px; opacity: 0.62; }
+.stat { font-size: 0.85rem; margin: 4px 0; color: #52514e; }
+.hint { font-size: 0.82rem; font-style: italic; margin-top: 8px; color: #898781; }
 """
+
+#: Gradio follows the operating system's colour scheme by default, which left
+#: dark component panels sitting inside a light page. Gradio already honours a
+#: ``?__theme=light`` query parameter, so the redirect is injected into <head>
+#: where it runs *before* the app boots -- the equivalent `js=` hook on launch()
+#: fires too late and the dark theme has already been applied.
+FORCE_LIGHT_HEAD = (
+    "<script>(function(){"
+    "var u=new URL(window.location);"
+    "if(u.searchParams.get('__theme')!=='light'){"
+    "u.searchParams.set('__theme','light');"
+    "window.location.replace(u.href);}"
+    "})();</script>"
+)
 
 
 def find_checkpoint(explicit: Path | None = None) -> Path:
@@ -207,25 +229,28 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
 
         figure = None
         if show_attention and result.attention is not None and result.attention.numel():
-            figure = _attention_figure(result)
+            figure = _attention_image(result)
 
         return result.translation, stats, tokens_html, figure
 
-    def _attention_figure(result):
-        """Render the alignment heatmap for the sentence just translated.
+    def _attention_image(result):
+        """Render the alignment as an image rather than a live plot.
 
-        Drawn on a *transparent* background with mid-grey ink rather than the
-        report's light surface: the app follows the viewer's system theme, and
-        a hard white panel dropped into a dark interface is the one thing that
-        makes an otherwise tidy UI look unfinished. Mid-grey labels stay legible
-        against either background, and the sequential blue ramp works on both.
+        A ``gr.Image`` carries a full-screen control, so the map can be opened
+        large enough to read every token -- a ``gr.Plot`` renders at the size of
+        its container and the labels stay tiny. Type sizes here are deliberately
+        larger than the report's: this is read on screen at arm's length, not
+        printed.
         """
+        import io
+
         import matplotlib
 
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        from PIL import Image
 
-        from nmt.viz.style import INK_MUTED, SEQUENTIAL, use_style
+        from nmt.viz.style import INK_MUTED, INK_SECONDARY, SEQUENTIAL, SURFACE, use_style
 
         use_style()
         attention = result.attention.numpy()
@@ -234,19 +259,18 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         attention = attention[: len(target), : len(source)]
 
         fig, ax = plt.subplots(
-            figsize=(max(4.2, 0.44 * len(source) + 1.7),
-                     max(2.8, 0.36 * len(target) + 1.5))
+            figsize=(max(6.0, 0.52 * len(source) + 2.2),
+                     max(3.6, 0.44 * len(target) + 1.8))
         )
-        fig.patch.set_alpha(0.0)
-        ax.patch.set_alpha(0.0)
-
         ax.imshow(attention, cmap=SEQUENTIAL, aspect="auto")
+
         ax.set_xticks(range(len(source)))
-        ax.set_xticklabels(source, rotation=45, ha="right", fontsize=8, color=INK_MUTED)
+        ax.set_xticklabels(source, rotation=45, ha="right", fontsize=11,
+                           color=INK_SECONDARY)
         ax.set_yticks(range(len(target)))
-        ax.set_yticklabels(target, fontsize=8, color=INK_MUTED)
-        ax.set_xlabel("source token", fontsize=8.5, color=INK_MUTED)
-        ax.set_ylabel("generated token", fontsize=8.5, color=INK_MUTED)
+        ax.set_yticklabels(target, fontsize=11, color=INK_SECONDARY)
+        ax.set_xlabel("source token", fontsize=11, color=INK_MUTED, labelpad=8)
+        ax.set_ylabel("generated token", fontsize=11, color=INK_MUTED, labelpad=8)
         ax.tick_params(colors=INK_MUTED, length=0)
         ax.grid(False)
         for spine in ax.spines.values():
@@ -257,10 +281,15 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         for row in range(attention.shape[0]):
             column = int(attention[row].argmax())
             ax.add_patch(plt.Rectangle((column - 0.5, row - 0.5), 1, 1,
-                                       fill=False, edgecolor="#eb6834", linewidth=1.5))
+                                       fill=False, edgecolor="#eb6834", linewidth=2.0))
 
         fig.tight_layout()
-        return fig
+        buffer = io.BytesIO()
+        fig.savefig(buffer, format="png", dpi=170, facecolor=SURFACE,
+                    bbox_inches="tight")
+        plt.close(fig)
+        buffer.seek(0)
+        return Image.open(buffer)
 
     def swap(direction_label: str, text: str, translation: str):
         """Flip the direction and move the translation into the input box."""
@@ -341,9 +370,15 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
                 stats = gr.HTML()
                 with gr.Accordion("How the sentence was tokenised", open=False):
                     tokens = gr.HTML()
-                attention_plot = gr.Plot(label="Cross-attention alignment")
+                attention_plot = gr.Image(
+                    label="Cross-attention alignment",
+                    type="pil",
+                    height=380,
+                    show_label=True,
+                )
                 gr.Markdown(
-                    "<p class='hint'>Each row is a generated token and each "
+                    "<p class='hint'>Click the image to open it full screen. Each row is a "
+                    "generated token and each "
                     "column a source token; darker means the model attended "
                     "there more. Try <i>The red house is very big.</i> — the "
                     "adjective and noun swap order in Spanish, and the "
@@ -405,6 +440,7 @@ def main() -> None:
     if _GRADIO_MAJOR >= 6:
         launch_kwargs["css"] = CSS
         launch_kwargs["theme"] = gr.themes.Soft(primary_hue="blue")
+        launch_kwargs["head"] = FORCE_LIGHT_HEAD
 
     demo.launch(**launch_kwargs)
 
