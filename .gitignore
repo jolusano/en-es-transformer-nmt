@@ -50,6 +50,12 @@ artifacts/logs/
 !artifacts/results/**/*.csv
 !artifacts/results/**/*.md
 
+# --- Result bundles ---------------------------------------------------------
+# results.zip is how artefacts come back from Colab; its contents are tracked
+# individually under artifacts/results/ and reports/figures/, so the archive
+# itself is redundant weight in the history.
+results.zip
+
 # --- Demonstration video ----------------------------------------------------
 *.mp4
 *.mov
