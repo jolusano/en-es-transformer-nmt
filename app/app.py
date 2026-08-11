@@ -115,6 +115,41 @@ body, gradio-app { background: #f4f3ef; }
     margin: 12px 0 3px 0;
     color: #52514e;
 }
+/* Gradio's own Fullscreen control on gr.Image is a no-op in this version --
+   clicking it leaves document.fullscreenElement null -- so it is hidden rather
+   than left as a button that does nothing. The lightbox below replaces it. */
+#attention-image button[aria-label="Fullscreen"] { display: none !important; }
+#attention-image img { cursor: zoom-in; }
+
+.nmt-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(11, 11, 11, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    padding: 24px;
+}
+.nmt-lightbox img {
+    max-width: 96vw;
+    max-height: 92vh;
+    background: #fcfcfb;
+    border-radius: 8px;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+}
+.nmt-lightbox-hint {
+    position: fixed;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #f5f5f2;
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+
 .stat { font-size: 0.85rem; margin: 4px 0; color: #52514e; }
 .hint { font-size: 0.82rem; font-style: italic; margin-top: 8px; color: #898781; }
 """
@@ -124,14 +159,63 @@ body, gradio-app { background: #f4f3ef; }
 #: ``?__theme=light`` query parameter, so the redirect is injected into <head>
 #: where it runs *before* the app boots -- the equivalent `js=` hook on launch()
 #: fires too late and the dark theme has already been applied.
-FORCE_LIGHT_HEAD = (
-    "<script>(function(){"
-    "var u=new URL(window.location);"
-    "if(u.searchParams.get('__theme')!=='light'){"
-    "u.searchParams.set('__theme','light');"
-    "window.location.replace(u.href);}"
-    "})();</script>"
-)
+#: Gradio follows the operating system's colour scheme by default, which left
+#: dark component panels sitting inside a light page. Gradio already honours a
+#: ``?__theme=light`` query parameter, so the redirect is injected into <head>
+#: where it runs *before* the app boots -- the equivalent `js=` hook on launch()
+#: fires too late and the dark theme has already been applied.
+#:
+#: The second script supplies the click-to-enlarge behaviour that Gradio's own
+#: Fullscreen button fails to provide. A delegated listener on ``document``
+#: works for elements Gradio mounts later, and the overlay is plain DOM, so it
+#: does not depend on the Fullscreen API (which several browsers refuse inside
+#: embedded contexts anyway).
+PAGE_HEAD = """
+<script>
+(function () {
+    var url = new URL(window.location);
+    if (url.searchParams.get('__theme') !== 'light') {
+        url.searchParams.set('__theme', 'light');
+        window.location.replace(url.href);
+        return;
+    }
+
+    function closeBox() {
+        var box = document.querySelector('.nmt-lightbox');
+        if (box) { box.remove(); }
+        document.removeEventListener('keydown', onKey);
+    }
+    function onKey(event) {
+        if (event.key === 'Escape') { closeBox(); }
+    }
+
+    document.addEventListener('click', function (event) {
+        var image = event.target.closest && event.target.closest('#attention-image img');
+        if (!image || !image.src) { return; }
+        event.preventDefault();
+        event.stopPropagation();
+        closeBox();
+
+        var overlay = document.createElement('div');
+        overlay.className = 'nmt-lightbox';
+
+        var large = document.createElement('img');
+        large.src = image.src;
+        large.alt = 'Cross-attention alignment, enlarged';
+        overlay.appendChild(large);
+
+        var hint = document.createElement('div');
+        hint.className = 'nmt-lightbox-hint';
+        hint.textContent = 'Click anywhere or press Esc to close';
+        overlay.appendChild(hint);
+
+        overlay.addEventListener('click', closeBox);
+        document.addEventListener('keydown', onKey);
+        document.body.appendChild(overlay);
+    }, true);
+})();
+</script>
+"""
 
 
 def find_checkpoint(explicit: Path | None = None) -> Path:
@@ -379,6 +463,7 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
                     type="pil",
                     height=520,
                     show_label=True,
+                    elem_id="attention-image",
                 )
                 gr.Markdown(
                     "<p class='hint'>Each row is a generated token and each "
@@ -465,7 +550,7 @@ def main() -> None:
     if _GRADIO_MAJOR >= 6:
         launch_kwargs["css"] = CSS
         launch_kwargs["theme"] = gr.themes.Soft(primary_hue="blue")
-        launch_kwargs["head"] = FORCE_LIGHT_HEAD
+        launch_kwargs["head"] = PAGE_HEAD
 
     demo.launch(**launch_kwargs)
 
