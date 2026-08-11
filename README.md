@@ -297,7 +297,7 @@ and missing figures render as placeholders.
 ## 9. Repository layout
 
 ```
-Final_Project/
+en-es-transformer-nmt/
 ├── README.md
 ├── requirements.txt
 ├── Makefile

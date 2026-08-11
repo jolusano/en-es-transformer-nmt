@@ -533,13 +533,13 @@ most marks if you run out:
     code("""# 1. Check the GPU
 !nvidia-smi --query-gpu=name,memory.total --format=csv"""),
     code("""# 2. Clone the repository
-#    Replace the URL with your own fork if you have pushed changes.
-REPO = "https://github.com/YOUR_USERNAME/YOUR_REPO.git"
+#    Change this only if you are working from a fork.
+REPO = "https://github.com/jolusano/en-es-transformer-nmt.git"
 
 import os
-if not os.path.exists("Final_Project"):
-    !git clone $REPO Final_Project
-%cd Final_Project
+if not os.path.exists("en-es-transformer-nmt"):
+    !git clone $REPO en-es-transformer-nmt
+%cd en-es-transformer-nmt
 !ls"""),
     code("""# 3. Install the dependencies Colab does not already have
 !pip install -q sentencepiece sacrebleu
