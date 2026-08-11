@@ -25,6 +25,7 @@ from nmt.inference.search import DecodeConfig, decode
 from nmt.model.baseline_lstm import AttentionSeq2Seq
 from nmt.model.transformer import TranslationTransformer
 from nmt.utils.devices import resolve_device
+from nmt.utils.io import project_root
 from nmt.utils.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -44,6 +45,49 @@ class TranslationResult:
     seconds: float
     #: ``(target_len, source_len)`` averaged cross-attention, when requested.
     attention: Any | None = None
+
+
+def _resolve_tokenizer(stored: str | None) -> Path:
+    """Find the tokeniser a checkpoint was trained with.
+
+    A checkpoint records an *absolute* path, which is correct on the machine
+    that produced it and meaningless anywhere else -- a model trained in Colab
+    points at ``/content/...``, so a checkpoint shared with anyone else would
+    fail to load. When the recorded path is missing we look for a tokeniser of
+    the same file name in this repository's ``artifacts/tokenizers/``, which is
+    where the fitted tokenisers are committed.
+    """
+    local_dir = project_root() / "artifacts" / "tokenizers"
+
+    if stored:
+        stored_path = Path(stored)
+        if stored_path.exists():
+            return stored_path
+
+        candidate = local_dir / stored_path.name
+        if candidate.exists():
+            logger.info(
+                "Checkpoint records %s, which does not exist here; using %s",
+                stored_path,
+                candidate,
+            )
+            return candidate
+
+    # Nothing recorded, or nothing matching: fall back to whatever is present.
+    if local_dir.is_dir() and any(local_dir.iterdir()):
+        logger.warning(
+            "Could not resolve the checkpoint's tokeniser (%s); falling back to "
+            "%s. Verify the output looks like real language -- a mismatched "
+            "tokeniser produces fluent-looking nonsense rather than an error.",
+            stored or "not recorded",
+            local_dir,
+        )
+        return local_dir
+
+    raise FileNotFoundError(
+        f"cannot locate the tokeniser for this checkpoint (recorded: {stored!r}). "
+        f"Pass tokenizer_path=..., or run `python -m nmt.data.build` to fit one."
+    )
 
 
 def build_model_from_config(config: ModelConfig) -> nn.Module:
@@ -105,11 +149,7 @@ class Translator:
         model.load_state_dict(payload["model_state"])
 
         if tokenizer_path is None:
-            tokenizer_path = payload.get("tokenizer_path")
-            if tokenizer_path is None:
-                raise ValueError(
-                    "checkpoint carries no tokenizer_path; pass tokenizer_path="
-                )
+            tokenizer_path = _resolve_tokenizer(payload.get("tokenizer_path"))
         tokenizer = load_tokenizer(tokenizer_path)
 
         if tokenizer.vocab_size != config.vocab_size:
