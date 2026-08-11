@@ -69,6 +69,9 @@ def plot_bleu_comparison(reports: dict[str, dict], output: Path) -> list[Path]:
         axis.set_title(f"{label} on the held-out test set", fontsize=9.5)
         # Headroom for the value labels, which sit just above each bar.
         axis.set_ylim(0, max(axis.get_ylim()[1], 1.0) * 1.16)
+        # Every bar is already labelled with its value, so gridlines would be
+        # a second, redundant way to read the same number.
+        axis.grid(False)
 
     # One legend for the whole figure, placed in the margin between the title
     # and the axes. Per-axes placement put it on top of the bars, which is the
@@ -122,6 +125,8 @@ def plot_bleu_by_length(reports: dict[str, dict], output: Path) -> list[Path]:
 
         axis.set_xlabel("source length (tokens)")
         axis.set_title(DIRECTION_NAMES[direction], fontsize=9.5)
+        # Four overlapping series; horizontal rules cut across all of them.
+        axis.grid(False)
 
     axes[0].set_ylabel("mean sentence BLEU")
     axes[0].legend(fontsize=7.4)
@@ -193,6 +198,7 @@ def plot_decoding_comparison(reports: dict[str, dict], output: Path) -> list[Pat
     ax.set_ylabel("BLEU")
     ax.set_title("What the search contributes", fontsize=11)
     ax.legend()
+    ax.grid(False)
 
     for position, greedy, beam in zip(positions, greedy_values, beam_values):
         gain = beam - greedy

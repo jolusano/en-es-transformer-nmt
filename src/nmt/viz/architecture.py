@@ -304,11 +304,11 @@ def draw_transformer_architecture(path: Path | str) -> list[Path]:
     # Both blocks sit inside one hairline panel so the empty upper-left of the
     # canvas reads as a deliberate key rather than as stray floating text.
     ax.add_patch(FancyBboxPatch(
-        (0.02, 6.62), 4.05, 3.33,
+        (0.02, 7.42), 4.05, 3.18,
         boxstyle="round,pad=0,rounding_size=0.10",
         linewidth=0.9, edgecolor=GRIDLINE, facecolor="#f6f5f1", zorder=0))
 
-    legend_y = 8.80
+    legend_y = 9.45
     ax.text(0.15, legend_y + 0.75, "Reading the diagram", fontsize=8.5,
             fontweight="semibold", color=INK_PRIMARY)
     for offset, (line, text) in enumerate([
@@ -325,7 +325,7 @@ def draw_transformer_architecture(path: Path | str) -> list[Path]:
                     linestyle="solid" if line == "solid" else (0, (3, 2)))
         ax.text(0.72, y, text, fontsize=7.4, color=INK_SECONDARY, va="center")
 
-    ax.text(0.15, 7.98,
+    ax.text(0.15, 8.72,
             "37.6M parameters\n"
             "4 encoder + 4 decoder layers\n"
             "d_model 512,  8 heads,  d_ff 2048\n"
@@ -430,10 +430,11 @@ def draw_attention_mechanism(path: Path | str) -> list[Path]:
 def draw_multi_head_split(path: Path | str) -> list[Path]:
     """How one 512-wide stream becomes eight 64-wide attention subspaces."""
     use_style()
-    fig, ax = figure(8.6, 4.6)
+    fig, ax = figure(8.6, 4.9)
     _bare_axes(ax)
     ax.set_xlim(0, 10)
-    ax.set_ylim(0, 5.4)
+    # Negative floor leaves a band under the diagram for the caption.
+    ax.set_ylim(-0.85, 5.4)
 
     _box(ax, 3.6, 4.35, 2.8, 0.55, "x   (L, 512)", "io", fontsize=9, weight="semibold")
 
@@ -464,7 +465,7 @@ def draw_multi_head_split(path: Path | str) -> list[Path]:
             "512 = 8 × 64, so\nthe split is free:\nsame total compute.",
             fontsize=7.4, color=INK_SECONDARY, va="center", ha="right", linespacing=1.7)
 
-    ax.text(5.0, 0.02,
+    ax.text(5.0, -0.22,
             "One softmax can attend to essentially one place. Translating \"the red house\" as \"la casa roja\" needs the\n"
             "noun tracked for gender agreement and the adjective tracked for reordering — at the same time.",
             fontsize=7.4, ha="center", va="top", color=INK_MUTED, linespacing=1.7)
@@ -563,6 +564,9 @@ def draw_positional_encoding(path: Path | str, *, d_model: int = 128,
                      linewidth=1.7, label=f"dim {dimension}")
     axes[1].set_xlabel("position")
     axes[1].set_ylabel("value")
+    # A sinusoid is read by its shape, not off a value axis; the gridlines
+    # only compete with the four curves.
+    axes[1].grid(False)
     axes[1].set_title("Four of the underlying waves", fontsize=9.5)
     axes[1].legend(ncols=2, loc="lower right")
     axes[1].set_ylim(-1.45, 1.75)
@@ -585,10 +589,10 @@ def draw_positional_encoding(path: Path | str, *, d_model: int = 128,
 def draw_residual_norm(path: Path | str) -> list[Path]:
     """Pre-layer-norm against post-layer-norm."""
     use_style()
-    fig, ax = figure(8.4, 4.2)
+    fig, ax = figure(8.4, 4.7)
     _bare_axes(ax)
     ax.set_xlim(0, 10)
-    ax.set_ylim(0, 5)
+    ax.set_ylim(-1.35, 5.0)
 
     # --- post-LN (left) ---------------------------------------------------
     ax.text(2.1, 4.62, "Post-LN   (original paper)", fontsize=9.5,
@@ -623,12 +627,12 @@ def draw_residual_norm(path: Path | str) -> list[Path]:
     ax.text(5.30, 2.0, "un-normalised\nresidual highway", fontsize=7,
             color=BLOCK_EDGE["encoder"], ha="right", va="center", linespacing=1.6)
 
-    ax.text(0.15, 0.02,
+    ax.text(0.15, -0.28,
             "In post-LN every residual addition passes through a normalisation on its way to the next layer, so the gradient reaching\n"
             "layer 1 is attenuated once per layer above it — which is why post-LN needs a long, carefully tuned warmup to avoid diverging.\n"
             "In pre-LN the residual path runs from input to output untouched, gradients arrive undamped, and training is stable at higher\n"
             "learning rates with a shorter warmup. That is why this project uses it: a Colab run that diverges at step 300 is an hour lost.",
-            fontsize=7.3, va="bottom", color=INK_SECONDARY, linespacing=1.8)
+            fontsize=7.3, va="top", color=INK_SECONDARY, linespacing=1.8)
 
     ax.set_title("Where to put the layer normalisation", fontsize=11.5, pad=12)
     return save(fig, path)
@@ -662,7 +666,7 @@ def draw_beam_search(path: Path | str) -> list[Path]:
         centres = []
         count = len(level)
         for node_index, (token, score, kept) in enumerate(level):
-            y = 4.3 - node_index * (3.4 / max(1, count - 1) if count > 1 else 0) - (0 if count > 1 else 1.8)
+            y = 4.65 - node_index * (2.95 / max(1, count - 1) if count > 1 else 0) - (0 if count > 1 else 1.6)
             colour = SERIES[0] if kept else INK_MUTED
             fill = "#dce9f9" if kept else "#f0efec"
             ax.add_patch(FancyBboxPatch(
@@ -688,14 +692,14 @@ def draw_beam_search(path: Path | str) -> list[Path]:
                             linewidth=1.0 if kept else 0.7,
                             alpha=0.85 if kept else 0.6, zorder=1)
 
-    ax.text(0.15, 0.62, "beam size 2:  keep the two best partial hypotheses at every step",
+    ax.text(0.15, 0.80, "beam size 2:  keep the two best partial hypotheses at every step",
             fontsize=8, color=INK_PRIMARY, fontweight="semibold")
-    ax.text(0.15, 0.32,
+    ax.text(0.15, 0.52,
             "Scores are cumulative log-probabilities — every one is negative, so a longer hypothesis is penalised purely for being\n"
             "longer. Dividing by length^0.6 before the final comparison corrects that; without it beam search systematically truncates.",
             fontsize=7.3, va="top", color=INK_SECONDARY, linespacing=1.75)
 
-    ax.text(9.95, 4.75, "greyed = pruned", fontsize=7.2, color=INK_MUTED, ha="right")
+    ax.text(9.95, 5.05, "greyed = pruned", fontsize=7.2, color=INK_MUTED, ha="right")
     ax.set_title("Beam search over the target vocabulary", fontsize=11.5, pad=12)
     return save(fig, path)
 

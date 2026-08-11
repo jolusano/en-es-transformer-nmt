@@ -129,10 +129,11 @@ def plot_vocabulary_growth(stats: dict, output: Path) -> list[Path]:
                      value + max(types) * 0.02, f"{value:,}",
                      ha="center", fontsize=8, color=INK_PRIMARY,
                      fontweight="semibold")
-    axes[0].set_ylim(0, max(types) * 1.18)
+    axes[0].set_ylim(0, max(types) * 1.22)
     ratio = types[1] / types[0]
-    axes[0].text(0.5, max(types) * 1.09, f"{ratio:.2f}x more Spanish types",
-                 ha="center", fontsize=7.6, color=INK_SECONDARY)
+    axes[0].text(0.5, 0.96, f"{ratio:.2f}x more Spanish types",
+                 transform=axes[0].transAxes, ha="center", va="top",
+                 fontsize=7.6, color=INK_SECONDARY)
 
     # --- panel 2: coverage curves ----------------------------------------
     cutoffs = [1_000, 5_000, 10_000, 20_000, 32_000]
@@ -140,10 +141,15 @@ def plot_vocabulary_growth(stats: dict, output: Path) -> list[Path]:
                                     ("es", COLOR["es"], "Spanish")):
         coverage = [vocabulary[language][f"coverage_top_{c}"] * 100 for c in cutoffs]
         axes[1].plot(cutoffs, coverage, color=colour, marker="o", label=label)
-        for x, y in zip(cutoffs, coverage):
-            if x in (1_000, 32_000):
-                axes[1].text(x, y - 2.4, f"{y:.1f}%", fontsize=7,
-                             color=colour, ha="center")
+        # Label only the endpoints, placed clear of the marker: the first to
+        # the right and below, the last to the left and above, so the two
+        # language curves never write over each other.
+        axes[1].annotate(f"{coverage[0]:.1f}%", (cutoffs[0], coverage[0]),
+                         textcoords="offset points", xytext=(7, -9),
+                         fontsize=7, color=colour, ha="left")
+        axes[1].annotate(f"{coverage[-1]:.1f}%", (cutoffs[-1], coverage[-1]),
+                         textcoords="offset points", xytext=(-6, -11),
+                         fontsize=7, color=colour, ha="right")
     axes[1].set_xscale("log")
     axes[1].set_xlabel("vocabulary size (most frequent types)")
     axes[1].set_ylabel("% of running tokens covered")
@@ -161,10 +167,10 @@ def plot_vocabulary_growth(stats: dict, output: Path) -> list[Path]:
         axes[2].text(bar_patch.get_x() + bar_patch.get_width() / 2, value + 0.08,
                      f"{value:.2f}%", ha="center", fontsize=8,
                      color=INK_PRIMARY, fontweight="semibold")
-    axes[2].set_ylim(0, max(rates) * 1.35)
-    axes[2].text(0.5, max(rates) * 1.20,
-                 "subword tokenisation\nremoves this entirely",
-                 ha="center", fontsize=7.4, color=INK_SECONDARY, linespacing=1.5)
+    axes[2].set_ylim(0, max(rates) * 1.42)
+    axes[2].text(0.5, 0.94, "subword tokenisation\nremoves this entirely",
+                 transform=axes[2].transAxes, ha="center", va="top",
+                 fontsize=7.4, color=INK_SECONDARY, linespacing=1.5)
 
     fig.suptitle("Spanish morphology is the reason this project uses subwords",
                  fontsize=11.5, x=0.02, ha="left")
@@ -221,10 +227,10 @@ def plot_subword_effect(stats: dict, output: Path) -> list[Path]:
         axes[1].text(bar_patch.get_x() + bar_patch.get_width() / 2, value + 0.03,
                      f"{value:.2f}", ha="center", fontsize=8.5,
                      color=INK_PRIMARY, fontweight="semibold")
-    axes[1].text(0.5, 0.88,
+    axes[1].text(0.5, 0.95,
                  "1.00 would mean every word is a single token;\n"
                  "the excess is the price paid for zero <unk>",
-                 transform=axes[1].transAxes,
+                 transform=axes[1].transAxes, va="top",
                  ha="center", fontsize=7.3, color=INK_SECONDARY, linespacing=1.5)
 
     fig.suptitle("The subword trade: longer sequences, open vocabulary",
@@ -264,11 +270,16 @@ def plot_corpus_construction(stats: dict, output: Path) -> list[Path]:
                      f"{value:,}", va="center", fontsize=7.6, color=INK_PRIMARY)
     axes[0].set_xlim(0, max(values) * 1.22)
 
+    # Two decimals: at one decimal this rounds to "100.0%", which reads as
+    # "nothing was removed" and contradicts the caption's 99.96%.
     retention = cleaning.get("retention_rate", 0) * 100
-    axes[0].text(max(values) * 0.30, 3.55,
-                 f"cleaning kept {retention:.1f}% — Tatoeba is a curated,\n"
-                 "already-clean corpus, so the filters mostly confirm that",
-                 fontsize=7.2, color=INK_SECONDARY, linespacing=1.5)
+    axes[0].text(
+        0.98, 0.06,
+        f"cleaning kept {retention:.2f}% — Tatoeba is a curated,\n"
+        "already-clean corpus, so the filters mostly confirm that",
+        transform=axes[0].transAxes, ha="right", va="bottom",
+        fontsize=7.2, color=INK_SECONDARY, linespacing=1.5,
+    )
 
     # --- panel 2: split sizes --------------------------------------------
     split = stats.get("split", {})
@@ -278,7 +289,6 @@ def plot_corpus_construction(stats: dict, output: Path) -> list[Path]:
     bars = axes[1].bar(names, values, color=[SERIES[0], SERIES[1], SERIES[2]], width=0.55)
     axes[1].set_yscale("log")
     axes[1].set_ylabel("sentence pairs (log scale)")
-    axes[1].set_title("Splits, made by connected component", fontsize=9.5)
     for bar_patch, value in zip(bars, values):
         axes[1].text(bar_patch.get_x() + bar_patch.get_width() / 2, value * 1.15,
                      f"{value:,}", ha="center", fontsize=8,
@@ -286,12 +296,11 @@ def plot_corpus_construction(stats: dict, output: Path) -> list[Path]:
     axes[1].set_ylim(1e3, max(values) * 4)
 
     leakage = sum(split.get("leakage_check", {}).values())
-    axes[1].text(
-        0.5, 0.06,
+    axes[1].set_title(
+        "Splits, made by connected component\n"
         f"{split.get('components', 0):,} components · "
         f"{leakage} sentences shared across splits",
-        transform=axes[1].transAxes, ha="center", fontsize=7.4,
-        color=SERIES[2] if leakage == 0 else SERIES[1], fontweight="semibold",
+        fontsize=9.5,
     )
 
     fig.suptitle("Corpus construction", fontsize=11.5, x=0.02, ha="left")

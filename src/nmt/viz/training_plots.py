@@ -70,7 +70,7 @@ def plot_training_curves(summary: dict, output: Path) -> list[Path]:
     axes[0].annotate(
         f"best validation loss\n{validation_loss[best_index]:.3f} at epoch {epochs[best_index]}",
         xy=(epochs[best_index], validation_loss[best_index]),
-        xytext=(0.42, 0.82), textcoords="axes fraction",
+        xytext=(0.34, 0.74), textcoords="axes fraction",
         fontsize=7.2, color=INK_SECONDARY,
         arrowprops={"arrowstyle": "-", "color": AXIS, "linewidth": 0.8,
                     "connectionstyle": "arc3,rad=0.25"},
@@ -83,6 +83,9 @@ def plot_training_curves(summary: dict, output: Path) -> list[Path]:
     axes[1].set_title("Perplexity", fontsize=9.5)
     axes[1].set_yscale("log")
     axes[1].legend()
+    # Log-scale gridlines crowd together at the top of the decade and read as
+    # hatching rather than as reference lines.
+    axes[1].grid(False)
 
     if has_bleu:
         values = [v for v in bleu if v is not None]
@@ -98,7 +101,7 @@ def plot_training_curves(summary: dict, output: Path) -> list[Path]:
         axes[2].annotate(
             f"best BLEU {values[peak]:.2f}\nat epoch {bleu_epochs[peak]}",
             xy=(bleu_epochs[peak], values[peak]),
-            xytext=(0.30, 0.28), textcoords="axes fraction",
+            xytext=(0.26, 0.22), textcoords="axes fraction",
             fontsize=7.2, color=INK_SECONDARY,
             arrowprops={"arrowstyle": "-", "color": AXIS, "linewidth": 0.8,
                         "connectionstyle": "arc3,rad=-0.25"},
@@ -152,7 +155,7 @@ def plot_learning_rate(log_records: list[dict], output: Path,
     axes[1].set_ylabel("relative learning rate")
     axes[1].set_title(r"Inverse-square-root schedule", fontsize=9.5)
     axes[1].text(
-        0.42, 0.24,
+        0.40, 0.30,
         "Linear ramp, then decay as 1/√t.\n"
         "Early gradients are mostly noise because\n"
         "attention starts near-uniform — large steps\n"
@@ -186,6 +189,7 @@ def plot_gradient_norms(log_records: list[dict], output: Path) -> list[Path]:
     ax.set_xlabel("optimiser step")
     ax.set_ylabel("global gradient norm")
     ax.set_yscale("log")
+    ax.grid(False)
     ax.set_title("Gradient norms and the clipping threshold", fontsize=11)
     return save(fig, output)
 
@@ -193,7 +197,7 @@ def plot_gradient_norms(log_records: list[dict], output: Path) -> list[Path]:
 def plot_run_comparison(summaries: dict[str, dict], output: Path) -> list[Path]:
     """Validation loss and BLEU for every experiment on shared axes."""
     use_style()
-    fig, axes = figure(9.0, 3.3, ncols=2)
+    fig, axes = figure(9.0, 3.6, ncols=2)
 
     for name, summary in summaries.items():
         history = _history(summary)
@@ -213,12 +217,16 @@ def plot_run_comparison(summaries: dict[str, dict], output: Path) -> list[Path]:
     axes[0].set_xlabel("epoch")
     axes[0].set_ylabel("validation loss")
     axes[0].set_title("Validation loss", fontsize=9.5)
-    axes[0].legend()
 
     axes[1].set_xlabel("epoch")
     axes[1].set_ylabel("validation BLEU (greedy sample)")
     axes[1].set_title("Validation BLEU", fontsize=9.5)
-    axes[1].legend()
+
+    # Shared legend above the panels: inside either one it covered the curves.
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="upper right", bbox_to_anchor=(0.995, 1.005),
+               ncols=len(labels), fontsize=7.4, frameon=False,
+               handlelength=1.2, columnspacing=1.2, handletextpad=0.45)
 
     fig.suptitle("All experiments", fontsize=11.5, x=0.02, ha="left")
     return save(fig, output)
@@ -234,9 +242,15 @@ def draw_all(results_dir: Path | str, output_dir: Path | str,
     produced: dict[str, list[Path]] = {}
     summaries: dict[str, dict] = {}
 
+    #: Never plotted: a two-epoch, 2.7M-parameter pipeline check whose curves
+    #: would appear beside the real runs as an unexplained stub.
+    excluded = {"smoke"}
+
     candidates = runs or [
         path.name for path in sorted(results_dir.iterdir())
-        if path.is_dir() and (path / "training_summary.json").exists()
+        if path.is_dir()
+        and path.name not in excluded
+        and (path / "training_summary.json").exists()
     ]
 
     for run in candidates:

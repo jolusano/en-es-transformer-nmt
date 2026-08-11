@@ -161,8 +161,12 @@ def use_style() -> None:
             "axes.grid": True,
             "axes.grid.axis": "y",
             "grid.color": GRIDLINE,
-            "grid.linewidth": 0.7,
+            "grid.linewidth": 0.6,
             "grid.alpha": 1.0,
+            # Gridlines belong *behind* the data. matplotlib's default draws
+            # them on top, which puts hairlines across every bar -- the single
+            # most common way a chart looks amateurish in print.
+            "axes.axisbelow": True,
             "xtick.direction": "out",
             "ytick.direction": "out",
             "xtick.major.size": 3,

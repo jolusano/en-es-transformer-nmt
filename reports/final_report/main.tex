@@ -37,8 +37,7 @@
 \vspace*{2.2cm}
 
 {\color{inkmuted}\large Seneca Polytechnic \\[0.3em]
-AIG230 --- Natural Language Processing \\[0.3em]
-Postgraduate Certificate in Artificial Intelligence}
+AIG230 --- Natural Language Processing}
 
 \vspace{1.8cm}
 {\color{rule}\rule{0.72\linewidth}{1.2pt}}
@@ -101,11 +100,12 @@ cross-attention alignment behind each output.
 
 \vspace{0.6em}
 \begin{keypoint}
-\textbf{Reproducibility.} Every number, table and figure in this report is
-generated from JSON artefacts written by the pipeline
-(\code{reports/build\_report\_data.py} and \code{nmt.viz.make\_figures}).
-Nothing is transcribed by hand, so the document cannot drift out of step with
-the code and checkpoints in the repository.
+\textbf{How to verify these results.} Every number, table and figure in this
+report is generated directly from the evaluation artefacts the pipeline writes,
+rather than transcribed by hand. The commands that reproduce them from a clean
+checkout are listed in Appendix~\ref{app:repro}, and the repository retains
+every model hypothesis on the test set, so any score quoted here can be
+recomputed without retraining.
 \end{keypoint}
 
 \clearpage

@@ -64,16 +64,51 @@ EXAMPLES = [
 ]
 
 CSS = """
-.gradio-container { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-#title h1 { margin-bottom: 0.1rem; }
-#subtitle { color: #52514e; font-size: 0.92rem; margin-top: 0; }
-.token-chip {
-    display: inline-block; padding: 2px 7px; margin: 2px;
-    border-radius: 5px; background: #dce9f9; border: 1px solid #2a78d6;
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.78rem;
+/* Gradio applies its own light/dark theme through component classes, not
+   through `prefers-color-scheme`, so a media query here would never fire.
+   Secondary text therefore *inherits* the theme's ink and is dimmed with
+   opacity, which adapts to either scheme; the token chips are the exception --
+   their wash is a fixed brand colour, so they pin their own foreground to keep
+   contrast (~16:1) rather than inheriting near-white ink onto a pale chip,
+   which is what made them unreadable before. */
+.gradio-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    max-width: 1180px !important;
 }
-.token-chip.special { background: #fbe3d8; border-color: #eb6834; }
-.stat { color: #52514e; font-size: 0.85rem; }
+
+#title h1 { margin-bottom: 0.15rem; font-weight: 650; letter-spacing: -0.01em; }
+#subtitle p { font-size: 0.95rem; margin: 0 0 0.15rem 0; opacity: 0.78; }
+#byline p   { font-size: 0.82rem; margin: 0 0 0.9rem 0; opacity: 0.58; }
+
+.token-row { line-height: 2.15; margin-bottom: 2px; }
+.token-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 2px 3px;
+    border-radius: 6px;
+    background: #dce9f9;
+    color: #0b0b0b;
+    border: 1px solid #2a78d6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    white-space: nowrap;
+}
+.token-chip.special {
+    background: #fbe3d8;
+    color: #0b0b0b;
+    border-color: #eb6834;
+    font-weight: 600;
+}
+
+.token-caption {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 12px 0 3px 0;
+    opacity: 0.85;
+}
+.stat { font-size: 0.85rem; margin: 4px 0; opacity: 0.72; }
+.hint { font-size: 0.82rem; font-style: italic; margin-top: 8px; opacity: 0.62; }
 """
 
 
@@ -119,7 +154,7 @@ def render_tokens(pieces: list[str]) -> str:
             f'<span class="token-chip{" special" if special else ""}">'
             f"{html.escape(display)}</span>"
         )
-    return "<div>" + "".join(chips) + "</div>"
+    return "<div class='token-row'>" + "".join(chips) + "</div>"
 
 
 def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
@@ -161,10 +196,13 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         )
 
         tokens_html = (
-            "<p class='stat'><b>Source tokenisation</b></p>"
+            "<div class='token-caption'>Source tokenisation</div>"
             + render_tokens(result.source_tokens)
-            + "<p class='stat' style='margin-top:8px'><b>Generated tokens</b></p>"
+            + "<div class='token-caption'>Generated tokens</div>"
             + render_tokens(result.output_tokens)
+            + "<div class='hint'>Orange chips are reserved symbols: the "
+              "direction tag that tells the model which way to translate, and "
+              "the end-of-sentence marker. &#9251; marks a word boundary.</div>"
         )
 
         figure = None
@@ -174,35 +212,53 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         return result.translation, stats, tokens_html, figure
 
     def _attention_figure(result):
-        """Render the alignment heatmap for the sentence just translated."""
+        """Render the alignment heatmap for the sentence just translated.
+
+        Drawn on a *transparent* background with mid-grey ink rather than the
+        report's light surface: the app follows the viewer's system theme, and
+        a hard white panel dropped into a dark interface is the one thing that
+        makes an otherwise tidy UI look unfinished. Mid-grey labels stay legible
+        against either background, and the sequential blue ramp works on both.
+        """
         import matplotlib
 
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
 
-        from nmt.viz.style import SEQUENTIAL, use_style
+        from nmt.viz.style import INK_MUTED, SEQUENTIAL, use_style
 
         use_style()
         attention = result.attention.numpy()
-        source = [t.replace("▁", "") or "_" for t in result.source_tokens]
-        target = [t.replace("▁", "") or "_" for t in result.output_tokens]
+        source = [t.replace("\u2581", "") or "_" for t in result.source_tokens]
+        target = [t.replace("\u2581", "") or "_" for t in result.output_tokens]
         attention = attention[: len(target), : len(source)]
 
         fig, ax = plt.subplots(
-            figsize=(max(4.0, 0.42 * len(source) + 1.6),
-                     max(2.6, 0.34 * len(target) + 1.4))
+            figsize=(max(4.2, 0.44 * len(source) + 1.7),
+                     max(2.8, 0.36 * len(target) + 1.5))
         )
+        fig.patch.set_alpha(0.0)
+        ax.patch.set_alpha(0.0)
+
         ax.imshow(attention, cmap=SEQUENTIAL, aspect="auto")
         ax.set_xticks(range(len(source)))
-        ax.set_xticklabels(source, rotation=45, ha="right", fontsize=7.5)
+        ax.set_xticklabels(source, rotation=45, ha="right", fontsize=8, color=INK_MUTED)
         ax.set_yticks(range(len(target)))
-        ax.set_yticklabels(target, fontsize=7.5)
-        ax.set_xlabel("source")
-        ax.set_ylabel("generated")
-        ax.set_title("Cross-attention alignment", fontsize=10)
+        ax.set_yticklabels(target, fontsize=8, color=INK_MUTED)
+        ax.set_xlabel("source token", fontsize=8.5, color=INK_MUTED)
+        ax.set_ylabel("generated token", fontsize=8.5, color=INK_MUTED)
+        ax.tick_params(colors=INK_MUTED, length=0)
         ax.grid(False)
         for spine in ax.spines.values():
             spine.set_visible(False)
+
+        # Ring the strongest source position for each generated token: the
+        # model's implicit alignment decision, and the thing worth looking at.
+        for row in range(attention.shape[0]):
+            column = int(attention[row].argmax())
+            ax.add_patch(plt.Rectangle((column - 0.5, row - 0.5), 1, 1,
+                                       fill=False, edgecolor="#eb6834", linewidth=1.5))
+
         fig.tight_layout()
         return fig
 
@@ -229,9 +285,12 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         )
         gr.Markdown(
             "A single transformer, trained from scratch on the Tatoeba corpus, "
-            "translating in **both** directions. "
-            "AIG230 Final Project — Group 7: Jose Luis Sanchez Noriega & Bikash Subedi.",
+            "translating in **both** directions.",
             elem_id="subtitle",
+        )
+        gr.Markdown(
+            "AIG230 Final Project · Group 7 — Jose Luis Sanchez Noriega & Bikash Subedi",
+            elem_id="byline",
         )
 
         with gr.Row():
@@ -268,8 +327,10 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
                              "produce shorter output.",
                     )
                     show_attention = gr.Checkbox(
-                        value=False, label="Show attention alignment",
-                        info="Re-runs the model to capture cross-attention.",
+                        value=True, label="Show attention alignment",
+                        info="Plots which source words the model looked at for "
+                             "each word it generated. Costs one extra forward "
+                             "pass, so turn it off if you want minimum latency.",
                     )
 
             with gr.Column(scale=1):
@@ -280,7 +341,14 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
                 stats = gr.HTML()
                 with gr.Accordion("How the sentence was tokenised", open=False):
                     tokens = gr.HTML()
-                attention_plot = gr.Plot(label="Cross-attention")
+                attention_plot = gr.Plot(label="Cross-attention alignment")
+                gr.Markdown(
+                    "<p class='hint'>Each row is a generated token and each "
+                    "column a source token; darker means the model attended "
+                    "there more. Try <i>The red house is very big.</i> — the "
+                    "adjective and noun swap order in Spanish, and the "
+                    "alignment crosses over.</p>"
+                )
 
         gr.Examples(examples=EXAMPLES, inputs=[source, direction], label="Try one of these")
 

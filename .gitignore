@@ -10,6 +10,10 @@
 docs/study_guide/
 docs/study_guide_build/
 
+# Personal working notes written to answer my own questions about the
+# project. Not part of the submission.
+docs/notes/
+
 # --- Datasets ---------------------------------------------------------------
 # Raw Tatoeba dumps are large and are reproducible with `make data`.
 data/raw/
