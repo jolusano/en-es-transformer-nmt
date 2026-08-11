@@ -36,13 +36,16 @@ def plot_bleu_comparison(reports: dict[str, dict], output: Path) -> list[Path]:
     """Grouped BLEU and chrF2 per direction, across every system."""
     use_style()
     runs = list(reports)
-    fig, axes = figure(9.2, 3.4, ncols=2)
+    # Taller than the other two-panel figures: the shared legend occupies a
+    # strip above the axes rather than sitting inside them.
+    fig, axes = figure(9.2, 3.8, ncols=2)
 
     width = 0.8 / max(1, len(runs))
     positions = np.arange(len(DIRECTIONS))
 
-    for metric_index, (metric, axis, label) in enumerate(
-        (("bleu", axes[0], "BLEU"), ("chrf2", axes[1], "chrF2"))
+    for metric, axis, label in (
+        ("bleu", axes[0], "BLEU"),
+        ("chrf2", axes[1], "chrF2"),
     ):
         for run_index, run in enumerate(runs):
             summary = reports[run]["summary"]
@@ -64,8 +67,18 @@ def plot_bleu_comparison(reports: dict[str, dict], output: Path) -> list[Path]:
         axis.set_xticklabels([DIRECTION_NAMES[d] for d in DIRECTIONS], fontsize=8)
         axis.set_ylabel(label)
         axis.set_title(f"{label} on the held-out test set", fontsize=9.5)
-        if metric_index == 0:
-            axis.legend(fontsize=7.4)
+        # Headroom for the value labels, which sit just above each bar.
+        axis.set_ylim(0, max(axis.get_ylim()[1], 1.0) * 1.16)
+
+    # One legend for the whole figure, placed in the margin between the title
+    # and the axes. Per-axes placement put it on top of the bars, which is the
+    # one thing a legend must never do.
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles, labels, loc="upper right", bbox_to_anchor=(0.995, 1.005),
+        ncols=len(runs), fontsize=7.4, frameon=False,
+        handlelength=1.1, columnspacing=1.1, handletextpad=0.45,
+    )
 
     fig.suptitle("Translation quality by system and direction",
                  fontsize=11.5, x=0.02, ha="left")
@@ -75,11 +88,17 @@ def plot_bleu_comparison(reports: dict[str, dict], output: Path) -> list[Path]:
 def plot_bleu_by_length(reports: dict[str, dict], output: Path) -> list[Path]:
     """Sentence-level BLEU stratified by source length.
 
-    This is the figure that tests the central architectural claim. A recurrent
-    model must carry information across a number of sequential steps
-    proportional to the sentence length, so its quality should fall away faster
-    on long inputs than the transformer's, where every pair of positions is one
-    attention hop apart.
+    Intended to test the claim that a recurrent model degrades faster than a
+    transformer as sentences lengthen, since it must carry information across a
+    number of sequential steps proportional to the length while a transformer
+    connects any two positions in one attention hop.
+
+    On this corpus the claim is *not* borne out: the transformer's advantage is
+    widest on the shortest sentences and narrows monotonically. That is reported
+    as a negative result rather than explained away, but the test is weak here --
+    83% of the test set is ten tokens or fewer and the longest bucket holds 25
+    sentences, so the long-sentence estimates carry very little weight. See the
+    evaluation section of the report.
     """
     use_style()
     fig, axes = figure(9.2, 3.3, ncols=2, sharey=True)

@@ -2,26 +2,26 @@
 
 | # | sBLEU | Source | Reference | Model output | Failure modes |
 |---|-------|--------|-----------|--------------|---------------|
-| 1 | 0.0 | Everyone escaped. | Escaparon todos. | Todos escaparon. | other |
-| 2 | 0.0 | See you later. | Nos estamos viendo. | Hasta luego. | no_content_overlap |
-| 3 | 0.0 | I am Japanese. | Soy japonesa. | Soy japonés. | other |
-| 4 | 0.0 | I hate it. | Me la seca. | Lo odio. | no_content_overlap |
-| 5 | 0.0 | I followed him. | Le seguí. | Le seguí. | other |
-| 6 | 0.0 | When do we go? | ¿Cuándo vamos? | ¿Cuándo vamos? | other |
-| 7 | 0.0 | Does she like me? | ¿Le gusto a ella? | ¿Le gusto? | other |
-| 8 | 0.0 | I am Japanese. | Soy japonés. | Soy japonés. | other |
-| 9 | 0.0 | I learn fast. | Aprendo rápido. | Aprendo rápido. | other |
-| 10 | 0.0 | I want to come in. | Quiero entrar. | Quiero entrar. | other |
-| 11 | 0.0 | I have gained weight. | He ganado peso. | He engordado. | no_content_overlap |
-| 12 | 0.0 | I need answers. | Necesito respuestas. | Necesito respuestas. | other |
-| 13 | 0.0 | Tom waited. | Tomás esperó. | Tom esperó. | other |
-| 14 | 0.0 | I hate it. | Me la baja. | Lo odio. | no_content_overlap |
-| 15 | 0.0 | It's July. | Ahora es julio. | Es julio. | other |
-| 16 | 0.0 | Did you find anything? | ¿Descubriste algo? | ¿Encontraste algo? | other |
-| 17 | 0.0 | Are you beginners? | ¿Sois principiantes? | ¿Sois principiantes? | other |
-| 18 | 0.0 | I bought one. | Compré uno. | Compré una. | other |
-| 19 | 0.0 | Do you have family? | ¿Tienes familia? | ¿Tienes familia? | other |
-| 20 | 0.0 | We continued walking. | Continuamos andando. | Seguimos caminando. | no_content_overlap |
+| 1 | 0.0 | Tell me about it! | Ni me lo digas. | ¡<unk> al respecto! | unknown_token, no_content_overlap |
+| 2 | 0.0 | Curse you! | Te maldigo. | ¡<unk>! | unknown_token, no_content_overlap |
+| 3 | 0.0 | Don't screw around with me. | ¡No jodas conmigo! | No <unk> la <unk>. | repetition, over_generation, unknown_token, no_content_overlap |
+| 4 | 0.0 | Tell me about it. | ¡Dímelo a mí! | Háblame al respecto. | no_content_overlap |
+| 5 | 2.8 | Dial 411 for directory assistance. | Marque 411 para asistencia de directorio. | No <unk> la <unk> por ayuda <unk>. | repetition, over_generation, unknown_token, number_mismatch, no_content_overlap |
+| 6 | 3.4 | Ecosystems are degrading rapidly all around the Earth. | Los ecosistemas se están degradando en todo el mundo. | Los <unk> son <unk> rápidamente por toda la Tierra. | repetition, unknown_token, no_content_overlap |
+| 7 | 3.4 | Even the hard-hearted can be moved to tears. | Hasta el diablo llora. | Incluso los <unk> se pueden mover a las lágrimas. | over_generation, unknown_token, no_content_overlap |
+| 8 | 3.6 | His meaning is quite plain. | Lo que él trata de decir es bien sencillo de comprender. | Su significado es bastante simple. | truncation, no_content_overlap |
+| 9 | 3.7 | It's coming out! My bladder's about to explode! | ¡Me estoy meando, la vejiga me va a explotar! | ¡Ya sale! ¡Mi <unk> está a punto de estallar! | unknown_token, no_content_overlap |
+| 10 | 3.7 | The Geneva Convention is not recognized at Guantanamo. | La Convención de Ginebra no está reconocida en Guantanamo. | La convención de <unk> no se reconoce a las <unk>. | repetition, unknown_token |
+| 11 | 3.7 | Crap! My girlfriend is already back! What should we do?! | ¡Mierda, mi polola ya volvió! ¿Qué hacemos? | ¡demonios! ¡Mi novia ya está de vuelta! ¡¿Qué deberíamos hacer?! | other |
+| 12 | 3.9 | Both Tom and John married Canadian women. | Tom y John están, los dos, casados con mujeres canadienses. | Tanto Tom como John se casaron canadiense. | other |
+| 13 | 3.9 | And passing on from thence to a mountain that was on the east side of Bethel, he there pitched his tent, having Bethel on the west and Hai on the east: he built there also an altar to the Lord, and called upon his name. | De allí pasó a la montaña, al oriente de Betel, y desplegó su tienda, entre Betel al occidente y Ay al oriente. Allí edificó un altar a Yahvé e invocó su nombre. | Y pasar por <unk> hasta una montaña que estaba en el lado del <unk>, <unk> su carpa, teniendo <unk> en el oeste y <unk> en el este: él construyó también un altar hacia el Señor y llamó a su nombre. | repetition, unknown_token |
+| 14 | 4.0 | Scholarships are awarded to undeserving people and good students are denied. | Se conceden becas a personas que no las merecen, y se niegan a buenos estudiantes. | Los <unk> son <unk> para <unk> a la gente y los buenos estudiantes son <unk>. | repetition, unknown_token |
+| 15 | 4.0 | We make a teeny bit of progress, then we go back to square one. | Apenas logramos un avance, todo vuelve a cero. | <unk> un poco de progreso, entonces volvemos a la casilla. | unknown_token, no_content_overlap |
+| 16 | 4.0 | Cardinals are, in general, excellent polyglots. | Los Cardenales son por lo general excelentes Políglotas. | Los <unk> son, en general, excelente <unk>. | repetition, unknown_token |
+| 17 | 4.0 | Watch him and do likewise. | Vigílale y haz lo mismo. | <unk> y <unk> las <unk>. | repetition, over_generation, unknown_token, no_content_overlap |
+| 18 | 4.0 | The stevia was cultivated and used as a sweetener by the Guarani people for at least 1,500 years. | La stevia fue cultivada y utilizada como edulcorante por el pueblo guaraní durante al menos 1.500 años. | Los <unk> fueron <unk> y <unk> como <unk> por la gente <unk> por al menos 1. 500 años. | repetition, unknown_token |
+| 19 | 4.2 | He has a clumsy walk. | Camina de forma torpe. | Él tiene un <unk> <unk>. | repetition, over_generation, unknown_token, no_content_overlap |
+| 20 | 4.2 | Here's a restaurant I eat at a lot. | Aquí hay un restaurante en el que como a menudo. | Aquí tengo mucho restaurante. | truncation |
 
 **Failure-mode frequency across the whole test set**
 
@@ -41,26 +41,26 @@
 
 | # | sBLEU | Source | Reference | Model output | Failure modes |
 |---|-------|--------|-----------|--------------|---------------|
-| 1 | 0.0 | ¡Despacio! | Slow down! | Slow down! | other |
-| 2 | 0.0 | Nos estamos viendo. | See you later. | We're watching. | no_content_overlap |
-| 3 | 0.0 | Soy japonesa. | I am Japanese. | I'm Japanese. | other |
-| 4 | 0.0 | Somos confiables. | We're credible. | We're superstitious. | other |
-| 5 | 0.0 | Los políticos mienten. | Politicians lie. | Politicians lie. | other |
-| 6 | 0.0 | Soy japonés. | I am Japanese. | I'm Japanese. | other |
-| 7 | 0.0 | Gracias de todas formas. | Thanks all the same. | Thanks anyway. | other |
-| 8 | 0.0 | Él es veloz. | He's fast. | He's fast. | other |
-| 9 | 0.0 | Ella es tranquila. | She is quiet. | She's quiet. | other |
-| 10 | 0.0 | Ven a casa. | Come home. | Come home. | other |
-| 11 | 0.0 | Tomás esperó. | Tom waited. | Tom waited. | other |
-| 12 | 0.0 | Él es americano. | He is an American. | He's American. | other |
-| 13 | 0.0 | Estupendo. | I stayed up late. | great. | truncation, no_content_overlap |
-| 14 | 0.0 | Él es americano. | He is American. | He's American. | other |
-| 15 | 0.0 | Valía la pena probar. | It was worth trying. | worth trying. | other |
-| 16 | 0.0 | Elige sabiamente. | Choose carefully. | Choose wisely. | other |
-| 17 | 0.0 | Continuamos andando. | We continued walking. | Keep walking. | other |
-| 18 | 0.0 | ¿Quién se está riendo? | Who's laughing? | Who's laughing? | other |
-| 19 | 0.0 | Somos pacientes. | We're patients. | We're patients. | other |
-| 20 | 0.0 | Gracias de todas formas. | Thanks anyway. | Thanks anyway. | other |
+| 1 | 0.0 | Te maldigo. | Curse you! | You recovered. | no_content_overlap |
+| 2 | 3.1 | Los arpones de Philae no se desplegaron. | Philae's harpoons did not deploy. | The <unk> of <unk> will not be <unk>. | repetition, over_generation, unknown_token, no_content_overlap |
+| 3 | 3.2 | Considera a las mujeres placeres de usar y tirar y no búsquedas con sentido. | He regards women as disposable pleasures rather than as meaningful pursuits. | Consider the women pleasures to use and flush and not to be <unk>. | unknown_token |
+| 4 | 3.2 | Estados Unidos se imagina que es la nación más libre del mundo. | America fancies itself the world's freest nation. | The United States is imagining that it's the <unk> nation in the world. | over_generation, unknown_token |
+| 5 | 3.5 | Los solsticios y los equinoccios marcan el inicio de las estaciones del año. | Solstices and equinoxes mark the beginnings of the seasons of the year. | The <unk> and the <unk> begin the <unk> stations. | repetition, unknown_token, no_content_overlap |
+| 6 | 3.7 | Considera que las mujeres son placeres de usar y tirar más que búsquedas con sentido. | He regards women as disposable pleasures rather than as meaningful pursuits. | Consider that women are pleasures to use and pull more than <unk>. | unknown_token |
+| 7 | 3.7 | Considera que las mujeres son placeres desechables más que objetivos significativos. | He regards women as disposable pleasures rather than as meaningful pursuits. | Consider that women are <unk> pleasures more than <unk> goals. | repetition, unknown_token |
+| 8 | 4.0 | Considera a las mujeres placeres desechables y no propósitos con sentido. | He regards women as disposable pleasures rather than as meaningful pursuits. | Consider the Turkish women with no purpose. | other |
+| 9 | 4.0 | Marque 411 para asistencia de directorio. | Dial 411 for directory assistance. | outline <unk> to care for this <unk>. | repetition, over_generation, unknown_token, number_mismatch, no_content_overlap |
+| 10 | 4.0 | ¡Me estoy meando, la vejiga me va a explotar! | It's coming out! My bladder's about to explode! | I'm <unk>, bladder is going to blow up! | unknown_token, no_content_overlap |
+| 11 | 4.0 | Las lombrices a veces son beneficiosas para el suelo. | Worms can be good for the soil. | <unk> are sometimes <unk> to the ground. | repetition, unknown_token, no_content_overlap |
+| 12 | 4.0 | Tenga cuidado de no resbalar en las baldosas mojadas. | Mind you don't slip on the wet tiles. | Be careful not to sneak in your wet <unk>. | unknown_token |
+| 13 | 4.1 | Las flores de loto desprendían una fragancia indescriptible. | The lotus flowers gave off an indescribable fragrance. | <unk> flowers <unk> an <unk> scent. | repetition, unknown_token |
+| 14 | 4.1 | Él pasó su cepillo por toda la lona. | He swept his brush across the canvas. | He spent his <unk> all over his <unk>. | repetition, unknown_token |
+| 15 | 4.1 | Un sólido argumento en favor del cristianismo es el siguiente: las ofensas contra la caridad es probablemente lo único que, en sus lechos de muerte, los hombres llegan a sentir y no a comprender como un crimen. | A strong argument for the religion of Christ is this - that offences against Charity are about the only ones which men on their death-beds can be made, not to understand, but to feel, as crime. | An argument solid in favor of Christianity is the following: the trespasses against charity is probably the only thing that, in his <unk> of death, men came to feel and don't understand a crime. | unknown_token |
+| 16 | 4.2 | Me parece que el tiempo se está despejando. | I think it's clearing up. | It seems to me that time is getting tired. | no_content_overlap |
+| 17 | 4.3 | Esto viola alrededor de un millón de códigos penales y todos los libros sagrados existentes. | This violates about a million penal codes and every holy book there is. | This viola around a million <unk> <unk> and all the <unk> <unk> books. | repetition, unknown_token |
+| 18 | 4.4 | Las calles adoquinadas le dan un aspecto muy pintoresco a este pueblo. | The cobblestone streets give this town a very picturesque appearance. | <unk> streets bring this village very <unk> looks. | repetition, unknown_token |
+| 19 | 4.5 | Placer y alegría tan pronto ida como venida. | Happiness comes and goes. | Pleasure and joy as soon as I <unk>. | over_generation, unknown_token, no_content_overlap |
+| 20 | 4.5 | No lo voy a soportar más. | I won't tolerate it anymore. | I'm not going to put up with it any longer. | over_generation, no_content_overlap |
 
 **Failure-mode frequency across the whole test set**
 

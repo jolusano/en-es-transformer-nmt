@@ -110,6 +110,7 @@ def corpus_bleu(
     *,
     max_order: int = 4,
     smooth: bool = True,
+    effective_order: bool = False,
 ) -> BleuScore:
     """Corpus-level BLEU with clipped n-gram precision and brevity penalty.
 
@@ -120,6 +121,12 @@ def corpus_bleu(
         of mteval-v13a, which is sacreBLEU's default). Without it a corpus
         containing no matching 4-gram scores exactly zero, which makes
         early-training checkpoints indistinguishable from one another.
+    effective_order
+        Average only over the n-gram orders the hypothesis is long enough to
+        have. Leave this ``False`` for corpus scoring -- sacreBLEU does, and
+        turning it on would make the headline numbers incomparable to published
+        work. Turn it on for *sentence* scoring, where sentences shorter than
+        ``max_order`` are otherwise forced to zero; :func:`sentence_bleu` does.
     """
     if len(hypotheses) != len(references):
         raise ValueError(
@@ -199,8 +206,21 @@ def corpus_bleu(
         else:
             precisions.append(100.0 * numerator / denominator)
 
-    if min(precisions) > 0:
-        log_mean = sum(math.log(p) for p in precisions) / max_order
+    # With `effective_order`, orders that the hypothesis is too short to have
+    # any of are dropped from the geometric mean rather than contributing a
+    # zero. A 3-token sentence has no 4-grams at all, so under the fixed
+    # 4-order mean it scores 0 no matter how perfect it is -- which made the
+    # error analysis rank *correct* translations of short sentences as the
+    # worst in the corpus. This is what sacreBLEU's sentence_bleu() does, and
+    # why it is off for corpus scoring (where every order has counts anyway)
+    # and on for sentence scoring.
+    order_count = (
+        max(1, sum(1 for total in totals if total > 0)) if effective_order else max_order
+    )
+    usable = precisions[:order_count]
+
+    if usable and min(usable) > 0:
+        log_mean = sum(math.log(p) for p in usable) / order_count
         score = brevity_penalty * math.exp(log_mean)
     else:
         score = 0.0
@@ -217,13 +237,22 @@ def corpus_bleu(
 
 
 def sentence_bleu(hypothesis: str, reference: str, *, max_order: int = 4) -> float:
-    """Smoothed BLEU for a single sentence.
+    """Smoothed BLEU for a single sentence, with effective order.
 
     Only meaningful for *ranking* sentences against each other -- which is what
     the error analysis uses it for, to surface the worst translations. It is
     not comparable to a corpus BLEU number.
+
+    ``effective_order`` is essential here and must not be dropped. Tatoeba's
+    median sentence is six tokens and a quarter are under four, and a sentence
+    with fewer than four tokens has no 4-grams: scored at fixed order it gets
+    zero however good it is. Without this, the "worst translations" ranking
+    fills up with short sentences the model translated perfectly.
     """
-    return corpus_bleu([hypothesis], [reference], max_order=max_order, smooth=True).score
+    return corpus_bleu(
+        [hypothesis], [reference],
+        max_order=max_order, smooth=True, effective_order=True,
+    ).score
 
 
 # --- Reference implementations ---------------------------------------------

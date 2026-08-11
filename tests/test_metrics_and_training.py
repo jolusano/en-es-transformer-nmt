@@ -98,6 +98,50 @@ def test_tokenizer_separates_punctuation():
     assert tokenize_13a("Hola, Tom.") == ["Hola", ",", "Tom", "."]
 
 
+@pytest.mark.parametrize(
+    "text",
+    ["Le seguí.", "Bailaré.", "Everyone escaped.", "Hola."],
+)
+def test_short_perfect_sentences_score_one_hundred(text):
+    """Regression: sentence BLEU must not punish a sentence for being short.
+
+    At fixed 4-gram order a sentence of fewer than four tokens has no 4-grams,
+    so p4 = 0 and the geometric mean collapses to zero however perfect the
+    translation. That made the error analysis rank sentences the model had
+    translated *exactly right* as the worst in the corpus. Effective order --
+    averaging only over the orders actually present -- is the fix.
+    """
+    assert sentence_bleu(text, text) == pytest.approx(100.0, abs=1e-6)
+
+
+@pytest.mark.parametrize(
+    "hypothesis,reference",
+    [
+        ("Le seguí.", "Le seguí."),
+        ("Soy japonés.", "Soy japonesa."),
+        ("My dry.", "I hate it."),
+        ("the cat sat on the mat", "the cat is on the mat"),
+    ],
+)
+def test_sentence_bleu_matches_sacrebleu_sentence_bleu(hypothesis, reference):
+    import sacrebleu
+
+    ours = sentence_bleu(hypothesis, reference)
+    theirs = sacrebleu.sentence_bleu(hypothesis, [reference]).score
+    assert ours == pytest.approx(theirs, abs=0.1)
+
+
+def test_corpus_bleu_keeps_fixed_order():
+    """Effective order must stay OFF at corpus level.
+
+    sacreBLEU scores corpora at fixed order; enabling it here would silently
+    make the headline numbers incomparable to published work.
+    """
+    short = ["Hola.", "Adios."]
+    assert corpus_bleu(short, short).score < 100.0
+    assert corpus_bleu(short, short, effective_order=True).score == pytest.approx(100.0)
+
+
 def test_sentence_bleu_orders_hypotheses_sensibly():
     reference = "the cat sat on the mat"
     good = sentence_bleu("the cat sat on the mat", reference)

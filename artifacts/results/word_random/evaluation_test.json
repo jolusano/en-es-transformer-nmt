@@ -82,7 +82,7 @@
             "low": 1,
             "high": 5,
             "sentences": 1231,
-            "mean_sentence_bleu": 45.15211037742901,
+            "mean_sentence_bleu": 52.80249647743892,
             "mean_length_ratio": 1.1024857194434774
           },
           {
@@ -90,7 +90,7 @@
             "low": 6,
             "high": 10,
             "sentences": 3467,
-            "mean_sentence_bleu": 49.16837972792436,
+            "mean_sentence_bleu": 49.323407016116754,
             "mean_length_ratio": 1.046433753248002
           },
           {
@@ -126,358 +126,8 @@
             "mean_length_ratio": 1.1132122735747252
           }
         ],
-        "mean_sentence_bleu": 46.99145910851814,
+        "mean_sentence_bleu": 48.751555448206126,
         "worst": [
-          {
-            "index": 9,
-            "direction": "en-es",
-            "source": "Everyone escaped.",
-            "reference": "Escaparon todos.",
-            "hypothesis": "Todos escaparon.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 129,
-            "direction": "en-es",
-            "source": "See you later.",
-            "reference": "Nos estamos viendo.",
-            "hypothesis": "Hasta luego.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 134,
-            "direction": "en-es",
-            "source": "I am Japanese.",
-            "reference": "Soy japonesa.",
-            "hypothesis": "Soy japonés.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 140,
-            "direction": "en-es",
-            "source": "I hate it.",
-            "reference": "Me la seca.",
-            "hypothesis": "Lo odio.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 205,
-            "direction": "en-es",
-            "source": "I followed him.",
-            "reference": "Le seguí.",
-            "hypothesis": "Le seguí.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 225,
-            "direction": "en-es",
-            "source": "When do we go?",
-            "reference": "¿Cuándo vamos?",
-            "hypothesis": "¿Cuándo vamos?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 260,
-            "direction": "en-es",
-            "source": "Does she like me?",
-            "reference": "¿Le gusto a ella?",
-            "hypothesis": "¿Le gusto?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 5,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 318,
-            "direction": "en-es",
-            "source": "I am Japanese.",
-            "reference": "Soy japonés.",
-            "hypothesis": "Soy japonés.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 396,
-            "direction": "en-es",
-            "source": "I learn fast.",
-            "reference": "Aprendo rápido.",
-            "hypothesis": "Aprendo rápido.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 442,
-            "direction": "en-es",
-            "source": "I want to come in.",
-            "reference": "Quiero entrar.",
-            "hypothesis": "Quiero entrar.",
-            "sentence_bleu": 0.0,
-            "source_length": 6,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 567,
-            "direction": "en-es",
-            "source": "I have gained weight.",
-            "reference": "He ganado peso.",
-            "hypothesis": "He engordado.",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 573,
-            "direction": "en-es",
-            "source": "I need answers.",
-            "reference": "Necesito respuestas.",
-            "hypothesis": "Necesito respuestas.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 649,
-            "direction": "en-es",
-            "source": "Tom waited.",
-            "reference": "Tomás esperó.",
-            "hypothesis": "Tom esperó.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 679,
-            "direction": "en-es",
-            "source": "I hate it.",
-            "reference": "Me la baja.",
-            "hypothesis": "Lo odio.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 692,
-            "direction": "en-es",
-            "source": "It's July.",
-            "reference": "Ahora es julio.",
-            "hypothesis": "Es julio.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 700,
-            "direction": "en-es",
-            "source": "Did you find anything?",
-            "reference": "¿Descubriste algo?",
-            "hypothesis": "¿Encontraste algo?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 759,
-            "direction": "en-es",
-            "source": "Are you beginners?",
-            "reference": "¿Sois principiantes?",
-            "hypothesis": "¿Sois principiantes?",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 813,
-            "direction": "en-es",
-            "source": "I bought one.",
-            "reference": "Compré uno.",
-            "hypothesis": "Compré una.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 835,
-            "direction": "en-es",
-            "source": "Do you have family?",
-            "reference": "¿Tienes familia?",
-            "hypothesis": "¿Tienes familia?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 889,
-            "direction": "en-es",
-            "source": "We continued walking.",
-            "reference": "Continuamos andando.",
-            "hypothesis": "Seguimos caminando.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 901,
-            "direction": "en-es",
-            "source": "Sit over there.",
-            "reference": "Siéntense allá.",
-            "hypothesis": "Siéntense ahí.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 927,
-            "direction": "en-es",
-            "source": "I hate dancing.",
-            "reference": "Detesto bailar.",
-            "hypothesis": "Odio bailar.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 947,
-            "direction": "en-es",
-            "source": "He continued to work.",
-            "reference": "Siguió trabajando.",
-            "hypothesis": "Siguió trabajando.",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 949,
-            "direction": "en-es",
-            "source": "Where did he work?",
-            "reference": "¿Dónde trabajaba?",
-            "hypothesis": "¿Dónde trabajó?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1018,
-            "direction": "en-es",
-            "source": "We're patients.",
-            "reference": "Somos pacientes.",
-            "hypothesis": "Somos pacientes.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
           {
             "index": 1056,
             "direction": "en-es",
@@ -494,59 +144,445 @@
             ]
           },
           {
-            "index": 1098,
+            "index": 2277,
             "direction": "en-es",
-            "source": "Sit down!",
-            "reference": "¡Sentaos!",
-            "hypothesis": "¡Siéntate!",
+            "source": "Curse you!",
+            "reference": "Te maldigo.",
+            "hypothesis": "¡<unk>!",
             "sentence_bleu": 0.0,
             "source_length": 3,
-            "reference_length": 2,
-            "hypothesis_length": 2,
+            "reference_length": 3,
+            "hypothesis_length": 5,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 2379,
+            "direction": "en-es",
+            "source": "Don't screw around with me.",
+            "reference": "¡No jodas conmigo!",
+            "hypothesis": "No <unk> la <unk>.",
+            "sentence_bleu": 0.0,
+            "source_length": 6,
+            "reference_length": 4,
+            "hypothesis_length": 9,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 3698,
+            "direction": "en-es",
+            "source": "Tell me about it.",
+            "reference": "¡Dímelo a mí!",
+            "hypothesis": "Háblame al respecto.",
+            "sentence_bleu": 0.0,
+            "source_length": 5,
+            "reference_length": 4,
+            "hypothesis_length": 4,
             "categories": [
               "no_content_overlap"
             ]
           },
           {
-            "index": 1110,
+            "index": 1160,
             "direction": "en-es",
-            "source": "Are you married?",
-            "reference": "¿Eres casada?",
-            "hypothesis": "¿Estás casado?",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
+            "source": "Dial 411 for directory assistance.",
+            "reference": "Marque 411 para asistencia de directorio.",
+            "hypothesis": "No <unk> la <unk> por ayuda <unk>.",
+            "sentence_bleu": 2.8398387225677895,
+            "source_length": 6,
+            "reference_length": 7,
+            "hypothesis_length": 14,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "number_mismatch",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 3080,
+            "direction": "en-es",
+            "source": "Ecosystems are degrading rapidly all around the Earth.",
+            "reference": "Los ecosistemas se están degradando en todo el mundo.",
+            "hypothesis": "Los <unk> son <unk> rápidamente por toda la Tierra.",
+            "sentence_bleu": 3.377156414337854,
+            "source_length": 9,
+            "reference_length": 10,
+            "hypothesis_length": 14,
+            "categories": [
+              "repetition",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 3796,
+            "direction": "en-es",
+            "source": "Even the hard-hearted can be moved to tears.",
+            "reference": "Hasta el diablo llora.",
+            "hypothesis": "Incluso los <unk> se pueden mover a las lágrimas.",
+            "sentence_bleu": 3.3864985683445354,
+            "source_length": 9,
+            "reference_length": 5,
+            "hypothesis_length": 12,
+            "categories": [
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 276,
+            "direction": "en-es",
+            "source": "His meaning is quite plain.",
+            "reference": "Lo que él trata de decir es bien sencillo de comprender.",
+            "hypothesis": "Su significado es bastante simple.",
+            "sentence_bleu": 3.550932348642477,
+            "source_length": 6,
+            "reference_length": 12,
+            "hypothesis_length": 6,
+            "categories": [
+              "truncation",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 1489,
+            "direction": "en-es",
+            "source": "It's coming out! My bladder's about to explode!",
+            "reference": "¡Me estoy meando, la vejiga me va a explotar!",
+            "hypothesis": "¡Ya sale! ¡Mi <unk> está a punto de estallar!",
+            "sentence_bleu": 3.673526562988939,
+            "source_length": 10,
+            "reference_length": 11,
+            "hypothesis_length": 13,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 1588,
+            "direction": "en-es",
+            "source": "The Geneva Convention is not recognized at Guantanamo.",
+            "reference": "La Convención de Ginebra no está reconocida en Guantanamo.",
+            "hypothesis": "La convención de <unk> no se reconoce a las <unk>.",
+            "sentence_bleu": 3.716499092256818,
+            "source_length": 9,
+            "reference_length": 10,
+            "hypothesis_length": 15,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1681,
+            "direction": "en-es",
+            "source": "Crap! My girlfriend is already back! What should we do?!",
+            "reference": "¡Mierda, mi polola ya volvió! ¿Qué hacemos?",
+            "hypothesis": "¡demonios! ¡Mi novia ya está de vuelta! ¡¿Qué deberíamos hacer?!",
+            "sentence_bleu": 3.737437943747671,
+            "source_length": 14,
+            "reference_length": 10,
+            "hypothesis_length": 14,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 5040,
+            "direction": "en-es",
+            "source": "Both Tom and John married Canadian women.",
+            "reference": "Tom y John están, los dos, casados con mujeres canadienses.",
+            "hypothesis": "Tanto Tom como John se casaron canadiense.",
+            "sentence_bleu": 3.8902180856807296,
+            "source_length": 8,
+            "reference_length": 13,
+            "hypothesis_length": 8,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 809,
+            "direction": "en-es",
+            "source": "And passing on from thence to a mountain that was on the east side of Bethel, he there pitched his tent, having Bethel on the west and Hai on the east: he built there also an altar to the Lord, and called upon his name.",
+            "reference": "De allí pasó a la montaña, al oriente de Betel, y desplegó su tienda, entre Betel al occidente y Ay al oriente. Allí edificó un altar a Yahvé e invocó su nombre.",
+            "hypothesis": "Y pasar por <unk> hasta una montaña que estaba en el lado del <unk>, <unk> su carpa, teniendo <unk> en el oeste y <unk> en el este: él construyó también un altar hacia el Señor y llamó a su nombre.",
+            "sentence_bleu": 3.9242560725202806,
+            "source_length": 50,
+            "reference_length": 37,
+            "hypothesis_length": 54,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 829,
+            "direction": "en-es",
+            "source": "Scholarships are awarded to undeserving people and good students are denied.",
+            "reference": "Se conceden becas a personas que no las merecen, y se niegan a buenos estudiantes.",
+            "hypothesis": "Los <unk> son <unk> para <unk> a la gente y los buenos estudiantes son <unk>.",
+            "sentence_bleu": 3.9566236357113054,
+            "source_length": 12,
+            "reference_length": 17,
+            "hypothesis_length": 24,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 159,
+            "direction": "en-es",
+            "source": "We make a teeny bit of progress, then we go back to square one.",
+            "reference": "Apenas logramos un avance, todo vuelve a cero.",
+            "hypothesis": "<unk> un poco de progreso, entonces volvemos a la casilla.",
+            "sentence_bleu": 4.016138436407654,
+            "source_length": 16,
+            "reference_length": 10,
+            "hypothesis_length": 14,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 2329,
+            "direction": "en-es",
+            "source": "Cardinals are, in general, excellent polyglots.",
+            "reference": "Los Cardenales son por lo general excelentes Políglotas.",
+            "hypothesis": "Los <unk> son, en general, excelente <unk>.",
+            "sentence_bleu": 4.016138436407654,
+            "source_length": 9,
+            "reference_length": 9,
+            "hypothesis_length": 14,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 4120,
+            "direction": "en-es",
+            "source": "Watch him and do likewise.",
+            "reference": "Vigílale y haz lo mismo.",
+            "hypothesis": "<unk> y <unk> las <unk>.",
+            "sentence_bleu": 4.02724819242185,
+            "source_length": 6,
+            "reference_length": 6,
+            "hypothesis_length": 12,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4028,
+            "direction": "en-es",
+            "source": "The stevia was cultivated and used as a sweetener by the Guarani people for at least 1,500 years.",
+            "reference": "La stevia fue cultivada y utilizada como edulcorante por el pueblo guaraní durante al menos 1.500 años.",
+            "hypothesis": "Los <unk> fueron <unk> y <unk> como <unk> por la gente <unk> por al menos 1. 500 años.",
+            "sentence_bleu": 4.038771194843466,
+            "source_length": 19,
+            "reference_length": 18,
+            "hypothesis_length": 30,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1905,
+            "direction": "en-es",
+            "source": "He has a clumsy walk.",
+            "reference": "Camina de forma torpe.",
+            "hypothesis": "Él tiene un <unk> <unk>.",
+            "sentence_bleu": 4.196114906296549,
+            "source_length": 6,
+            "reference_length": 5,
+            "hypothesis_length": 10,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 548,
+            "direction": "en-es",
+            "source": "Here's a restaurant I eat at a lot.",
+            "reference": "Aquí hay un restaurante en el que como a menudo.",
+            "hypothesis": "Aquí tengo mucho restaurante.",
+            "sentence_bleu": 4.234348806659263,
+            "source_length": 9,
+            "reference_length": 11,
+            "hypothesis_length": 5,
+            "categories": [
+              "truncation"
+            ]
+          },
+          {
+            "index": 3726,
+            "direction": "en-es",
+            "source": "Never throw away your notes - they may come in handy one day.",
+            "reference": "Nunca te deshagas de tus apuntes. Algún día te pueden resultar útiles.",
+            "hypothesis": "Nunca <unk> tus notas. Puede ser útil un día.",
+            "sentence_bleu": 4.277213401227561,
+            "source_length": 14,
+            "reference_length": 14,
+            "hypothesis_length": 13,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 142,
+            "direction": "en-es",
+            "source": "The electric bill keeps going up.",
+            "reference": "Cada vez sube más el precio de la electricidad.",
+            "hypothesis": "La cuenta eléctrica sigue <unk>.",
+            "sentence_bleu": 4.300847718252331,
+            "source_length": 7,
+            "reference_length": 10,
+            "hypothesis_length": 8,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4825,
+            "direction": "en-es",
+            "source": "My little sister has been suffering with a toothache since last night.",
+            "reference": "A mi hermana menor le duele un diente desde esta noche.",
+            "hypothesis": "Mi hermana pequeña ha estado sufriendo un dolor de dientes desde anoche.",
+            "sentence_bleu": 4.368583925857938,
+            "source_length": 13,
+            "reference_length": 12,
+            "hypothesis_length": 13,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 1134,
+            "direction": "en-es",
+            "source": "Many Christian rituals have pagan origins.",
+            "reference": "Muchos rituales cristianos tienen orígenes paganos.",
+            "hypothesis": "Muchas <unk> cristiana tienen origen <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 7,
+            "reference_length": 7,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1287,
+            "direction": "en-es",
+            "source": "Hounds hunt by their keen scent.",
+            "reference": "Los perros cazan usando su agudo olfato.",
+            "hypothesis": "Las <unk> cazan por su aroma <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 7,
+            "reference_length": 8,
+            "hypothesis_length": 12,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1302,
+            "direction": "en-es",
+            "source": "The new home works as a surrogate home.",
+            "reference": "El nuevo hogar funciona como un sustituto del hogar.",
+            "hypothesis": "La nueva casa trabaja como casa de <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 9,
+            "reference_length": 10,
+            "hypothesis_length": 11,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1823,
+            "direction": "en-es",
+            "source": "Hold on tight, otherwise you will fall off.",
+            "reference": "Agárrate fuerte o te caerás.",
+            "hypothesis": "<unk> fuerte, si no te <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 10,
+            "reference_length": 6,
+            "hypothesis_length": 12,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 4248,
+            "direction": "en-es",
+            "source": "Philae's harpoons did not deploy.",
+            "reference": "Los arpones de Philae no se desplegaron.",
+            "hypothesis": "<unk> <unk> no <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 6,
+            "reference_length": 8,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4648,
+            "direction": "en-es",
+            "source": "Anyway, I did my best.",
+            "reference": "Como sea, me esforcé al máximo.",
+            "hypothesis": "De todas formas, lo hice lo mejor que pude.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 7,
+            "reference_length": 8,
+            "hypothesis_length": 11,
             "categories": [
               "no_content_overlap"
             ]
           },
           {
-            "index": 1126,
+            "index": 4937,
             "direction": "en-es",
-            "source": "Nice shot!",
-            "reference": "¡Buen tiro!",
-            "hypothesis": "¡Buen disparo!",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
+            "source": "Add one teaspoon of paprika.",
+            "reference": "Añada una cucharadita de pimiento.",
+            "hypothesis": "<unk> una <unk> de <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 6,
+            "reference_length": 6,
+            "hypothesis_length": 12,
             "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1135,
-            "direction": "en-es",
-            "source": "It was wonderful.",
-            "reference": "Fue maravilloso.",
-            "hypothesis": "Era maravilloso.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
             ]
           }
         ],
@@ -575,6 +611,20 @@
             "source_length": 6,
             "reference_length": 4,
             "hypothesis_length": 4,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 5641,
+            "direction": "en-es",
+            "source": "You eat too much.",
+            "reference": "Comes demasiado.",
+            "hypothesis": "Comes demasiado.",
+            "sentence_bleu": 100.00000000000004,
+            "source_length": 5,
+            "reference_length": 3,
+            "hypothesis_length": 3,
             "categories": [
               "other"
             ]
@@ -673,20 +723,6 @@
             "source_length": 4,
             "reference_length": 7,
             "hypothesis_length": 7,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 5610,
-            "direction": "en-es",
-            "source": "Where was Tom yesterday?",
-            "reference": "¿Dónde estaba Tom ayer?",
-            "hypothesis": "¿Dónde estaba Tom ayer?",
-            "sentence_bleu": 100.00000000000004,
-            "source_length": 5,
-            "reference_length": 5,
-            "hypothesis_length": 5,
             "categories": [
               "other"
             ]
@@ -29045,7 +29081,7 @@
             "low": 1,
             "high": 5,
             "sentences": 1492,
-            "mean_sentence_bleu": 56.30408580166428,
+            "mean_sentence_bleu": 61.185719868230244,
             "mean_length_ratio": 1.0145854610834504
           },
           {
@@ -29053,7 +29089,7 @@
             "low": 6,
             "high": 10,
             "sentences": 3243,
-            "mean_sentence_bleu": 55.550751288041944,
+            "mean_sentence_bleu": 55.55683088064927,
             "mean_length_ratio": 1.035833906902362
           },
           {
@@ -29089,365 +29125,14 @@
             "mean_length_ratio": 1.0737485488472032
           }
         ],
-        "mean_sentence_bleu": 53.950899405707666,
+        "mean_sentence_bleu": 55.24211477808072,
         "worst": [
           {
-            "index": 105,
+            "index": 2277,
             "direction": "es-en",
-            "source": "¡Despacio!",
-            "reference": "Slow down!",
-            "hypothesis": "Slow down!",
-            "sentence_bleu": 0.0,
-            "source_length": 2,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 129,
-            "direction": "es-en",
-            "source": "Nos estamos viendo.",
-            "reference": "See you later.",
-            "hypothesis": "We're watching.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 134,
-            "direction": "es-en",
-            "source": "Soy japonesa.",
-            "reference": "I am Japanese.",
-            "hypothesis": "I'm Japanese.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 217,
-            "direction": "es-en",
-            "source": "Somos confiables.",
-            "reference": "We're credible.",
-            "hypothesis": "We're superstitious.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 263,
-            "direction": "es-en",
-            "source": "Los políticos mienten.",
-            "reference": "Politicians lie.",
-            "hypothesis": "Politicians lie.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 318,
-            "direction": "es-en",
-            "source": "Soy japonés.",
-            "reference": "I am Japanese.",
-            "hypothesis": "I'm Japanese.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 354,
-            "direction": "es-en",
-            "source": "Gracias de todas formas.",
-            "reference": "Thanks all the same.",
-            "hypothesis": "Thanks anyway.",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 5,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 356,
-            "direction": "es-en",
-            "source": "Él es veloz.",
-            "reference": "He's fast.",
-            "hypothesis": "He's fast.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 443,
-            "direction": "es-en",
-            "source": "Ella es tranquila.",
-            "reference": "She is quiet.",
-            "hypothesis": "She's quiet.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 600,
-            "direction": "es-en",
-            "source": "Ven a casa.",
-            "reference": "Come home.",
-            "hypothesis": "Come home.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 649,
-            "direction": "es-en",
-            "source": "Tomás esperó.",
-            "reference": "Tom waited.",
-            "hypothesis": "Tom waited.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 779,
-            "direction": "es-en",
-            "source": "Él es americano.",
-            "reference": "He is an American.",
-            "hypothesis": "He's American.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 5,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 788,
-            "direction": "es-en",
-            "source": "Estupendo.",
-            "reference": "I stayed up late.",
-            "hypothesis": "great.",
-            "sentence_bleu": 0.0,
-            "source_length": 2,
-            "reference_length": 5,
-            "hypothesis_length": 2,
-            "categories": [
-              "truncation",
-              "no_content_overlap"
-            ]
-          },
-          {
-            "index": 821,
-            "direction": "es-en",
-            "source": "Él es americano.",
-            "reference": "He is American.",
-            "hypothesis": "He's American.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 852,
-            "direction": "es-en",
-            "source": "Valía la pena probar.",
-            "reference": "It was worth trying.",
-            "hypothesis": "worth trying.",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 5,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 853,
-            "direction": "es-en",
-            "source": "Elige sabiamente.",
-            "reference": "Choose carefully.",
-            "hypothesis": "Choose wisely.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 889,
-            "direction": "es-en",
-            "source": "Continuamos andando.",
-            "reference": "We continued walking.",
-            "hypothesis": "Keep walking.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 4,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 899,
-            "direction": "es-en",
-            "source": "¿Quién se está riendo?",
-            "reference": "Who's laughing?",
-            "hypothesis": "Who's laughing?",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1018,
-            "direction": "es-en",
-            "source": "Somos pacientes.",
-            "reference": "We're patients.",
-            "hypothesis": "We're patients.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1053,
-            "direction": "es-en",
-            "source": "Gracias de todas formas.",
-            "reference": "Thanks anyway.",
-            "hypothesis": "Thanks anyway.",
-            "sentence_bleu": 0.0,
-            "source_length": 5,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1095,
-            "direction": "es-en",
-            "source": "Bésame.",
-            "reference": "Kiss me.",
-            "hypothesis": "Kiss me.",
-            "sentence_bleu": 0.0,
-            "source_length": 2,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1098,
-            "direction": "es-en",
-            "source": "¡Sentaos!",
-            "reference": "Sit down!",
-            "hypothesis": "Sit down!",
-            "sentence_bleu": 0.0,
-            "source_length": 2,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1164,
-            "direction": "es-en",
-            "source": "Eres terco.",
-            "reference": "You're stubborn.",
-            "hypothesis": "You're stubborn.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1175,
-            "direction": "es-en",
-            "source": "Nadie sabe.",
-            "reference": "Nobody knows.",
-            "hypothesis": "Nobody knows.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1188,
-            "direction": "es-en",
-            "source": "Están malos.",
-            "reference": "They're bad.",
-            "hypothesis": "They're bad.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
-            "categories": [
-              "other"
-            ]
-          },
-          {
-            "index": 1280,
-            "direction": "es-en",
-            "source": "¡Probad esto!",
-            "reference": "Try this!",
-            "hypothesis": "Examine this!",
+            "source": "Te maldigo.",
+            "reference": "Curse you!",
+            "hypothesis": "You recovered.",
             "sentence_bleu": 0.0,
             "source_length": 3,
             "reference_length": 3,
@@ -29457,59 +29142,438 @@
             ]
           },
           {
-            "index": 1401,
+            "index": 4248,
             "direction": "es-en",
-            "source": "Estoy a salvo.",
-            "reference": "I'm safe.",
-            "hypothesis": "I'm safe.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 3,
-            "hypothesis_length": 3,
+            "source": "Los arpones de Philae no se desplegaron.",
+            "reference": "Philae's harpoons did not deploy.",
+            "hypothesis": "The <unk> of <unk> will not be <unk>.",
+            "sentence_bleu": 3.125190763972442,
+            "source_length": 8,
+            "reference_length": 6,
+            "hypothesis_length": 15,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 1646,
+            "direction": "es-en",
+            "source": "Considera a las mujeres placeres de usar y tirar y no búsquedas con sentido.",
+            "reference": "He regards women as disposable pleasures rather than as meaningful pursuits.",
+            "hypothesis": "Consider the women pleasures to use and flush and not to be <unk>.",
+            "sentence_bleu": 3.21858262703621,
+            "source_length": 15,
+            "reference_length": 12,
+            "hypothesis_length": 16,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 4756,
+            "direction": "es-en",
+            "source": "Estados Unidos se imagina que es la nación más libre del mundo.",
+            "reference": "America fancies itself the world's freest nation.",
+            "hypothesis": "The United States is imagining that it's the <unk> nation in the world.",
+            "sentence_bleu": 3.21858262703621,
+            "source_length": 13,
+            "reference_length": 8,
+            "hypothesis_length": 16,
+            "categories": [
+              "over_generation",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 5097,
+            "direction": "es-en",
+            "source": "Los solsticios y los equinoccios marcan el inicio de las estaciones del año.",
+            "reference": "Solstices and equinoxes mark the beginnings of the seasons of the year.",
+            "hypothesis": "The <unk> and the <unk> begin the <unk> stations.",
+            "sentence_bleu": 3.4585921141027365,
+            "source_length": 14,
+            "reference_length": 13,
+            "hypothesis_length": 16,
+            "categories": [
+              "repetition",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 569,
+            "direction": "es-en",
+            "source": "Considera que las mujeres son placeres de usar y tirar más que búsquedas con sentido.",
+            "reference": "He regards women as disposable pleasures rather than as meaningful pursuits.",
+            "hypothesis": "Consider that women are pleasures to use and pull more than <unk>.",
+            "sentence_bleu": 3.716499092256818,
+            "source_length": 16,
+            "reference_length": 12,
+            "hypothesis_length": 15,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 2443,
+            "direction": "es-en",
+            "source": "Considera que las mujeres son placeres desechables más que objetivos significativos.",
+            "reference": "He regards women as disposable pleasures rather than as meaningful pursuits.",
+            "hypothesis": "Consider that women are <unk> pleasures more than <unk> goals.",
+            "sentence_bleu": 3.716499092256818,
+            "source_length": 12,
+            "reference_length": 12,
+            "hypothesis_length": 15,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1100,
+            "direction": "es-en",
+            "source": "Considera a las mujeres placeres desechables y no propósitos con sentido.",
+            "reference": "He regards women as disposable pleasures rather than as meaningful pursuits.",
+            "hypothesis": "Consider the Turkish women with no purpose.",
+            "sentence_bleu": 3.9832534781768225,
+            "source_length": 12,
+            "reference_length": 12,
+            "hypothesis_length": 8,
             "categories": [
               "other"
             ]
           },
           {
-            "index": 1412,
+            "index": 1160,
             "direction": "es-en",
-            "source": "Estás aquí.",
-            "reference": "You're here.",
-            "hypothesis": "You're here.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
+            "source": "Marque 411 para asistencia de directorio.",
+            "reference": "Dial 411 for directory assistance.",
+            "hypothesis": "outline <unk> to care for this <unk>.",
+            "sentence_bleu": 4.02724819242185,
+            "source_length": 7,
+            "reference_length": 6,
+            "hypothesis_length": 12,
             "categories": [
-              "other"
+              "repetition",
+              "over_generation",
+              "unknown_token",
+              "number_mismatch",
+              "no_content_overlap"
             ]
           },
           {
-            "index": 1441,
+            "index": 1489,
             "direction": "es-en",
-            "source": "Pido el perdón.",
-            "reference": "I ask forgiveness.",
-            "hypothesis": "I apologize.",
-            "sentence_bleu": 0.0,
-            "source_length": 4,
-            "reference_length": 4,
-            "hypothesis_length": 3,
+            "source": "¡Me estoy meando, la vejiga me va a explotar!",
+            "reference": "It's coming out! My bladder's about to explode!",
+            "hypothesis": "I'm <unk>, bladder is going to blow up!",
+            "sentence_bleu": 4.02724819242185,
+            "source_length": 11,
+            "reference_length": 10,
+            "hypothesis_length": 12,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 3732,
+            "direction": "es-en",
+            "source": "Las lombrices a veces son beneficiosas para el suelo.",
+            "reference": "Worms can be good for the soil.",
+            "hypothesis": "<unk> are sometimes <unk> to the ground.",
+            "sentence_bleu": 4.02724819242185,
+            "source_length": 10,
+            "reference_length": 8,
+            "hypothesis_length": 12,
+            "categories": [
+              "repetition",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4960,
+            "direction": "es-en",
+            "source": "Tenga cuidado de no resbalar en las baldosas mojadas.",
+            "reference": "Mind you don't slip on the wet tiles.",
+            "hypothesis": "Be careful not to sneak in your wet <unk>.",
+            "sentence_bleu": 4.02724819242185,
+            "source_length": 10,
+            "reference_length": 9,
+            "hypothesis_length": 12,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1796,
+            "direction": "es-en",
+            "source": "Las flores de loto desprendían una fragancia indescriptible.",
+            "reference": "The lotus flowers gave off an indescribable fragrance.",
+            "hypothesis": "<unk> flowers <unk> an <unk> scent.",
+            "sentence_bleu": 4.065425428798724,
+            "source_length": 9,
+            "reference_length": 9,
+            "hypothesis_length": 13,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 3187,
+            "direction": "es-en",
+            "source": "Él pasó su cepillo por toda la lona.",
+            "reference": "He swept his brush across the canvas.",
+            "hypothesis": "He spent his <unk> all over his <unk>.",
+            "sentence_bleu": 4.065425428798724,
+            "source_length": 9,
+            "reference_length": 8,
+            "hypothesis_length": 13,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 3094,
+            "direction": "es-en",
+            "source": "Un sólido argumento en favor del cristianismo es el siguiente: las ofensas contra la caridad es probablemente lo único que, en sus lechos de muerte, los hombres llegan a sentir y no a comprender como un crimen.",
+            "reference": "A strong argument for the religion of Christ is this - that offences against Charity are about the only ones which men on their death-beds can be made, not to understand, but to feel, as crime.",
+            "hypothesis": "An argument solid in favor of Christianity is the following: the trespasses against charity is probably the only thing that, in his <unk> of death, men came to feel and don't understand a crime.",
+            "sentence_bleu": 4.066870399856362,
+            "source_length": 41,
+            "reference_length": 40,
+            "hypothesis_length": 40,
+            "categories": [
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 122,
+            "direction": "es-en",
+            "source": "Me parece que el tiempo se está despejando.",
+            "reference": "I think it's clearing up.",
+            "hypothesis": "It seems to me that time is getting tired.",
+            "sentence_bleu": 4.196114906296549,
+            "source_length": 9,
+            "reference_length": 6,
+            "hypothesis_length": 10,
             "categories": [
               "no_content_overlap"
             ]
           },
           {
-            "index": 1466,
+            "index": 5537,
             "direction": "es-en",
-            "source": "Tom susurró.",
-            "reference": "Tom whispered.",
-            "hypothesis": "Tom whispered.",
-            "sentence_bleu": 0.0,
-            "source_length": 3,
-            "reference_length": 3,
-            "hypothesis_length": 3,
+            "source": "Esto viola alrededor de un millón de códigos penales y todos los libros sagrados existentes.",
+            "reference": "This violates about a million penal codes and every holy book there is.",
+            "hypothesis": "This viola around a million <unk> <unk> and all the <unk> <unk> books.",
+            "sentence_bleu": 4.343737891358309,
+            "source_length": 16,
+            "reference_length": 14,
+            "hypothesis_length": 22,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 1783,
+            "direction": "es-en",
+            "source": "Las calles adoquinadas le dan un aspecto muy pintoresco a este pueblo.",
+            "reference": "The cobblestone streets give this town a very picturesque appearance.",
+            "hypothesis": "<unk> streets bring this village very <unk> looks.",
+            "sentence_bleu": 4.368583925857938,
+            "source_length": 13,
+            "reference_length": 11,
+            "hypothesis_length": 13,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 921,
+            "direction": "es-en",
+            "source": "Placer y alegría tan pronto ida como venida.",
+            "reference": "Happiness comes and goes.",
+            "hypothesis": "Pleasure and joy as soon as I <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 9,
+            "reference_length": 5,
+            "hypothesis_length": 11,
+            "categories": [
+              "over_generation",
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 2005,
+            "direction": "es-en",
+            "source": "No lo voy a soportar más.",
+            "reference": "I won't tolerate it anymore.",
+            "hypothesis": "I'm not going to put up with it any longer.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 7,
+            "reference_length": 6,
+            "hypothesis_length": 11,
+            "categories": [
+              "over_generation",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4630,
+            "direction": "es-en",
+            "source": "Están debatiendo acerca de los aumentos de sueldo.",
+            "reference": "They're debating about raises.",
+            "hypothesis": "They are <unk> about salary <unk>.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 9,
+            "reference_length": 5,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "over_generation",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 4954,
+            "direction": "es-en",
+            "source": "Hace muchísimos años que no celebra la Navidad.",
+            "reference": "He hasn't celebrated Christmas in so many years.",
+            "hypothesis": "It's been a long time since you didn't celebrate Christmas.",
+            "sentence_bleu": 4.456882760699064,
+            "source_length": 9,
+            "reference_length": 9,
+            "hypothesis_length": 11,
             "categories": [
               "other"
+            ]
+          },
+          {
+            "index": 501,
+            "direction": "es-en",
+            "source": "¿Qué? ¿Todavía no sabes conducir?",
+            "reference": "What... you still don't know how to drive?",
+            "hypothesis": "What? You still can't drive yet?",
+            "sentence_bleu": 4.736913377107213,
+            "source_length": 7,
+            "reference_length": 12,
+            "hypothesis_length": 8,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 667,
+            "direction": "es-en",
+            "source": "Su indefensión apela a su compasión maternal.",
+            "reference": "His helplessness appeals to her motherly sympathy.",
+            "hypothesis": "His <unk> <unk> his sympathy materno.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 8,
+            "reference_length": 8,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 843,
+            "direction": "es-en",
+            "source": "Artsaj nunca perteneció a Azerbaiyán.",
+            "reference": "Artsakh has never belonged to Azerbaijan.",
+            "hypothesis": "<unk> never goes back to <unk>.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 6,
+            "reference_length": 7,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 2329,
+            "direction": "es-en",
+            "source": "Los Cardenales son por lo general excelentes Políglotas.",
+            "reference": "Cardinals are, in general, excellent polyglots.",
+            "hypothesis": "The <unk> are generally excellent <unk>.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 9,
+            "reference_length": 9,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 3705,
+            "direction": "es-en",
+            "source": "Como suele pasar, él no me trajo nada.",
+            "reference": "As usual he brought me nothing.",
+            "hypothesis": "Since he usually happened, he didn't bring me anything.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 10,
+            "reference_length": 7,
+            "hypothesis_length": 11,
+            "categories": [
+              "other"
+            ]
+          },
+          {
+            "index": 4205,
+            "direction": "es-en",
+            "source": "Tenemos que idear algún medio de escape.",
+            "reference": "We must devise some means of escape.",
+            "hypothesis": "We have to <unk> some <unk>.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 8,
+            "reference_length": 8,
+            "hypothesis_length": 11,
+            "categories": [
+              "repetition",
+              "unknown_token"
+            ]
+          },
+          {
+            "index": 4247,
+            "direction": "es-en",
+            "source": "La frase 'político honesto' es un oxímoron.",
+            "reference": "The phrase 'honest politician' is an oxymoron.",
+            "hypothesis": "The\" honest politician\" is a <unk>.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 8,
+            "reference_length": 8,
+            "hypothesis_length": 11,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
+            ]
+          },
+          {
+            "index": 4690,
+            "direction": "es-en",
+            "source": "El se veía como el salvador del mundo.",
+            "reference": "He saw himself as the world's savior.",
+            "hypothesis": "He looked like the <unk> in the world.",
+            "sentence_bleu": 4.932351569489709,
+            "source_length": 9,
+            "reference_length": 8,
+            "hypothesis_length": 11,
+            "categories": [
+              "unknown_token",
+              "no_content_overlap"
             ]
           }
         ],

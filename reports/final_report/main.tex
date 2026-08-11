@@ -686,13 +686,54 @@ dual-axis chart: two $y$-scales on one frame invite comparison of slopes that
 share no units, and the apparent crossing point would be an artefact of
 scaling.}{fig:curves}
 
-\begin{pending}
-Discussion of the observed curves --- where the model begins to overfit, the
-gap between the loss-optimal and BLEU-optimal epochs, and the effect of the
-early-stopping patience --- is written once the full training runs are
-complete. The figure and every number quoted around it regenerate from
-\code{artifacts/results/} automatically.
-\end{pending}
+\subsection{What the curves show}
+
+The primary model ran the full \EpochsBpeScratch{} epochs in 68 minutes on a
+Colab T4 at a sustained 30{,}000 tokens/second, and early stopping never fired.
+Training loss fell from 6.26 to 1.78 while validation loss fell from 4.82 to a
+minimum of 2.211 at epoch 17, closing at 2.216 --- a final train/validation gap
+of 0.43 nats. That gap is the overfitting signal, and it is modest: the model is
+beginning to memorise but has not started to degrade. Validation BLEU was still
+drifting upward at the end (52.76 at epoch 20 against 53.07 at epoch 17), which
+suggests the run stopped near, but slightly past, the useful ceiling for this
+configuration rather than well beyond it.
+
+The learning-rate schedule behaves as designed: the ramp peaks at
+$7.0\times10^{-4}$ at step 4{,}000, part-way through epoch 5, and the curve
+inflects visibly at that point --- validation BLEU climbs steeply from 3.94 to
+42.24 over the first five epochs, then improves by only a further 11 points over
+the remaining fifteen.
+
+\subsubsection*{Two checkpoints: partly vindicated}
+
+Section~\ref{sec:training} argued for keeping both a loss-optimal and a
+BLEU-optimal checkpoint on the grounds that the two criteria need not agree.
+Across the four runs they agreed twice and disagreed twice:
+
+\begin{center}
+\begin{tabular}{@{}lccr@{}}
+\toprule
+Run & best-loss epoch & best-BLEU epoch & BLEU forgone by picking on loss \\
+\midrule
+BPE, learned      & 17 & 17 & 0.00 \\
+Word, MUSE        & 13 & 13 & 0.00 \\
+Word, random      & 15 & 17 & 1.09 \\
+LSTM + attention  &  6 &  9 & 0.65 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+So for the headline model the policy cost nothing and gained nothing --- the two
+criteria happened to coincide. For the recurrent baseline it mattered: selecting
+on validation loss alone would have shipped a checkpoint 0.65 BLEU worse, and
+three epochs earlier than the quality peak. The honest summary is that the
+divergence is real but intermittent, and cheap enough to insure against: a
+second checkpoint costs 150\,MB of disk.
+
+\maybefigure{train_comparison}{1.0}{Validation loss and BLEU for all four
+systems. The recurrent baseline reaches a given BLEU in fewer epochs than the
+transformers but plateaus lower and earlier, stopping at epoch 9 against 17--20
+for the transformers.}{fig:comparison}
 
 % ---------------------------------------------------------------------------
 \section{Evaluation and baseline comparison}
@@ -784,12 +825,76 @@ length, whereas in a transformer every pair of positions is one attention hop
 apart, so the recurrent model should degrade faster as sentences
 lengthen.}{fig:length}
 
-\begin{pending}
-Quantitative discussion of Table~\ref{tab:results} --- the size of the
-transformer's margin over the recurrent baseline, whether the two directions
-differ, and how the length-stratified curves compare --- is written once the
-full training runs are complete.
-\end{pending}
+\subsubsection*{The architecture comparison}
+
+The transformer beats the capacity-matched recurrent baseline in both
+directions: \BleuBpeScratchEnEs{} against \BleuLstmBaselineEnEs{} on \entos{}
+(+3.84 BLEU) and \BleuBpeScratchEsEn{} against \BleuLstmBaselineEsEn{} on
+\estoen{} (+7.10). The baseline carries 3.4\% \emph{more} parameters, so the gap
+is not a capacity artefact.
+
+It also decodes faster despite doing more arithmetic: 58--59 sentences/second
+against the baseline's 30--45. That is the sequential decoder loop --- the
+recurrent model must compute its steps one after another, while the
+transformer's decoder evaluates all positions of a prefix in parallel. The
+asymmetry is starkest on \estoen{}, where the baseline falls to 30.2
+sentences/second.
+
+\subsubsection*{Both directions are not equally hard}
+
+Every system scores substantially higher translating \emph{into} English than
+into Spanish --- for the primary model, \BleuBpeScratchEsEn{} against
+\BleuBpeScratchEnEs{}, a gap of 6.8 BLEU. The corpus statistics of
+Section~\ref{sec:data} predict this. Spanish carries \TypeRatio$\times$ as many
+surface forms as English for the same running text, so generating Spanish means
+choosing correctly among more inflected variants, and a single wrong agreement
+marker (\emph{cansado}/\emph{cansada}) costs a full $n$-gram match. The chrF2
+gap is narrower than the BLEU gap (\ChrfBpeScratchEsEn{} against
+\ChrfBpeScratchEnEs{}, 2.9 points rather than 6.8), which is exactly what one
+expects if a meaningful share of the Spanish-side loss is morphological rather
+than lexical: chrF gives partial credit for a correct stem with a wrong ending,
+and BLEU does not.
+
+\subsubsection*{Length: the hypothesis was not confirmed}
+
+Figure~\ref{fig:length} was designed to test the claim that a recurrent model
+degrades faster than a transformer as sentences lengthen. \textbf{On this corpus
+it does not.} The transformer's advantage is \emph{largest on the shortest
+sentences} and shrinks monotonically as they grow:
+
+\begin{center}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+source length (tokens) & 1--5 & 6--10 & 11--15 & 16--20 & 21--30 & 31+ \\
+\midrule
+test sentences (\estoen) & 1492 & 3243 & 695 & 135 & 66 & 25 \\
+transformer $-$ LSTM (BLEU) & +9.39 & +6.27 & +4.89 & +2.79 & +2.32 & +1.65 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+We report this as a negative result rather than explaining it away, but two
+things make it uninterpretable as evidence \emph{against} the architectural
+argument. First, the corpus cannot test the claim: 83\% of test sentences are
+ten tokens or shorter, and the longest bucket holds 25 sentences --- far too few
+to estimate a difference of a few BLEU. The \entos{} row even reverses sign in
+that bucket ($-3.29$), which at $n=25$ is noise, not a finding. Second, the
+constant-path-length argument concerns dependencies spanning \emph{tens} of
+tokens; at a median of six, an LSTM's recurrence is barely stretched. Testing
+the hypothesis properly needs a corpus with genuinely long sentences --- WMT
+news, where averages run to 25--30 tokens --- which is beyond this project's
+compute budget.
+
+What the data does support is a broad, roughly uniform advantage that is largest
+where the data is densest.
+
+\subsubsection*{What the search contributes}
+
+Beam search adds +0.85 and +0.90 BLEU to the transformer, and +1.14 and +1.10 to
+the recurrent baseline. Both are real but small, and the baseline benefits more
+--- consistent with its single-best token being wrong more often, so that there
+is more for a wider search to recover. That the gains are modest is itself
+informative: most of the quality is in the model, not the decoder.
 
 \subsection{The pre-trained embedding experiment}
 \label{sec:muse}
@@ -832,11 +937,67 @@ directly --- the nearest neighbours of \emph{house} include \emph{casa}, of
 \emph{water} include \emph{agua}, and of \emph{book} include \emph{libro},
 before a single training step.
 
-\begin{pending}
-The outcome of the comparison --- whether the MUSE initialisation helps, and
-whether any advantage survives to convergence or merely accelerates early
-epochs --- is written once the full training runs are complete.
-\end{pending}
+\subsubsection*{Result: it accelerates convergence, but barely moves the ceiling}
+
+At convergence the MUSE initialisation is worth
+$\BleuWordMuseEnEs - \BleuWordRandomEnEs = +0.46$ BLEU on \entos{} and $+0.43$
+on \estoen{} over its random-initialisation control. Both are small enough that
+we would not claim them as a reliable effect from a single seed per condition.
+
+The interesting result is not the endpoint but the trajectory. Validation BLEU
+during the first six epochs:
+
+\begin{center}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+epoch & 1 & 2 & 3 & 4 & 5 & 6 \\
+\midrule
+random init & 2.45 & 21.97 & 31.07 & 36.33 & 41.04 & 41.49 \\
+MUSE init & 5.07 & 20.36 & 37.19 & 40.66 & 41.25 & 44.86 \\
+\midrule
+difference & +2.62 & $-1.61$ & \textbf{+6.12} & \textbf{+4.33} & +0.21 & +3.38 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The pattern tracks the freezing schedule exactly. During epochs 1--2 the
+embeddings are frozen and the two runs are within noise of each other --- the
+random control can adapt its embeddings while the MUSE run cannot, which offsets
+the better starting geometry. At epoch 3 the embeddings unfreeze and the MUSE
+run jumps ahead by 6.1 BLEU, holding a 3--4 point lead through epoch 4. From
+epoch 7 onward the gap settles to roughly one point and then closes.
+
+\begin{keypoint}
+\textbf{The finding.} Cross-lingual pre-trained embeddings buy \emph{time}, not
+\emph{quality}, at this corpus size. The MUSE run reaches BLEU 37 at epoch 3;
+the random control takes until epoch 4--5. But 271k sentence pairs is ample for
+a 32k-entry embedding table to learn a good geometry on its own, so by
+convergence the head start has been amortised away. The prior would be expected
+to matter far more in a genuinely low-resource setting, where the model never
+sees enough data to discover that geometry unaided.
+\end{keypoint}
+
+Two caveats belong with this conclusion. The comparison rests on one seed per
+condition, and a $0.45$ BLEU difference is inside the run-to-run variation one
+should expect --- establishing it would need three to five seeds each. And the
+coverage is imperfect: \MuseCoveragePercent\% of the vocabulary received a
+pre-trained vector, with the missing \MuseRandom{} entries concentrated in
+English contractions (\emph{I'm}, \emph{don't}, \emph{it's}) that our word
+tokeniser keeps whole but MUSE, built on differently-tokenised text, does not
+list.
+
+It is also worth recording that this run initially failed outright. Unfreezing
+the embeddings rebuilt the optimiser, which silently detached it from the
+learning-rate scheduler; the fresh optimiser retained its base rate of 1.0 --- a
+\emph{gain} on the inverse-square-root schedule rather than a peak, and some
+4{,}000$\times$ the intended value --- and the loss became NaN within a few
+steps of epoch 3. The failure was invisible in the logs, because
+\code{get\_last\_lr()} reports the learning rate of the optimiser the scheduler
+holds, which was still the old one. The fix is to register every parameter with
+the optimiser from the start, frozen or not: Adam skips parameters whose
+gradient is \code{None}, so freezing needs no change of optimiser state at all.
+Regression tests now assert that the loss stays finite across the unfreeze
+boundary.
 
 % ---------------------------------------------------------------------------
 \section{Error analysis}
@@ -885,11 +1046,142 @@ are not mutually exclusive: one translation can exhibit several.}
 \maybefigure{eval_errors_bpe_scratch}{1.0}{Failure-mode census for the primary
 model.}{fig:errors}
 
-\begin{pending}
-The discussion of which failure modes dominate, what causes them, and which are
-addressable --- together with the manual reading of the twenty worst examples
-per direction --- is written once the full training runs are complete.
-\end{pending}
+\subsection{A scoring bug found by reading the output}
+
+The first pass of this analysis ranked as its very worst translations a set of
+sentences the model had rendered \emph{perfectly}: \emph{I followed him.} $\to$
+\emph{Le seguí.} and \emph{Bailaré.} $\to$ \emph{I'll dance.}, each scoring
+sentence BLEU 0.0 against an identical reference.
+
+The cause was our own metric. Sentence BLEU was computed at a fixed 4-gram
+order, and a sentence of $n$ tokens contains $\max(0, n-3)$ four-grams --- so
+anything shorter than four tokens has none, $p_4 = 0$, and the geometric mean
+collapses to zero no matter how good the translation is. A quarter of this test
+set is under four tokens. The fix is *effective order*: average only over the
+orders the hypothesis is long enough to possess, which is what sacreBLEU's
+own sentence-level function does. Our implementation now agrees with it exactly
+on these cases.
+
+\begin{keypoint}
+This is the argument for error analysis in one example. The corpus BLEU was
+correct throughout --- at corpus level every order has counts, so the bug was
+invisible in the headline numbers. It surfaced only because we looked at
+individual sentences and something was obviously wrong with the ranking. An
+aggregate metric cannot audit itself.
+\end{keypoint}
+
+Corrected, mean sentence BLEU rises by 1.1--2.1 points across all four systems,
+and the rankings below are the corrected ones.
+
+\subsection{What actually goes wrong}
+
+The named failure modes are strikingly rare. For the primary model, 94.7\%
+(\entos) and 96.3\% (\estoen) of test sentences trip no detector at all.
+Repetition --- the classic degenerate-decoding loop --- appears in 0.6\% of
+sentences in both directions; truncation and over-generation are each under
+0.5\%. The model is not failing in the catastrophic ways an under-trained NMT
+system does.
+
+The largest named category is \code{no\_content\_overlap} (3.8\% \entos{},
+2.3\% \estoen), and reading those cases is where the analysis earns its keep.
+They divide into three groups, and only the third is a model defect.
+
+\subsubsection*{1. Idiom against literal reading (not a model error)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Source & Reference & Model output \\
+\midrule
+Tell me about it! & Ni me lo digas. & ¡Cuéntame sobre ello! \\
+Tell me about it. & ¡Dímelo a mí! & Háblame de ello. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The reference takes \emph{Tell me about it} as the idiom of weary agreement; the
+model translates it literally. The literal reading is a defensible translation
+of the sentence in isolation --- without context there is nothing to signal
+which sense is meant --- and BLEU scores it zero because it shares no content
+word with the chosen reference.
+
+\subsubsection*{2. Dialect and register variation (not a model error)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Source & Reference & Model output \\
+\midrule
+Sit down! & ¡Sentaos! \emph{(vosotros)} & Siéntese. \emph{(usted)} \\
+Sit down! & ¡Sentate! \emph{(vos)} & Siéntese. \emph{(usted)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All three are correct Spanish. They differ in the second-person form: peninsular
+\emph{vosotros}, Rioplatense \emph{vos}, formal \emph{usted}. Tatoeba pools
+contributors from every Spanish-speaking region, so the training data contains
+all of these for the same English input and the model has no way to know which
+the reference will use. This is a limitation of \emph{single-reference}
+evaluation rather than of the model, and it is why chrF2 --- which awards
+partial credit for the shared stem \emph{sient-} --- reads more favourably than
+BLEU throughout.
+
+\subsubsection*{3. Genuine failures}
+
+Two patterns are real. The first is \textbf{hallucinated morphology on rare
+inputs}: \emph{Curse you!} produces \emph{¡Durmentaos!}, which is not a Spanish
+word. The subword vocabulary guarantees the model can always emit \emph{some}
+sequence of pieces, and when the input is rare it assembles pieces into
+something well-formed-looking but nonexistent. This is the cost of open-vocabulary
+output: the word-level models cannot invent a word, but they emit \code{<unk>}
+instead, which is worse.
+
+The second is \textbf{long, syntactically complex sentences}, where the model
+degrades into locally-plausible but globally incoherent output:
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{4.6cm}p{4.6cm}p{4.6cm}@{}}
+\toprule
+Source & Reference & Model output \\
+\midrule
+Considera a las mujeres placeres de usar y tirar y no búsquedas con sentido. &
+He regards women as disposable pleasures rather than as meaningful pursuits. &
+Consider the women of pleasure to use and throw away and don't make sense. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Here the model mistakes the finite verb \emph{Considera} for an imperative,
+loses the \emph{rather than} contrast, and translates \emph{búsquedas con
+sentido} word by word. Sentences like this are 0.4\% of the test set, which is
+precisely why the model is bad at them.
+
+\subsubsection*{The unknown-word gap, quantified}
+
+The subword model emits \code{<unk>} in \textbf{0.00\%} of test sentences, by
+construction. The word-level models emit it in \textbf{19.8\%} (\entos) and
+\textbf{12.4\%} (\estoen). Roughly one word-level output in five contains a
+token the user simply cannot read --- the clearest single argument in this
+report for subword tokenisation, and a direct consequence of the
+\OovEsPercent\% Spanish out-of-vocabulary rate measured in
+Section~\ref{sec:data}.
+
+\subsubsection*{What we would do next}
+
+\begin{itemize}
+  \item \textbf{Multiple references.} Tatoeba's link graph already supplies
+    several translations per sentence; using them would remove most of groups
+    1 and 2 above, which are scoring artefacts rather than model errors.
+  \item \textbf{Back-translation} to attack group 3, whose root cause is that
+    long sentences are rare in training rather than that the architecture
+    cannot represent them.
+  \item \textbf{A dialect tag} alongside the direction tag, letting the model be
+    told which Spanish variety to produce instead of having to guess.
+\end{itemize}
 
 % ---------------------------------------------------------------------------
 \section{Inference application}
