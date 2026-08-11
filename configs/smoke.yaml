@@ -1,0 +1,50 @@
+# ===========================================================================
+# Tiny configuration used to verify the pipeline end to end in ~1 minute on a
+# laptop CPU. Not a result — it exists so that a broken pipeline is caught
+# before an hour of GPU time is spent on it.
+#
+#   python -m nmt.training.train --config configs/smoke.yaml
+# ===========================================================================
+name: smoke
+description: Two-layer, 128-wide model on 2,000 pairs. Pipeline check only.
+
+model:
+  architecture: transformer
+  vocab_size: 16000
+  d_model: 128
+  num_heads: 4
+  d_ff: 256
+  num_encoder_layers: 2
+  num_decoder_layers: 2
+  dropout: 0.1
+  attention_dropout: 0.1
+  norm_first: true
+  tie_embeddings: true
+
+data:
+  processed_dir: data/processed
+  tokenizer: artifacts/tokenizers/joint_bpe.model
+  max_length: 64
+  max_tokens_per_batch: 2048
+  eval_batch_size: 32
+  num_workers: 0
+  limit_train_pairs: 2000
+
+optim:
+  optimizer: adamw
+  learning_rate: 1.0
+  scheduler: inverse_sqrt
+  warmup_steps: 100
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+
+train:
+  epochs: 2
+  seed: 42
+  device: auto
+  amp: false
+  log_every: 20
+  early_stopping_patience: 10
+  validation_bleu_samples: 50
+  checkpoint_dir: artifacts/checkpoints
+  results_dir: artifacts/results

@@ -1,0 +1,71 @@
+# ===========================================================================
+# Baseline — recurrent sequence-to-sequence with Bahdanau attention
+#
+# The architecture the transformer replaced. Included so the evaluation
+# section compares against something a reader can calibrate against, rather
+# than reporting an absolute BLEU number in isolation.
+#
+# Everything except the architecture is held constant: the same joint BPE
+# vocabulary, the same direction tags, the same data, the same optimiser,
+# label smoothing, decoding code and evaluation. `lstm_hidden_size` is chosen
+# so the parameter count lands close to the transformer's, so a BLEU gap
+# cannot be explained away as a capacity difference.
+#
+# The schedule differs on purpose: the inverse-sqrt/warmup recipe is tuned for
+# transformers, and applying it to an LSTM would be a straw-man baseline. A
+# constant learning rate with a short warmup is the standard recipe for this
+# architecture.
+# ===========================================================================
+name: lstm_baseline
+description: >
+  Bidirectional-LSTM encoder, LSTM decoder with additive (Bahdanau) attention,
+  matched to the transformer on vocabulary, data and parameter count.
+
+model:
+  architecture: lstm
+  vocab_size: 16000
+  embedding_dim: 512
+  d_model: 512            # unused by the LSTM, kept so the config validates
+  # 704 gives 38.9M parameters against the transformer's 37.6M — a 3.4%
+  # advantage to the baseline. Erring in the baseline's favour makes the
+  # comparison conservative: if the transformer still wins, it is not because
+  # it was given more capacity.
+  lstm_hidden_size: 704
+  lstm_num_layers: 2
+  dropout: 0.2            # recurrent nets need more of it on data this size
+  tie_embeddings: true
+
+data:
+  processed_dir: data/processed
+  tokenizer: artifacts/tokenizers/joint_bpe.model
+  max_length: 128
+  # Halved: the LSTM's explicit time loop holds one autograd graph per step,
+  # so peak memory is far higher than the transformer's at equal token count.
+  max_tokens_per_batch: 4096
+  eval_batch_size: 32
+  num_workers: 2
+
+optim:
+  optimizer: adamw
+  learning_rate: 1.0e-3
+  weight_decay: 0.01
+  betas: [0.9, 0.98]
+  eps: 1.0e-9
+  scheduler: constant
+  warmup_steps: 500
+  label_smoothing: 0.1
+  # Recurrent models genuinely need clipping — exploding gradients through the
+  # time loop are the failure mode this was invented for.
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+
+train:
+  epochs: 15
+  seed: 42
+  device: auto
+  amp: true
+  log_every: 200
+  early_stopping_patience: 3
+  validation_bleu_samples: 500
+  checkpoint_dir: artifacts/checkpoints
+  results_dir: artifacts/results

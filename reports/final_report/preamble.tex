@@ -1,0 +1,228 @@
+% ---------------------------------------------------------------------------
+% Shared preamble for the AIG230 final report.
+% ---------------------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% --- Typography ------------------------------------------------------------
+% Libertinus is a Linux Libertine derivative: an old-style serif with a large
+% x-height that stays readable at 11pt, paired with a matching sans for
+% headings. Chosen to echo the typographic feel of distill.pub articles, whose
+% figure style this report also follows.
+\usepackage{libertinus}
+\usepackage{microtype}
+
+\usepackage[a4paper,
+            top=2.5cm, bottom=2.5cm, left=2.7cm, right=2.7cm,
+            headheight=14pt]{geometry}
+
+% --- Mathematics -----------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+% --- Tables and figures ----------------------------------------------------
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,justification=raggedright,
+            singlelinecheck=false]{caption}
+\usepackage{subcaption}
+
+% --- Colour ----------------------------------------------------------------
+\usepackage{xcolor}
+\definecolor{accentblue}{HTML}{2A78D6}
+\definecolor{accentorange}{HTML}{EB6834}
+\definecolor{accentgreen}{HTML}{1BAF7A}
+\definecolor{inkprimary}{HTML}{0B0B0B}
+\definecolor{inksecondary}{HTML}{52514E}
+\definecolor{inkmuted}{HTML}{898781}
+\definecolor{rule}{HTML}{E1E0D9}
+\definecolor{surface}{HTML}{FCFCFB}
+
+% --- Boxes -----------------------------------------------------------------
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{keypoint}[1][]{
+  enhanced, breakable,
+  colback=surface, colframe=accentblue,
+  boxrule=0pt, leftrule=2.5pt,
+  arc=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fontupper=\small, #1
+}
+
+\newtcolorbox{decisionbox}[1][]{
+  enhanced, breakable,
+  colback=surface, colframe=accentgreen,
+  boxrule=0pt, leftrule=2.5pt,
+  arc=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fontupper=\small, #1
+}
+
+% Marks a paragraph whose wording depends on final trained numbers.
+\newtcolorbox{pending}[1][]{
+  enhanced, breakable,
+  colback=yellow!6, colframe=accentorange,
+  boxrule=0pt, leftrule=2.5pt,
+  arc=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fontupper=\small\itshape, #1
+}
+
+% --- Headings --------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{inkprimary}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{inkprimary}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{inksecondary}}
+            {\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.0ex plus 1ex minus .2ex}{1.1ex plus .2ex}
+
+% --- Lists -----------------------------------------------------------------
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, parsep=0pt}
+
+% --- Headers ---------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{inkmuted}AIG230 Final Project --- Group 7}
+\fancyhead[R]{\small\color{inkmuted}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rule}\leaders\hrule height \headrulewidth\hfill}}
+
+% --- Code ------------------------------------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{accentblue}\bfseries,
+  commentstyle=\color{inkmuted}\itshape,
+  stringstyle=\color{accentgreen},
+  showstringspaces=false,
+  breaklines=true,
+  frame=leftline,
+  framesep=6pt,
+  rulecolor=\color{rule},
+  xleftmargin=10pt,
+  numbers=none,
+  language=Python,
+}
+
+% --- Links -----------------------------------------------------------------
+\usepackage[hidelinks,
+            colorlinks=true,
+            linkcolor=accentblue,
+            citecolor=accentblue,
+            urlcolor=accentblue]{hyperref}
+\usepackage{url}
+
+% --- Spacing ---------------------------------------------------------------
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.15}
+
+% --- Convenience -----------------------------------------------------------
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\dmodel}{d_{\mathrm{model}}}
+\newcommand{\dff}{d_{\mathrm{ff}}}
+\newcommand{\dk}{d_k}
+\newcommand{\entos}{EN\,$\rightarrow$\,ES}
+\newcommand{\estoen}{ES\,$\rightarrow$\,EN}
+
+% ---------------------------------------------------------------------------
+% Fallbacks so the document compiles before any model has been trained.
+% `generated/macros.tex` overrides whichever of these it defines.
+% ---------------------------------------------------------------------------
+\newcommand{\definefallbacks}{%
+  \providecommand{\HasResults}{false}%
+  \providecommand{\PrimaryRun}{BPE 16k, learned embeddings}%
+  % corpus
+  \providecommand{\TatoebaEnglishSentences}{--}%
+  \providecommand{\TatoebaSpanishSentences}{--}%
+  \providecommand{\TatoebaLinksScanned}{--}%
+  \providecommand{\PairsRaw}{--}%
+  \providecommand{\PairsClean}{--}%
+  \providecommand{\RetentionPercent}{--}%
+  \providecommand{\PairsTrain}{--}%
+  \providecommand{\PairsValidation}{--}%
+  \providecommand{\PairsTest}{--}%
+  \providecommand{\Components}{--}%
+  \providecommand{\Leakage}{--}%
+  \providecommand{\LargestComponent}{--}%
+  \providecommand{\TypesEn}{--}%
+  \providecommand{\TypesEs}{--}%
+  \providecommand{\TypeRatio}{--}%
+  \providecommand{\TokensEn}{--}%
+  \providecommand{\TokensEs}{--}%
+  \providecommand{\HapaxEnPercent}{--}%
+  \providecommand{\HapaxEsPercent}{--}%
+  \providecommand{\OovEnPercent}{--}%
+  \providecommand{\OovEsPercent}{--}%
+  \providecommand{\FertilityEn}{--}%
+  \providecommand{\FertilityEs}{--}%
+  \providecommand{\SubwordVocab}{--}%
+  \providecommand{\WordVocab}{--}%
+  \providecommand{\MuseCoveragePercent}{--}%
+  \providecommand{\MuseCovered}{--}%
+  \providecommand{\MuseRandom}{--}%
+  % per-run parameters, epochs and scores
+  \providecommand{\ParamsBpeScratch}{--}%
+  \providecommand{\ParamsWordRandom}{--}%
+  \providecommand{\ParamsWordMuse}{--}%
+  \providecommand{\ParamsLstmBaseline}{--}%
+  \providecommand{\EpochsBpeScratch}{--}%
+  \providecommand{\EpochsWordRandom}{--}%
+  \providecommand{\EpochsWordMuse}{--}%
+  \providecommand{\EpochsLstmBaseline}{--}%
+  \providecommand{\BleuBpeScratchEnEs}{--}%
+  \providecommand{\BleuBpeScratchEsEn}{--}%
+  \providecommand{\BleuBpeScratchMean}{--}%
+  \providecommand{\BleuWordRandomEnEs}{--}%
+  \providecommand{\BleuWordRandomEsEn}{--}%
+  \providecommand{\BleuWordRandomMean}{--}%
+  \providecommand{\BleuWordMuseEnEs}{--}%
+  \providecommand{\BleuWordMuseEsEn}{--}%
+  \providecommand{\BleuWordMuseMean}{--}%
+  \providecommand{\BleuLstmBaselineEnEs}{--}%
+  \providecommand{\BleuLstmBaselineEsEn}{--}%
+  \providecommand{\BleuLstmBaselineMean}{--}%
+  \providecommand{\ChrfBpeScratchEnEs}{--}%
+  \providecommand{\ChrfBpeScratchEsEn}{--}%
+}
+
+% Include a figure only if the file exists, so a partially-populated
+% figures directory never breaks the build.
+%
+% The figure names produced by nmt.viz contain underscores (`data_construction`),
+% which TeX reads as subscript markers and which would otherwise raise
+% "Missing $ inserted" the moment the name reaches \includegraphics.
+% \detokenize turns the argument into plain characters before that happens.
+% \IfFileExists searches the current directory and TEXINPUTS -- it does *not*
+% consult \graphicspath. Passing a bare name therefore always took the "not
+% found" branch and silently rendered a placeholder box for every figure, even
+% though the PDFs were present. The directory is given explicitly instead;
+% each document sets \figuredir to point at reports/figures/.
+\providecommand{\figuredir}{../figures/}
+
+\newcommand{\maybefigure}[4]{%
+  \IfFileExists{\figuredir\detokenize{#1}.pdf}{%
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[width=#2\linewidth]{\figuredir\detokenize{#1}}
+      \caption{#3}
+      \label{#4}
+    \end{figure}%
+  }{%
+    \begin{figure}[htbp]
+      \centering
+      \fbox{\parbox{0.8\linewidth}{\centering\small\itshape
+        Figure not generated yet: \code{\detokenize{#1}.pdf}\\[2pt]
+        Run \code{python -m nmt.viz.make\_figures}.}}
+      \caption{#3}
+      \label{#4}
+    \end{figure}%
+  }%
+}

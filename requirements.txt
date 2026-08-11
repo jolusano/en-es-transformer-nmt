@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# AIG230 Final Project — Group 7
+# Python 3.10+ required.  Install with:  pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+
+# --- Core deep learning -----------------------------------------------------
+torch>=2.2                  # Apple-silicon MPS and CUDA both supported
+
+# --- Tokenisation -----------------------------------------------------------
+sentencepiece>=0.2.0        # joint BPE / unigram subword model
+
+# --- Numerics & data wrangling ---------------------------------------------
+numpy>=1.26
+pandas>=2.1
+
+# --- Evaluation -------------------------------------------------------------
+sacrebleu>=2.4              # reference BLEU / chrF implementation
+
+# --- Visualisation ----------------------------------------------------------
+matplotlib>=3.8
+seaborn>=0.13
+
+# --- Inference application --------------------------------------------------
+gradio>=4.44
+
+# --- Configuration & UX -----------------------------------------------------
+pyyaml>=6.0
+tqdm>=4.66
+
+# --- Development / quality --------------------------------------------------
+pytest>=8.0
+ruff>=0.5
+jupyter>=1.0
+nbstripout>=0.7

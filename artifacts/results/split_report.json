@@ -1,0 +1,28 @@
+{
+  "total_pairs": 282785,
+  "components": 222950,
+  "largest_component_pairs": 169,
+  "singleton_components": 186710,
+  "split_pairs": {
+    "train": 271473,
+    "validation": 5656,
+    "test": 5656
+  },
+  "split_components": {
+    "train": 213524,
+    "validation": 4714,
+    "test": 4712
+  },
+  "eval_group_size_cap": 4,
+  "leakage_check": {
+    "en_train_vs_validation": 0,
+    "en_train_vs_test": 0,
+    "en_validation_vs_test": 0,
+    "es_train_vs_validation": 0,
+    "es_train_vs_test": 0,
+    "es_validation_vs_test": 0
+  },
+  "notes": [
+    "Splits are disjoint at the level of connected components of the Tatoeba translation graph, so no sentence string occurs in more than one split on either the source or the target side."
+  ]
+}

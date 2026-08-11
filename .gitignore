@@ -1,0 +1,143 @@
+# ---------------------------------------------------------------------------
+# AIG230 Final Project — Group 7
+#
+# Anything listed here is deliberately kept OUT of the public GitHub repository
+# that is submitted to the instructor.
+# ---------------------------------------------------------------------------
+
+# --- Personal study material (not part of the submission) ------------------
+# docs/study_guide is a private revision document written for exam preparation.
+docs/study_guide/
+docs/study_guide_build/
+
+# --- Datasets ---------------------------------------------------------------
+# Raw Tatoeba dumps are large and are reproducible with `make data`.
+data/raw/
+data/interim/
+data/processed/
+!data/**/.gitkeep
+*.tsv
+*.tsv.bz2
+*.tar.bz2
+*.csv.bz2
+*.vec
+*.vec.gz
+*.bin
+
+# --- Model artefacts --------------------------------------------------------
+# Large binaries are attached to a GitHub Release instead of being committed.
+artifacts/checkpoints/
+artifacts/logs/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+# The MUSE initialisation matrix is 32k x 300 float32 = 37 MB, and is
+# regenerable from the .vec files with `make embeddings`.
+*.npy
+*.npz
+
+# ...but the fitted tokenisers ARE tracked (~1 MB total). Inference needs the
+# exact tokeniser a checkpoint was trained with, so keeping them in the repo
+# means a downloaded checkpoint works immediately, with nothing to rebuild.
+!artifacts/tokenizers/*.model
+!artifacts/tokenizers/*.vocab
+!artifacts/tokenizers/*.json
+# ...but small, human-readable result files ARE tracked: the report is built
+# from them, so they must be reviewable in the diff.
+!artifacts/results/**/*.json
+!artifacts/results/**/*.jsonl
+!artifacts/results/**/*.csv
+!artifacts/results/**/*.md
+
+# --- Demonstration video ----------------------------------------------------
+*.mp4
+*.mov
+*.avi
+!app/assets/*.gif
+
+# --- LaTeX build clutter ----------------------------------------------------
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+*.run.xml
+*.bcf
+*.xdv
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual environments ---------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# --- Testing / linting caches -----------------------------------------------
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# --- Notebooks --------------------------------------------------------------
+.ipynb_checkpoints/
+.virtual_documents/
+# Notebook outputs are stripped before committing (see `make clean-nb`).
+
+# --- Editors / OS -----------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Local tool settings ----------------------------------------------------
+.claude/
+
+# --- Secrets ----------------------------------------------------------------
+.env
+.env.*
+*.key
+credentials.json

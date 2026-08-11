@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="605.99952pt" height="303.59952pt" viewBox="0 0 605.99952 303.59952" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-08-11T08:41:22.491657</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.6, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 303.59952 
+L 605.99952 303.59952 
+L 605.99952 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 3.6 299.99952 
+L 602.39952 299.99952 
+L 602.39952 23.811719 
+L 3.6 23.811719 
+z
+" style="fill: #fcfcfb"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2"/>
+   <g id="patch_3">
+    <path d="M 129.347899 255.967255 
+Q 129.347899 238.686718 129.347899 222.636019 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 127.147899 227.036019 
+L 129.347899 222.636019 
+L 131.547899 227.036019 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 129.347899 189.682992 
+Q 129.347899 177.924915 129.347899 167.396677 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 127.147899 171.796677 
+L 129.347899 167.396677 
+L 131.547899 171.796677 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 129.347899 139.969187 
+Q 129.347899 128.211111 129.347899 117.682872 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 127.147899 122.082872 
+L 129.347899 117.682872 
+L 131.547899 122.082872 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 84.437935 269.066486 
+L 54.497959 269.066486 
+L 54.497959 153.06761 
+L 84.437935 153.06761 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke-dasharray: 3,2; stroke-dashoffset: 0; stroke: #898781"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 56.000075 153.06761 
+Q 69.467443 153.06761 81.816777 153.06761 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #898781; stroke-linecap: round"/>
+    <path d="M 77.416777 150.86761 
+L 81.816777 153.06761 
+L 77.416777 155.26761 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #898781; stroke: #898781; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 416.771669 255.967255 
+Q 416.771669 238.686718 416.771669 222.636019 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 414.571669 227.036019 
+L 416.771669 222.636019 
+L 418.971669 227.036019 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 416.771669 189.682992 
+Q 416.771669 177.924915 416.771669 167.396677 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 414.571669 171.796677 
+L 416.771669 167.396677 
+L 418.971669 171.796677 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 416.771669 134.445431 
+Q 416.771669 122.687355 416.771669 112.159116 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+    <path d="M 414.571669 116.559116 
+L 416.771669 112.159116 
+L 418.971669 116.559116 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #52514e; stroke: #52514e; stroke-width: 1.1; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 371.861705 269.066486 
+L 340.12533 269.066486 
+L 340.12533 97.830049 
+L 371.861705 97.830049 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 341.624595 97.830049 
+Q 355.992021 97.830049 368.682395 97.830049 
+" clip-path="url(#pe6dfabfcc4)" style="fill: none; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 364.282395 95.630049 
+L 368.682395 97.830049 
+L 364.282395 100.030049 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #2a78d6; stroke: #2a78d6; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 600; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="129.347899" y="44.801992" transform="rotate(-0 129.347899 44.801992)">Post-LN   (original paper)</text>
+   </g>
+   <g id="patch_11">
+    <path d="M 90.42593 280.666374 
+L 168.269868 280.666374 
+Q 174.257863 280.666374 174.257863 275.142618 
+L 174.257863 262.990355 
+Q 174.257863 257.466599 168.269868 257.466599 
+L 90.42593 257.466599 
+Q 84.437935 257.466599 84.437935 262.990355 
+L 84.437935 275.142618 
+Q 84.437935 280.666374 90.42593 280.666374 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 90.42593 219.905058 
+L 168.269868 219.905058 
+Q 174.257863 219.905058 174.257863 214.381302 
+L 174.257863 196.705282 
+Q 174.257863 191.181526 168.269868 191.181526 
+L 90.42593 191.181526 
+Q 84.437935 191.181526 84.437935 196.705282 
+L 84.437935 214.381302 
+Q 84.437935 219.905058 90.42593 219.905058 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 90.42593 164.667497 
+L 168.269868 164.667497 
+Q 174.257863 164.667497 174.257863 159.143741 
+L 174.257863 146.991478 
+Q 174.257863 141.467722 168.269868 141.467722 
+L 90.42593 141.467722 
+Q 84.437935 141.467722 84.437935 146.991478 
+L 84.437935 159.143741 
+Q 84.437935 164.667497 90.42593 164.667497 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 90.42593 114.953693 
+L 168.269868 114.953693 
+Q 174.257863 114.953693 174.257863 109.429937 
+L 174.257863 91.753918 
+Q 174.257863 86.230162 168.269868 86.230162 
+L 90.42593 86.230162 
+Q 84.437935 86.230162 84.437935 91.753918 
+L 84.437935 109.429937 
+Q 84.437935 114.953693 90.42593 114.953693 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 7.4px; font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle; fill: #52514e" x="129.347899" y="76.287401" transform="rotate(-0 129.347899 76.287401)">x ← LayerNorm(x + Sublayer(x))</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 600; font-size: 9.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #2a78d6" x="416.771669" y="44.801992" transform="rotate(-0 416.771669 44.801992)">Pre-LN   (used here)</text>
+   </g>
+   <g id="patch_15">
+    <path d="M 377.8497 280.666374 
+L 455.693638 280.666374 
+Q 461.681633 280.666374 461.681633 275.142618 
+L 461.681633 262.990355 
+Q 461.681633 257.466599 455.693638 257.466599 
+L 377.8497 257.466599 
+Q 371.861705 257.466599 371.861705 262.990355 
+L 371.861705 275.142618 
+Q 371.861705 280.666374 377.8497 280.666374 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #f0efec; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 377.8497 219.905058 
+L 455.693638 219.905058 
+Q 461.681633 219.905058 461.681633 214.381302 
+L 461.681633 196.705282 
+Q 461.681633 191.181526 455.693638 191.181526 
+L 377.8497 191.181526 
+Q 371.861705 191.181526 371.861705 196.705282 
+L 371.861705 214.381302 
+Q 371.861705 219.905058 377.8497 219.905058 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 377.8497 164.667497 
+L 455.693638 164.667497 
+Q 461.681633 164.667497 461.681633 159.143741 
+L 461.681633 141.467722 
+Q 461.681633 135.943966 455.693638 135.943966 
+L 377.8497 135.943966 
+Q 371.861705 135.943966 371.861705 141.467722 
+L 371.861705 159.143741 
+Q 371.861705 164.667497 377.8497 164.667497 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #e2ddf3; stroke: #4a3aa7; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 377.8497 109.429937 
+L 455.693638 109.429937 
+Q 461.681633 109.429937 461.681633 103.906181 
+L 461.681633 91.753918 
+Q 461.681633 86.230162 455.693638 86.230162 
+L 377.8497 86.230162 
+Q 371.861705 86.230162 371.861705 91.753918 
+L 371.861705 103.906181 
+Q 371.861705 109.429937 377.8497 109.429937 
+z
+" clip-path="url(#pe6dfabfcc4)" style="fill: #eceae4; stroke: #898781; stroke-width: 1.1; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 7.4px; font-family: 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Computer Modern Typewriter', 'Andale Mono', 'Nimbus Mono L', 'Courier New', 'Courier', 'Fixed', 'Terminal', monospace; text-anchor: middle; fill: #52514e" x="416.771669" y="76.287401" transform="rotate(-0 416.771669 76.287401)">x ← x + Sublayer(LayerNorm(x))</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 7px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #2a78d6" transform="translate(275.967964 186.60354)">un-normalised</text>
+    <text style="font-size: 7px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #2a78d6" transform="translate(268.719683 195.980259)">residual highway</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 264.210644)">In post-LN every residual addition passes through a normalisation on its way to the next layer, so the gradient reaching</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 275.224291)">layer 1 is attenuated once per layer above it — which is why post-LN needs a long, carefully tuned warmup to avoid diverging.</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 286.237938)">In pre-LN the residual path runs from input to output untouched, gradients arrive undamped, and training is stable at higher</text>
+    <text style="font-size: 7.3px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; fill: #52514e" transform="translate(12.581993 297.368613)">learning rates with a shorter warmup. That is why this project uses it: a Colab run that diverges at step 300 is an hour lost.</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 600; font-size: 11.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0b0b0b" x="3.6" y="11.811719" transform="rotate(-0 3.6 11.811719)">Where to put the layer normalisation</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="129.347899" y="271.263869" transform="rotate(-0 129.347899 271.263869)">x</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="129.347899" y="207.638917" transform="rotate(-0 129.347899 207.638917)">Sublayer</text>
+   </g>
+   <g id="text_10">
+    <!-- $\oplus$ -->
+    <g style="fill: #0b0b0b" transform="translate(125.147899 155.652766)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #0b0b0b">⊕</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="129.347899" y="102.620052" transform="rotate(-0 129.347899 102.620052)">LayerNorm</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.5px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="416.771669" y="271.263869" transform="rotate(-0 416.771669 271.263869)">x</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="416.771669" y="207.571417" transform="rotate(-0 416.771669 207.571417)">LayerNorm</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8px; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #0b0b0b" x="416.771669" y="152.401357" transform="rotate(-0 416.771669 152.401357)">Sublayer</text>
+   </g>
+   <g id="text_15">
+    <!-- $\oplus$ -->
+    <g style="fill: #0b0b0b" transform="translate(412.571669 100.415206)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 10px; font-family: 'DejaVu Sans'; fill: #0b0b0b">⊕</tspan>
+     </text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pe6dfabfcc4">
+   <rect x="3.6" y="23.811719" width="598.79952" height="276.187801"/>
+  </clipPath>
+ </defs>
+</svg>

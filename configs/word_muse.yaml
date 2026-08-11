@@ -1,0 +1,80 @@
+# ===========================================================================
+# Experiment C — pre-trained cross-lingual embeddings
+#
+# Identical to Experiment B in every respect except that the embedding matrix
+# is initialised from MUSE aligned word vectors (Conneau et al. 2018) instead
+# of from a random draw.
+#
+# Why MUSE and not monolingual fastText: the model has ONE shared embedding
+# table serving both languages on both the encoder and decoder side. Two
+# independently-trained monolingual tables would place "cat" and "gato" in
+# unrelated coordinate systems, and the initialisation would be worse than
+# random because the model would have to unlearn the accidental geometry.
+# MUSE maps both languages into a shared space, so translation-equivalent
+# words start close together — which is a genuine prior for a shared table.
+#
+# Build the matrix first:
+#   python -m nmt.data.embeddings --tokenizer artifacts/tokenizers/word_vocab.json
+# ===========================================================================
+name: word_muse
+description: >
+  Word-level 32k vocabulary with 300-d embeddings initialised from MUSE
+  cross-lingually aligned vectors, frozen for two epochs then fine-tuned.
+
+model:
+  architecture: transformer
+  vocab_size: 32000
+  embedding_dim: 300
+
+  pretrained_embeddings: artifacts/tokenizers/muse_embeddings.npy
+
+  # Hold the pre-trained geometry fixed while the randomly-initialised encoder
+  # and decoder adapt to it. Without this, the large gradients of the first
+  # epoch scramble the alignment before it can be exploited, and the run
+  # converges to roughly the same place as the random control — which would
+  # make the experiment look like a null result for the wrong reason.
+  freeze_embeddings_epochs: 2
+
+  d_model: 512
+  num_heads: 8
+  d_ff: 2048
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  dropout: 0.1
+  attention_dropout: 0.1
+  activation: relu
+  positional_encoding: sinusoidal
+  max_position: 512
+  norm_first: true
+  tie_embeddings: true
+
+data:
+  processed_dir: data/processed
+  tokenizer: artifacts/tokenizers/word_vocab.json
+  max_length: 128
+  max_tokens_per_batch: 8192
+  eval_batch_size: 64
+  num_workers: 2
+
+optim:
+  optimizer: adamw
+  learning_rate: 1.0
+  weight_decay: 0.01
+  betas: [0.9, 0.98]
+  eps: 1.0e-9
+  scheduler: inverse_sqrt
+  warmup_steps: 4000
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+
+train:
+  epochs: 20
+  seed: 42
+  device: auto
+  amp: true
+  log_every: 200
+  early_stopping_patience: 4
+  validation_bleu_samples: 500
+  checkpoint_dir: artifacts/checkpoints
+  results_dir: artifacts/results

@@ -1,0 +1,12 @@
+{
+  "english_sentences": 2033133,
+  "spanish_sentences": 441233,
+  "links_scanned": 28361472,
+  "pairs_found": 282902,
+  "unique_english_used": 242950,
+  "unique_spanish_used": 260828,
+  "malformed_rows": 0,
+  "notes": [
+    "Tatoeba is a many-to-many translation graph: one English sentence may link to several Spanish sentences and vice versa. Those alternatives are genuine paraphrases and are kept, but they are also the reason the train/val/test split groups sentences into connected components (see nmt.data.splitting)."
+  ]
+}

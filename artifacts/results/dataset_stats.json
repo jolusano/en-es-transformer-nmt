@@ -1,0 +1,1074 @@
+{
+  "splits": {
+    "train": {
+      "pairs": 271473,
+      "unique_en": 232777,
+      "unique_es": 250057,
+      "length_words": {
+        "en": {
+          "count": 271473,
+          "mean": 6.776780747993355,
+          "std": 3.7317725781811713,
+          "min": 1.0,
+          "p25": 5.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 20.0,
+          "max": 64.0
+        },
+        "es": {
+          "count": 271473,
+          "mean": 6.565186961502617,
+          "std": 3.932138034393074,
+          "min": 1.0,
+          "p25": 4.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 21.0,
+          "max": 64.0
+        }
+      },
+      "length_chars": {
+        "en": {
+          "count": 271473,
+          "mean": 34.675890420041775,
+          "std": 20.438743641937034,
+          "min": 3.0,
+          "p25": 23.0,
+          "median": 31.0,
+          "p75": 41.0,
+          "p95": 67.0,
+          "p99": 112.0,
+          "max": 373.0
+        },
+        "es": {
+          "count": 271473,
+          "mean": 36.1005035491559,
+          "std": 22.123354560426634,
+          "min": 3.0,
+          "p25": 23.0,
+          "median": 32.0,
+          "p75": 43.0,
+          "p95": 71.0,
+          "p99": 120.0,
+          "max": 397.0
+        }
+      },
+      "length_subwords": {
+        "en": {
+          "count": 50000,
+          "mean": 9.13728,
+          "std": 4.968186208426572,
+          "min": 2.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 10.0,
+          "p95": 17.0,
+          "p99": 28.0,
+          "max": 95.0
+        },
+        "es": {
+          "count": 50000,
+          "mean": 8.82968,
+          "std": 5.143923706432668,
+          "min": 2.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 10.0,
+          "p95": 17.0,
+          "p99": 29.0,
+          "max": 98.0
+        }
+      },
+      "subword_fertility": {
+        "en": 1.3541445601721491,
+        "es": 1.3520472850886596
+      },
+      "vocabulary": {
+        "en": {
+          "tokens": 2161611,
+          "types": 35066,
+          "type_token_ratio": 0.01622216023141999,
+          "hapax_legomena": 13891,
+          "hapax_fraction": 0.3961387098614042,
+          "most_common": [
+            [
+              ".",
+              237202
+            ],
+            [
+              "the",
+              61305
+            ],
+            [
+              "I",
+              59782
+            ],
+            [
+              "to",
+              58527
+            ],
+            [
+              "a",
+              44055
+            ],
+            [
+              "you",
+              40013
+            ],
+            [
+              "is",
+              37002
+            ],
+            [
+              "?",
+              36428
+            ],
+            [
+              ",",
+              30429
+            ],
+            [
+              "Tom",
+              28944
+            ],
+            [
+              "of",
+              24238
+            ],
+            [
+              "in",
+              23361
+            ],
+            [
+              "that",
+              17444
+            ],
+            [
+              "The",
+              17381
+            ],
+            [
+              "was",
+              15223
+            ],
+            [
+              "me",
+              14630
+            ],
+            [
+              "have",
+              13602
+            ],
+            [
+              "He",
+              13491
+            ],
+            [
+              "and",
+              13464
+            ],
+            [
+              "it",
+              12933
+            ],
+            [
+              "for",
+              12889
+            ],
+            [
+              "are",
+              11510
+            ],
+            [
+              "my",
+              11209
+            ],
+            [
+              "with",
+              9985
+            ],
+            [
+              "not",
+              9973
+            ]
+          ],
+          "coverage_top_1000": 0.8440838800320687,
+          "coverage_top_5000": 0.9530563084662319,
+          "coverage_top_10000": 0.9777883254665155,
+          "coverage_top_20000": 0.9924866222460933,
+          "coverage_top_32000": 0.9985816134355349
+        },
+        "es": {
+          "tokens": 2145680,
+          "types": 56519,
+          "type_token_ratio": 0.026340833675105327,
+          "hapax_legomena": 24006,
+          "hapax_fraction": 0.4247421221182257,
+          "most_common": [
+            [
+              ".",
+              235591
+            ],
+            [
+              "de",
+              59318
+            ],
+            [
+              "que",
+              49644
+            ],
+            [
+              "a",
+              40696
+            ],
+            [
+              "la",
+              40425
+            ],
+            [
+              "?",
+              36491
+            ],
+            [
+              "¿",
+              36420
+            ],
+            [
+              "el",
+              31353
+            ],
+            [
+              "en",
+              31265
+            ],
+            [
+              ",",
+              30306
+            ],
+            [
+              "Tom",
+              29128
+            ],
+            [
+              "es",
+              28810
+            ],
+            [
+              "no",
+              26378
+            ],
+            [
+              "un",
+              24701
+            ],
+            [
+              "No",
+              21435
+            ],
+            [
+              "una",
+              16248
+            ],
+            [
+              "se",
+              15924
+            ],
+            [
+              "y",
+              13220
+            ],
+            [
+              "lo",
+              12996
+            ],
+            [
+              "El",
+              12121
+            ],
+            [
+              "los",
+              11833
+            ],
+            [
+              "por",
+              11697
+            ],
+            [
+              "con",
+              11372
+            ],
+            [
+              "me",
+              11290
+            ],
+            [
+              "está",
+              10352
+            ]
+          ],
+          "coverage_top_1000": 0.7848416352857835,
+          "coverage_top_5000": 0.9118680325118378,
+          "coverage_top_10000": 0.948541721039484,
+          "coverage_top_20000": 0.9752563289959361,
+          "coverage_top_32000": 0.9883337683158719
+        }
+      }
+    },
+    "validation": {
+      "pairs": 5656,
+      "unique_en": 5026,
+      "unique_es": 5330,
+      "length_words": {
+        "en": {
+          "count": 5656,
+          "mean": 6.939179632248939,
+          "std": 3.698863452526169,
+          "min": 1.0,
+          "p25": 5.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 20.0,
+          "max": 57.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 6.721888260254597,
+          "std": 3.9423786929184046,
+          "min": 1.0,
+          "p25": 4.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 21.0,
+          "max": 57.0
+        }
+      },
+      "length_chars": {
+        "en": {
+          "count": 5656,
+          "mean": 35.524752475247524,
+          "std": 20.526600426767562,
+          "min": 3.0,
+          "p25": 24.0,
+          "median": 31.0,
+          "p75": 41.0,
+          "p95": 68.0,
+          "p99": 109.0,
+          "max": 321.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 37.09600424328147,
+          "std": 22.41115126780632,
+          "min": 4.0,
+          "p25": 24.0,
+          "median": 32.0,
+          "p75": 43.0,
+          "p95": 73.0,
+          "p99": 122.0,
+          "max": 344.0
+        }
+      },
+      "length_subwords": {
+        "en": {
+          "count": 5656,
+          "mean": 9.357850070721359,
+          "std": 5.100609267224737,
+          "min": 2.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 11.0,
+          "p95": 17.0,
+          "p99": 27.0,
+          "max": 96.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 9.135785007072135,
+          "std": 5.4031546444825995,
+          "min": 3.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 10.0,
+          "p95": 17.0,
+          "p99": 29.0,
+          "max": 102.0
+        }
+      },
+      "subword_fertility": {
+        "en": 1.3485527924989809,
+        "es": 1.359109918724848
+      },
+      "word_oov": {
+        "en": {
+          "tokens": 45988,
+          "unk_tokens": 736,
+          "unk_rate": 0.016004175002174482,
+          "unk_types": 674,
+          "most_common_unk": [
+            [
+              "godparents",
+              3
+            ],
+            [
+              "eighty-seven",
+              3
+            ],
+            [
+              "accelerate",
+              3
+            ],
+            [
+              "LOL",
+              3
+            ],
+            [
+              "diesel",
+              3
+            ],
+            [
+              "unanimously",
+              3
+            ],
+            [
+              "lonesome",
+              2
+            ],
+            [
+              "vending",
+              2
+            ],
+            [
+              "quacks",
+              2
+            ],
+            [
+              "reactions",
+              2
+            ],
+            [
+              "vomited",
+              2
+            ],
+            [
+              "hag",
+              2
+            ],
+            [
+              "five-star",
+              2
+            ],
+            [
+              "shudder",
+              2
+            ],
+            [
+              "mowing",
+              2
+            ],
+            [
+              "shorthand",
+              2
+            ],
+            [
+              "footprint",
+              2
+            ],
+            [
+              "indisputable",
+              2
+            ],
+            [
+              "reception",
+              2
+            ],
+            [
+              "assets",
+              2
+            ]
+          ]
+        },
+        "es": {
+          "tokens": 45633,
+          "unk_tokens": 1379,
+          "unk_rate": 0.030219358797361557,
+          "unk_types": 1270,
+          "most_common_unk": [
+            [
+              "decepcionaré",
+              5
+            ],
+            [
+              "velocidades",
+              4
+            ],
+            [
+              "sobornó",
+              4
+            ],
+            [
+              "Pregúntaselo",
+              3
+            ],
+            [
+              "conserje",
+              3
+            ],
+            [
+              "padrinos",
+              3
+            ],
+            [
+              "depredador",
+              3
+            ],
+            [
+              "tréboles",
+              3
+            ],
+            [
+              "aceleras",
+              3
+            ],
+            [
+              "calentito",
+              3
+            ],
+            [
+              "expendedora",
+              2
+            ],
+            [
+              "desvergüenza",
+              2
+            ],
+            [
+              "rencoroso",
+              2
+            ],
+            [
+              "terciopelo",
+              2
+            ],
+            [
+              "tinajas",
+              2
+            ],
+            [
+              "vení",
+              2
+            ],
+            [
+              "encontráramos",
+              2
+            ],
+            [
+              "ultrasonido",
+              2
+            ],
+            [
+              "relajó",
+              2
+            ],
+            [
+              "complicarse",
+              2
+            ]
+          ]
+        }
+      }
+    },
+    "test": {
+      "pairs": 5656,
+      "unique_en": 5032,
+      "unique_es": 5326,
+      "length_words": {
+        "en": {
+          "count": 5656,
+          "mean": 6.898161244695898,
+          "std": 3.5407144153247385,
+          "min": 1.0,
+          "p25": 5.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 20.0,
+          "max": 45.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 6.714285714285714,
+          "std": 3.7208149010647453,
+          "min": 1.0,
+          "p25": 4.0,
+          "median": 6.0,
+          "p75": 8.0,
+          "p95": 13.0,
+          "p99": 21.0,
+          "max": 45.0
+        }
+      },
+      "length_chars": {
+        "en": {
+          "count": 5656,
+          "mean": 35.29137199434229,
+          "std": 19.156218771895624,
+          "min": 4.0,
+          "p25": 24.0,
+          "median": 31.0,
+          "p75": 42.0,
+          "p95": 67.0,
+          "p99": 108.0,
+          "max": 227.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 36.78606789250354,
+          "std": 20.550439647050023,
+          "min": 6.0,
+          "p25": 24.0,
+          "median": 32.0,
+          "p75": 44.0,
+          "p95": 71.0,
+          "p99": 117.0,
+          "max": 232.0
+        }
+      },
+      "length_subwords": {
+        "en": {
+          "count": 5656,
+          "mean": 9.30427864214993,
+          "std": 4.744671254592342,
+          "min": 2.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 11.0,
+          "p95": 17.0,
+          "p99": 28.0,
+          "max": 70.0
+        },
+        "es": {
+          "count": 5656,
+          "mean": 9.03659830268741,
+          "std": 4.879912643692286,
+          "min": 3.0,
+          "p25": 6.0,
+          "median": 8.0,
+          "p75": 11.0,
+          "p95": 17.0,
+          "p99": 29.0,
+          "max": 73.0
+        }
+      },
+      "subword_fertility": {
+        "en": 1.3488056182079147,
+        "es": 1.3458763429534444
+      },
+      "word_oov": {
+        "en": {
+          "tokens": 45777,
+          "unk_tokens": 729,
+          "unk_rate": 0.01592502785241497,
+          "unk_types": 652,
+          "most_common_unk": [
+            [
+              "pleas",
+              4
+            ],
+            [
+              "disposable",
+              4
+            ],
+            [
+              "meaningful",
+              4
+            ],
+            [
+              "pursuits",
+              4
+            ],
+            [
+              "lollipops",
+              4
+            ],
+            [
+              "y'all",
+              4
+            ],
+            [
+              "siccing",
+              4
+            ],
+            [
+              "swindler",
+              3
+            ],
+            [
+              "streetwise",
+              3
+            ],
+            [
+              "commas",
+              3
+            ],
+            [
+              "Stockholm",
+              3
+            ],
+            [
+              "3776",
+              3
+            ],
+            [
+              "fags",
+              3
+            ],
+            [
+              "numbered",
+              2
+            ],
+            [
+              "Toms",
+              2
+            ],
+            [
+              "cramp",
+              2
+            ],
+            [
+              "There're",
+              2
+            ],
+            [
+              "purposely",
+              2
+            ],
+            [
+              "Iker",
+              2
+            ],
+            [
+              "catastrophic",
+              2
+            ]
+          ]
+        },
+        "es": {
+          "tokens": 45610,
+          "unk_tokens": 1254,
+          "unk_rate": 0.027493970620477964,
+          "unk_types": 1152,
+          "most_common_unk": [
+            [
+              "humildes",
+              4
+            ],
+            [
+              "rocanrol",
+              4
+            ],
+            [
+              "embrisco",
+              4
+            ],
+            [
+              "reuniré",
+              3
+            ],
+            [
+              "cortarte",
+              3
+            ],
+            [
+              "obligué",
+              3
+            ],
+            [
+              "súplicas",
+              3
+            ],
+            [
+              "estafadora",
+              3
+            ],
+            [
+              "Decídete",
+              3
+            ],
+            [
+              "Estocolmo",
+              3
+            ],
+            [
+              "quemándose",
+              3
+            ],
+            [
+              "apresurarme",
+              3
+            ],
+            [
+              "776",
+              3
+            ],
+            [
+              "pagos",
+              3
+            ],
+            [
+              "Toms",
+              2
+            ],
+            [
+              "todopoderoso",
+              2
+            ],
+            [
+              "enunciado",
+              2
+            ],
+            [
+              "calambre",
+              2
+            ],
+            [
+              "Hawai",
+              2
+            ],
+            [
+              "lombrices",
+              2
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "tokenizers": {
+    "subword": {
+      "kind": "sentencepiece-bpe",
+      "vocab_size": 16000
+    },
+    "word": {
+      "kind": "frequency-truncated word level",
+      "vocab_size": 32000
+    }
+  },
+  "pairing": {
+    "english_sentences": 2033133,
+    "spanish_sentences": 441233,
+    "links_scanned": 28361472,
+    "pairs_found": 282902,
+    "unique_english_used": 242950,
+    "unique_spanish_used": 260828,
+    "malformed_rows": 0,
+    "notes": [
+      "Tatoeba is a many-to-many translation graph: one English sentence may link to several Spanish sentences and vice versa. Those alternatives are genuine paraphrases and are kept, but they are also the reason the train/val/test split groups sentences into connected components (see nmt.data.splitting)."
+    ]
+  },
+  "cleaning": {
+    "input_pairs": 282902,
+    "kept_pairs": 282785,
+    "removed": {
+      "length_ratio": 5,
+      "identical_sides": 3,
+      "duplicate_pair": 1,
+      "spanish_char_length": 20,
+      "english_token_length": 14,
+      "english_char_length": 52,
+      "unexpected_script": 5,
+      "contains_url_or_email": 6,
+      "spanish_token_length": 11
+    },
+    "rules": {
+      "min_tokens": 1,
+      "max_tokens": 64,
+      "min_chars": 2,
+      "max_chars": 400,
+      "max_length_ratio": 3.0,
+      "ratio_min_tokens": 4,
+      "drop_identical": true,
+      "drop_urls": true,
+      "drop_foreign_script": true,
+      "require_letters": true
+    },
+    "examples_removed": {
+      "length_ratio": [
+        [
+          "Absence makes the heart grow fonder.",
+          "La ausencia es al amor lo que al fuego el aire: que apaga el pequeño y aviva el grande."
+        ],
+        [
+          "Still waters run deep.",
+          "Del agua mansa me libre Dios, que de la brava me guardaré yo."
+        ],
+        [
+          "Silent waters run deep.",
+          "Del agua mansa me libre Dios, que de la brava me guardaré yo."
+        ]
+      ],
+      "identical_sides": [
+        [
+          "No, no, no!",
+          "No, no, no!"
+        ],
+        [
+          "No.",
+          "No."
+        ],
+        [
+          "Ah.",
+          "Ah."
+        ]
+      ],
+      "duplicate_pair": [
+        [
+          "\"I don't like carrots.\" \"Neither do I.\"",
+          "\"No me gustan las zanahorias.\" \"A mí tampoco.\""
+        ]
+      ],
+      "spanish_char_length": [
+        [
+          "A little bit earlier this evening, I received an extraordinarily gracious call from Senator McCain. Senator McCain fough",
+          "Un poco antes esta tarde, recibí una llamada extraordinariamente cortés del senador McCain. El senador McCain luchó por "
+        ],
+        [
+          "I have come here to seek a new beginning between the United States and Muslims around the world; one based upon mutual i",
+          "Vine aquí a buscar un nuevo comienzo para Estados Unidos y musulmanes alrededor del mundo, que se base en intereses mutu"
+        ],
+        [
+          "With North Korea's announcement on the 26th of its nuclear development plan based upon the agreement stemming from the S",
+          "Con el anuncio de Corea del Norte del 26to plan de su desarrollo nuclear basado en el acuerdo surgido de las charlas de "
+        ]
+      ],
+      "english_token_length": [
+        [
+          "And while she's no longer with us, I know my grandmother's watching, along with the family that made me who I am. I miss",
+          "Y aunque ya no esté con nosotros, sé que mi abuela está vigilando; junto con mi familia, que me hizo lo que soy. Hoy les"
+        ],
+        [
+          "And I know you didn't do this just to win an election. And I know you didn't do it for me. You did it because you unders",
+          "Y yo sé que no lo hiciste solo para ganar las elecciones. Y sé que no lo hiciste por mí. Lo hiciste porque entendés la m"
+        ],
+        [
+          "So let there be no doubt: Islam is a part of America. And I believe that America holds within her the truth that regardl",
+          "No quepa la menor duda: el Islam es parte de Estados Unidos. Y considero que Estados Unidos es, en sí, la prueba de que "
+        ]
+      ],
+      "english_char_length": [
+        [
+          "What began 21 months ago in the depths of winter cannot end on this autumn night. This victory alone is not the change w",
+          "Lo que comenzó hace 21 meses en pleno invierno no puede terminar en esta noche otoñal. Esta victoria en sí misma no es e"
+        ],
+        [
+          "This is our chance to answer that call. This is our moment. This is our time, to put our people back to work and open do",
+          "Ésta es nuestra oportunidad de responder a ese llamado. Éste es nuestro momento. Éste es nuestro tiempo de volver a dar "
+        ],
+        [
+          "When we come to die, we shall be alone. From all our worldly possessions we shall be about to part. Worldly friends - th",
+          "Cuando vayamos a morir, estaremos solos. De todas nuestras posesiones terrenales estaremos a punto de partir. Los amigos"
+        ]
+      ],
+      "unexpected_script": [
+        [
+          "You have added a comment, not a translation. To add a translation, click on the \"あ→а\" icon above the sentence.",
+          "Has añadido un comentario, no una traducción. Para añadir una traducción, pincha en el icono \"あ→а\" encima de la frase."
+        ],
+        [
+          "\"Tom, I have the feeling we're speaking different languages.\" \"Что ты сказала, Мэри?\"",
+          "''Tom, me da la impresión de que hablamos lenguas diferentes.'' ''マリア、何て言ったの？''"
+        ],
+        [
+          "In ancient Hebrew, עַל and אַל were not homophones.",
+          "En hebreo antiguo, עַל y אַל no eran homófonos."
+        ]
+      ],
+      "contains_url_or_email": [
+        [
+          "Since most speakers of Esperanto have learned the language through self study, the Internet in general, and websites suc",
+          "Puesto que la mayoría de hablantes de esperanto han aprendido esta lengua solos, Internet en general y páginas web como "
+        ],
+        [
+          "Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.org, with the title \"Aud",
+          "Elige frases aleatoriamente (2 ó 3), grábalas, y envíanos los ejemplos a team@tatoeba.org, con el título \"Audio for Tato"
+        ],
+        [
+          "Please write me at name@email.com.",
+          "Por favor, escríbame a name@email.com"
+        ]
+      ],
+      "spanish_token_length": [
+        [
+          "The poorest man may in his cottage bid defiance to all the forces of the Crown. It may be frail - its roof may shake - t",
+          "El hombre más pobre en su cabaña puede desafiar a todas las fuerzas de la Corona. Puede ser frágil - su techo puede temb"
+        ],
+        [
+          "Then, this child of fourteen years learned, as in a homework, that which we hide to maidens until their wedding night. S",
+          "Así, esta niña de catorce años aprendió, como si fuera en una tarea, sobre aquello que le ocultamos a las damas hasta su"
+        ],
+        [
+          "The 26th of September is the European Day of Languages. The Council of Europe wants to draw attention to the multilingua",
+          "El 26 de septiembre es el Día Europeo del Lenguaje. El Consejo de Europa quiere agudizar la atención en el patrimonio mu"
+        ]
+      ]
+    },
+    "removed_total": 117,
+    "retention_rate": 0.9995864292228405
+  },
+  "split": {
+    "total_pairs": 282785,
+    "components": 222950,
+    "largest_component_pairs": 169,
+    "singleton_components": 186710,
+    "split_pairs": {
+      "train": 271473,
+      "validation": 5656,
+      "test": 5656
+    },
+    "split_components": {
+      "train": 213524,
+      "validation": 4714,
+      "test": 4712
+    },
+    "eval_group_size_cap": 4,
+    "leakage_check": {
+      "en_train_vs_validation": 0,
+      "en_train_vs_test": 0,
+      "en_validation_vs_test": 0,
+      "es_train_vs_validation": 0,
+      "es_train_vs_test": 0,
+      "es_validation_vs_test": 0
+    },
+    "notes": [
+      "Splits are disjoint at the level of connected components of the Tatoeba translation graph, so no sentence string occurs in more than one split on either the source or the target side."
+    ]
+  },
+  "config": {
+    "root": null,
+    "subword_vocab": 16000,
+    "word_vocab": 32000,
+    "max_tokens": 64,
+    "validation_fraction": 0.02,
+    "test_fraction": 0.02,
+    "seed": 42,
+    "skip_download": true,
+    "limit": null,
+    "rules": {
+      "min_tokens": 1,
+      "max_tokens": 64,
+      "min_chars": 2,
+      "max_chars": 400,
+      "max_length_ratio": 3.0,
+      "ratio_min_tokens": 4,
+      "drop_identical": true,
+      "drop_urls": true,
+      "drop_foreign_script": true,
+      "require_letters": true
+    }
+  },
+  "elapsed_seconds": 6.2
+}

@@ -1,0 +1,68 @@
+# ===========================================================================
+# Experiment B — control for the pre-trained embedding comparison
+#
+# Word-level 32k vocabulary, 300-dimensional embeddings, RANDOM initialisation.
+#
+# This run exists so that Experiment C's result can be attributed to the
+# *embeddings* rather than to the change of tokenisation. B and C are
+# byte-for-byte identical except for the contents of the embedding matrix at
+# step 0. Comparing C against Experiment A alone would confound two variables
+# (subword vs word, random vs pre-trained) and prove nothing.
+# ===========================================================================
+name: word_random
+description: >
+  Word-level 32k vocabulary with 300-d embeddings initialised randomly.
+  Control condition for the MUSE pre-trained-embedding experiment.
+
+model:
+  architecture: transformer
+  vocab_size: 32000
+
+  # 300 to match the dimensionality of the MUSE vectors used in Experiment C.
+  # The model inserts learned 300->512 and 512->300 projections so that
+  # everything between them is identical to Experiment A.
+  embedding_dim: 300
+
+  d_model: 512
+  num_heads: 8
+  d_ff: 2048
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+  dropout: 0.1
+  attention_dropout: 0.1
+  activation: relu
+  positional_encoding: sinusoidal
+  max_position: 512
+  norm_first: true
+  tie_embeddings: true
+
+data:
+  processed_dir: data/processed
+  tokenizer: artifacts/tokenizers/word_vocab.json
+  max_length: 128
+  max_tokens_per_batch: 8192
+  eval_batch_size: 64
+  num_workers: 2
+
+optim:
+  optimizer: adamw
+  learning_rate: 1.0
+  weight_decay: 0.01
+  betas: [0.9, 0.98]
+  eps: 1.0e-9
+  scheduler: inverse_sqrt
+  warmup_steps: 4000
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+
+train:
+  epochs: 20
+  seed: 42
+  device: auto
+  amp: true
+  log_every: 200
+  early_stopping_patience: 4
+  validation_bleu_samples: 500
+  checkpoint_dir: artifacts/checkpoints
+  results_dir: artifacts/results

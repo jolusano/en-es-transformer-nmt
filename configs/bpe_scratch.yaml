@@ -1,0 +1,78 @@
+# ===========================================================================
+# Experiment A — main model
+#
+# Joint 16k SentencePiece BPE vocabulary, embeddings learned from scratch.
+# This is the system the report presents as the primary result and the one the
+# Gradio application ships with.
+# ===========================================================================
+name: bpe_scratch
+description: >
+  Bidirectional EN<->ES transformer over a joint 16k BPE vocabulary with
+  three-way tied embeddings learned from random initialisation.
+
+model:
+  architecture: transformer
+  vocab_size: 16000
+
+  # --- width -------------------------------------------------------------
+  # The proportions of "Transformer base" (Vaswani et al. 2017):
+  #   d_ff = 4 * d_model,  d_k = d_model / num_heads = 64.
+  # Staying on those ratios means the published guidance about learning rates
+  # and warmup transfers directly.
+  d_model: 512
+  num_heads: 8
+  d_ff: 2048
+
+  # --- depth -------------------------------------------------------------
+  # Reduced from the paper's 6+6. WMT14 En-De has ~4.5M sentence pairs; this
+  # corpus has ~271k. Depth is the first thing to cut when data, not compute,
+  # is the binding constraint — and 4+4 is what keeps an epoch inside a few
+  # minutes on a free Colab GPU.
+  num_encoder_layers: 4
+  num_decoder_layers: 4
+
+  # --- regularisation ----------------------------------------------------
+  dropout: 0.1
+  attention_dropout: 0.1
+
+  activation: relu
+  positional_encoding: sinusoidal
+  max_position: 512
+  norm_first: true          # pre-LN: stable without a long warmup
+  tie_embeddings: true      # encoder emb = decoder emb = output projection
+
+data:
+  processed_dir: data/processed
+  tokenizer: artifacts/tokenizers/joint_bpe.model
+  max_length: 128
+  # Batches are capped by token count, not sentence count, so memory per step
+  # stays flat regardless of how long the sentences in a batch happen to be.
+  max_tokens_per_batch: 8192
+  eval_batch_size: 64
+  num_workers: 2
+
+optim:
+  optimizer: adamw
+  learning_rate: 1.0
+  # NOTE: with the inverse-sqrt schedule the learning rate above is a *gain*
+  # on the schedule, not the peak value. The peak actually reached is
+  #   lr * d_model^-0.5 * warmup^-0.5 = 1.0 * 0.0442 * 0.0158 ~= 7.0e-4
+  weight_decay: 0.01
+  betas: [0.9, 0.98]
+  eps: 1.0e-9
+  scheduler: inverse_sqrt
+  warmup_steps: 4000
+  label_smoothing: 0.1
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 1
+
+train:
+  epochs: 20
+  seed: 42
+  device: auto
+  amp: true
+  log_every: 200
+  early_stopping_patience: 4
+  validation_bleu_samples: 500
+  checkpoint_dir: artifacts/checkpoints
+  results_dir: artifacts/results
