@@ -502,15 +502,33 @@ Runs the same `nmt.training.train` entry point used locally, on a GPU runtime.
 
 **Before running:** Runtime → Change runtime type → **T4 GPU** (or better).
 
-Approximate times on a T4 for the primary model (`bpe_scratch`, 271k pairs →
-543k directional examples, 4+4 layers, d_model 512):
+The primary model (`bpe_scratch`) sees 271k pairs → **543k directional
+examples**, about 12M source+target tokens per epoch, through a 37.6M-parameter
+model.
 
-| Stage | Time |
+| Stage | T4 estimate |
 |---|---|
 | Download + build corpus | ~5 min |
-| One training epoch | ~4–6 min |
-| Full run (20 epochs, early stopping) | ~1.5–2 h |
-| Test-set evaluation (beam 4, both directions) | ~10 min |
+| One training epoch | ~8–15 min |
+| Full run (early stopping usually fires around epoch 10–14) | ~2–3 h |
+| Test-set evaluation (beam 4, both directions) | ~10–15 min |
+
+For reference, the same epoch takes **~3.4 hours** on an M-series MacBook GPU
+(measured: ~1,030 tokens/s), which is why training runs here rather than
+locally.
+
+### Train in priority order
+
+Colab free sessions are time-limited, so train in the order that protects the
+most marks if you run out:
+
+1. **`bpe_scratch`** — the primary model. Everything downstream needs it: the
+   error analysis, the app, most of the report.
+2. **`word_random` + `word_muse`** — train these two *as a pair* or not at all.
+   `word_muse` alone proves nothing; `word_random` is the control that makes it
+   interpretable.
+3. **`lstm_baseline`** — the architecture comparison. Slowest per epoch,
+   because its decoder has an explicit Python time loop.
 """),
     code("""# 1. Check the GPU
 !nvidia-smi --query-gpu=name,memory.total --format=csv"""),
