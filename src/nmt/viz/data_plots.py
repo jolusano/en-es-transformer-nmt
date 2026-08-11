@@ -147,14 +147,14 @@ def plot_vocabulary_growth(stats: dict, output: Path) -> list[Path]:
         # Left endpoint: both labels below-right, where the curves are far
         # apart and the space is empty.
         axes[1].annotate(f"{coverage[0]:.1f}%", (cutoffs[0], coverage[0]),
-                         textcoords="offset points", xytext=(7, -10),
+                         textcoords="offset points", xytext=(3, -11),
                          fontsize=7, color=colour, ha="left")
         # Right endpoint: the two curves converge to within a point of each
         # other, so the labels are split above (English) and below (Spanish)
         # or they overprint.
         axes[1].annotate(f"{coverage[-1]:.1f}%", (cutoffs[-1], coverage[-1]),
                          textcoords="offset points",
-                         xytext=(-7, 7 if language == "en" else -13),
+                         xytext=(-7, 7) if language == "en" else (-1, -15),
                          fontsize=7, color=colour, ha="right")
     axes[1].set_xscale("log")
     axes[1].set_xlabel("vocabulary size (most frequent types)")

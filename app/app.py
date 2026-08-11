@@ -370,19 +370,24 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
                 stats = gr.HTML()
                 with gr.Accordion("How the sentence was tokenised", open=False):
                     tokens = gr.HTML()
+                # Rendered large enough to read inline: Gradio's Fullscreen
+                # control on gr.Image is a no-op in this version (a real click
+                # leaves document.fullscreenElement null), so the image cannot
+                # rely on being expanded. The download control does work.
                 attention_plot = gr.Image(
                     label="Cross-attention alignment",
                     type="pil",
-                    height=380,
+                    height=520,
                     show_label=True,
                 )
                 gr.Markdown(
-                    "<p class='hint'>Click the image to open it full screen. Each row is a "
-                    "generated token and each "
+                    "<p class='hint'>Each row is a generated token and each "
                     "column a source token; darker means the model attended "
-                    "there more. Try <i>The red house is very big.</i> — the "
-                    "adjective and noun swap order in Spanish, and the "
-                    "alignment crosses over.</p>"
+                    "there more, and the orange box marks the strongest match. "
+                    "Use the download control above the image to save it at "
+                    "full resolution. Try <i>The red house is very big.</i> — "
+                    "the adjective and noun swap order in Spanish, and the "
+                    "alignment visibly crosses over.</p>"
                 )
 
         gr.Examples(examples=EXAMPLES, inputs=[source, direction], label="Try one of these")
@@ -396,6 +401,26 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
 
         inputs = [source, direction, strategy, beam_size, length_penalty, show_attention]
         outputs = [output, stats, tokens, attention_plot]
+
+        def toggle_beam_controls(strategy_value: str):
+            """Grey out the beam controls when greedy decoding is selected.
+
+            `decode()` routes straight to greedy_decode when the strategy is
+            greedy, so beam width and length penalty are simply ignored. Leaving
+            them live invites the reasonable conclusion that the sliders are
+            broken, when in fact they are not being consulted.
+            """
+            active = strategy_value == "beam"
+            return (
+                gr.update(interactive=active),
+                gr.update(interactive=active),
+            )
+
+        strategy.change(
+            toggle_beam_controls,
+            inputs=[strategy],
+            outputs=[beam_size, length_penalty],
+        )
 
         translate_button.click(translate, inputs=inputs, outputs=outputs)
         source.submit(translate, inputs=inputs, outputs=outputs)

@@ -1057,7 +1057,7 @@ The cause was our own metric. Sentence BLEU was computed at a fixed 4-gram
 order, and a sentence of $n$ tokens contains $\max(0, n-3)$ four-grams --- so
 anything shorter than four tokens has none, $p_4 = 0$, and the geometric mean
 collapses to zero no matter how good the translation is. A quarter of this test
-set is under four tokens. The fix is *effective order*: average only over the
+set is under four tokens. The fix is \emph{effective order}: average only over the
 orders the hypothesis is long enough to possess, which is what sacreBLEU's
 own sentence-level function does. Our implementation now agrees with it exactly
 on these cases.

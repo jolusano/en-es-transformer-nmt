@@ -23,6 +23,15 @@ from nmt.viz.style import (
     use_style,
 )
 
+#: Compact aliases for axes where the full label would not fit. Used by the
+#: decoding figure, whose eight groups put two system names side by side.
+SHORT_LABELS = {
+    "bpe_scratch": "BPE 16k",
+    "word_random": "Word random",
+    "word_muse": "Word MUSE",
+    "lstm_baseline": "LSTM",
+}
+
 #: Human-readable names for the experiment identifiers.
 RUN_LABELS = {
     "bpe_scratch": "BPE 16k, learned",
@@ -181,7 +190,7 @@ def plot_decoding_comparison(reports: dict[str, dict], output: Path) -> list[Pat
 
     for run in runs:
         for direction in DIRECTIONS:
-            labels.append(f"{RUN_LABELS.get(run, run)}\n{direction}")
+            labels.append(f"{SHORT_LABELS.get(run, run)}\n{direction}")
             greedy_values.append(reports[run]["greedy_bleu"][direction])
             beam_values.append(reports[run]["summary"]["bleu"][direction])
 
@@ -189,12 +198,13 @@ def plot_decoding_comparison(reports: dict[str, dict], output: Path) -> list[Pat
     ax.bar(positions + 0.19, beam_values, width=0.36, color=SERIES[0],
            label="beam search")
     ax.set_xticks(positions)
-    ax.set_xticklabels(labels, fontsize=7.0)
+    ax.set_xticklabels(labels, fontsize=7.4)
     ax.set_ylabel("BLEU")
     ax.set_title("What the search contributes", fontsize=11)
-    # Above the axes, not inside: at the default "best" position matplotlib
-    # dropped it straight onto the tallest bars and their gain labels.
-    ax.legend(loc="lower left", bbox_to_anchor=(0.0, 1.01), ncols=2,
+    # Above the axes and flush right: inside, matplotlib's "best" position
+    # dropped it onto the tallest bars; flush left it ran into the title, which
+    # this theme also sets left-aligned.
+    ax.legend(loc="lower right", bbox_to_anchor=(1.0, 1.015), ncols=2,
               fontsize=8, frameon=False)
     ax.set_ylim(0, max(beam_values) * 1.18)
 
