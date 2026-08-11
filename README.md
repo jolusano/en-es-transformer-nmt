@@ -216,8 +216,30 @@ python -m nmt.training.train --config configs/bpe_scratch.yaml \
 | `artifacts/results/<run>/training_summary.json` | full run manifest and per-epoch history |
 | `artifacts/results/<run>/train_log.jsonl` | per-step log, written as training proceeds |
 
-Checkpoints are **not committed** (see `.gitignore`); attach them to a GitHub
-Release or share a Drive link.
+Checkpoints are **not committed** (see `.gitignore`) — a full one is ~430 MB,
+because Adam keeps two moment tensors per parameter so the optimiser state is
+twice the size of the weights again.
+
+For distribution, strip everything inference does not read:
+
+```bash
+python scripts/export_checkpoint.py --all
+```
+
+That writes `best_bleu_release.pt` (~144 MB, 67% smaller) beside each
+checkpoint, containing only the weights, the model config, the tokeniser path
+and the evaluation metrics. `Translator.from_checkpoint` and the Gradio app load
+it exactly as they load the full file; the weights are bit-identical. Keep the
+full checkpoints only if you may want to resume training.
+
+Attach the release files to a GitHub Release, or share a Drive folder:
+
+| System | Test BLEU (EN→ES / ES→EN) |
+|---|---|
+| `bpe_scratch` — **the one the app uses** | 49.99 / 56.83 |
+| `word_muse` | 45.88 / 53.05 |
+| `word_random` | 45.42 / 52.62 |
+| `lstm_baseline` | 46.15 / 49.73 |
 
 ### Training all four systems
 
