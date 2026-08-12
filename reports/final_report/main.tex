@@ -1211,6 +1211,20 @@ The checkpoint carries its own model configuration and the path of the
 tokeniser it was trained with, so the application needs only a file path and
 can serve any of the four systems without code changes.
 
+\subsection*{Demonstration}
+
+A recorded walkthrough of the application is available at
+
+\begin{center}
+\url{https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing}
+\end{center}
+
+\noindent
+covering both translation directions, a round trip through the model, the
+subword tokenisation of an input sentence, the cross-attention alignment, and
+the difference between greedy and beam decoding on a sentence where the two
+disagree.
+
 \maybefigure{eval_decoding}{0.85}{What the search contributes: BLEU under
 greedy decoding against beam search. A large gap means the model's single-best
 token is often wrong even when its distribution is

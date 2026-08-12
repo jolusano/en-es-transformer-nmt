@@ -25,12 +25,13 @@ tag prepended to the source sentence.
 4. [Building the dataset](#4-building-the-dataset)
 5. [Training](#5-training)
 6. [Evaluation and error analysis](#6-evaluation-and-error-analysis)
-7. [Running the inference application](#7-running-the-inference-application)
-8. [Reproducing the report](#8-reproducing-the-report)
-9. [Repository layout](#9-repository-layout)
-10. [Design decisions](#10-design-decisions)
-11. [Testing](#11-testing)
-12. [Troubleshooting](#12-troubleshooting)
+7. [Demonstration video](#7-demonstration-video)
+8. [Running the inference application](#8-running-the-inference-application)
+9. [Reproducing the report](#9-reproducing-the-report)
+10. [Repository layout](#10-repository-layout)
+11. [Design decisions](#11-design-decisions)
+12. [Testing](#12-testing)
+13. [Troubleshooting](#13-troubleshooting)
 
 ---
 
@@ -41,7 +42,7 @@ tag prepended to the source sentence.
 | Source code | [`src/nmt/`](src/nmt), [`app/`](app) |
 | Trained model weights | `artifacts/checkpoints/<run>/best_bleu.pt` — see [Releases](#5-training) |
 | Project report (PDF) | [`reports/final_report/main.tex`](reports/final_report/main.tex) → `main.pdf` |
-| Demonstration video | linked in the submission |
+| Demonstration video | [Google Drive](https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing) |
 | Notebooks | [`notebooks/`](notebooks) |
 
 **Four systems are trained and compared:**
@@ -280,7 +281,15 @@ Options:
 
 ---
 
-## 7. Running the inference application
+## 7. Demonstration video
+
+A short walkthrough of the running application — both translation directions,
+the round trip, the subword tokenisation, the cross-attention alignment, and
+the difference between greedy and beam decoding:
+
+**[Watch the demo ▸](https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing)**
+
+## 8. Running the inference application
 
 ```bash
 python app/app.py
@@ -298,7 +307,7 @@ The model is loaded **once at start-up** and is never retrained by the app.
 
 ---
 
-## 8. Reproducing the report
+## 9. Reproducing the report
 
 ```bash
 python -m nmt.viz.make_figures        # all figures → reports/figures/
@@ -316,7 +325,7 @@ and missing figures render as placeholders.
 
 ---
 
-## 9. Repository layout
+## 10. Repository layout
 
 ```
 en-es-transformer-nmt/
@@ -375,7 +384,7 @@ en-es-transformer-nmt/
 
 ---
 
-## 10. Design decisions
+## 11. Design decisions
 
 Reasoning is set out in full in the report; the short version:
 
@@ -419,7 +428,7 @@ explains, and at a median of eight subword tokens the cost is negligible.
 
 ---
 
-## 11. Testing
+## 12. Testing
 
 ```bash
 pytest -q                 # all tests
@@ -435,7 +444,7 @@ and a regression test for the tensor-contiguity bug described below.
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 **`ModuleNotFoundError: No module named 'nmt'`**
 `src/` is not on the path. Run `pip install -e .` or prefix with `PYTHONPATH=src`.
