@@ -41,7 +41,7 @@ tag prepended to the source sentence.
 |---|---|
 | Source code | [`src/nmt/`](src/nmt), [`app/`](app) |
 | Trained model weights | [`best_bleu_release.pt` on Google Drive](https://drive.google.com/file/d/10PVZjE4ctldX3hyd0BYLbJir61fqdDik/view?usp=sharing) (144 MB) |
-| Project report (PDF) | [`reports/final_report/main.tex`](reports/final_report/main.tex) → `main.pdf` |
+| Project report | [`main.pdf`](reports/final_report/main.pdf) — source: [`main.tex`](reports/final_report/main.tex) |
 | Demonstration video | [Google Drive](https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing) |
 | Notebooks | [`notebooks/`](notebooks) |
 
@@ -305,6 +305,8 @@ the difference between greedy and beam decoding:
 
 **[Watch the demo ▸](https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing)**
 
+---
+
 ## 8. Running the inference application
 
 ```bash
@@ -389,6 +391,7 @@ en-es-transformer-nmt/
 │   └── utils/                    seeding, logging, devices, I/O
 ├── app/app.py                    Gradio inference application
 ├── notebooks/                    exploration → training → evaluation
+├── scripts/export_checkpoint.py  strip optimiser state for distribution
 ├── reports/
 │   ├── build_report_data.py      JSON artefacts → LaTeX tables and macros
 │   ├── figures/                  generated figures (PDF + PNG + SVG)

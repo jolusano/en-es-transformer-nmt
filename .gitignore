@@ -158,3 +158,10 @@ Thumbs.db
 .env.*
 *.key
 credentials.json
+
+# --- Course handouts and Colab downloads ------------------------------------
+# The assignment brief is the instructor's document, not ours to republish, and
+# results*.zip is just the Colab download whose contents are already tracked
+# file-by-file under artifacts/.
+Final_Project_Option*.pdf
+results*.zip
