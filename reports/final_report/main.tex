@@ -1371,6 +1371,19 @@ python reports/build_report_data.py                       # all tables
 python app/app.py                                         # the application
 \end{lstlisting}
 
+The trained weights of the primary model are published separately from the
+repository, since a checkpoint is too large to version sensibly:
+
+\begin{center}
+\url{https://drive.google.com/file/d/10PVZjE4ctldX3hyd0BYLbJir61fqdDik/view?usp=sharing}
+\end{center}
+
+\noindent
+Placed at \code{artifacts/checkpoints/bpe\_scratch/best\_bleu.pt}, it is found
+automatically by both the application and the evaluation script. The tokenisers
+it requires are committed to the repository, so no rebuild of the corpus is
+needed to run inference.
+
 The full instructions, including the Colab route for training, are in the
 repository \code{README.md}.
 

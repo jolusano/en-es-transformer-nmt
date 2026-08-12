@@ -40,7 +40,7 @@ tag prepended to the source sentence.
 | Deliverable | Where |
 |---|---|
 | Source code | [`src/nmt/`](src/nmt), [`app/`](app) |
-| Trained model weights | `artifacts/checkpoints/<run>/best_bleu.pt` — see [Releases](#5-training) |
+| Trained model weights | [`best_bleu_release.pt` on Google Drive](https://drive.google.com/file/d/10PVZjE4ctldX3hyd0BYLbJir61fqdDik/view?usp=sharing) (144 MB) |
 | Project report (PDF) | [`reports/final_report/main.tex`](reports/final_report/main.tex) → `main.pdf` |
 | Demonstration video | [Google Drive](https://drive.google.com/file/d/19z4fEsQfhgtJMMy6xaw2-D33NoixSP75/view?usp=sharing) |
 | Notebooks | [`notebooks/`](notebooks) |
@@ -233,7 +233,23 @@ and the evaluation metrics. `Translator.from_checkpoint` and the Gradio app load
 it exactly as they load the full file; the weights are bit-identical. Keep the
 full checkpoints only if you may want to resume training.
 
-Attach the release files to a GitHub Release, or share a Drive folder:
+### Downloading the trained model
+
+The primary model is published here:
+
+**[`best_bleu_release.pt` ▸](https://drive.google.com/file/d/10PVZjE4ctldX3hyd0BYLbJir61fqdDik/view?usp=sharing)** — 144 MB
+
+Place it at `artifacts/checkpoints/bpe_scratch/best_bleu.pt` and the app and the
+evaluation script will find it. The tokenisers it needs are already in this
+repository under `artifacts/tokenizers/`, so nothing else is required:
+
+```bash
+mkdir -p artifacts/checkpoints/bpe_scratch
+# ...move the downloaded file there, then:
+python app/app.py
+```
+
+Test-set scores for each system:
 
 | System | Test BLEU (EN→ES / ES→EN) |
 |---|---|
