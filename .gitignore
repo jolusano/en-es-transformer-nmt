@@ -61,9 +61,16 @@ artifacts/logs/
 results.zip
 
 # --- Demonstration video ----------------------------------------------------
+# The whole folder, not just known extensions: screen recorders drop project
+# files, thumbnails and intermediate exports beside the finished video, and a
+# multi-hundred-megabyte blob committed once stays in the history forever.
+recording/
 *.mp4
 *.mov
 *.avi
+*.mkv
+*.webm
+*.m4v
 !app/assets/*.gif
 
 # --- LaTeX build clutter ----------------------------------------------------
