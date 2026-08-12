@@ -35,6 +35,18 @@ def _clean(pieces: list[str]) -> list[str]:
     return [piece.replace("▁", "") or "_" for piece in pieces]
 
 
+def predicted_labels(output_tokens: list[str]) -> list[str]:
+    """Row labels for a cross-attention map.
+
+    Cross-attention is captured on the decoder *input*, which is the output
+    shifted right, so row ``i`` is the state that predicts token ``i + 1``.
+    Labelling rows with the input tokens is off by one and renders the map
+    unreadable -- it appears to claim that ``<s>`` attends to a content word.
+    Dropping the leading ``<s>`` aligns each row with the token it produces.
+    """
+    return _clean(output_tokens[1:])
+
+
 def plot_alignment(
     attention: np.ndarray | torch.Tensor,
     source_tokens: list[str],
@@ -50,8 +62,9 @@ def plot_alignment(
         attention = attention.detach().cpu().numpy()
 
     source_tokens = _clean(source_tokens)
-    target_tokens = _clean(target_tokens)
+    target_tokens = predicted_labels(target_tokens)
     attention = attention[: len(target_tokens), : len(source_tokens)]
+    target_tokens = target_tokens[: attention.shape[0]]
 
     width = max(4.5, 0.42 * len(source_tokens) + 2.4)
     height = max(3.0, 0.36 * len(target_tokens) + 1.8)
@@ -64,7 +77,7 @@ def plot_alignment(
     ax.set_yticks(range(len(target_tokens)))
     ax.set_yticklabels(target_tokens, fontsize=8)
     ax.set_xlabel("source tokens")
-    ax.set_ylabel("generated tokens")
+    ax.set_ylabel("token being generated")
     ax.grid(False)
     for spine in ax.spines.values():
         spine.set_visible(False)
@@ -114,7 +127,7 @@ def plot_head_grid(
     rows = (heads + columns - 1) // columns
 
     source_tokens = _clean(source_tokens)
-    target_tokens = _clean(target_tokens)
+    target_tokens = predicted_labels(target_tokens)
 
     fig, axes = figure(2.2 * columns + 0.8, 2.0 * rows + 1.0,
                        nrows=rows, ncols=columns)
@@ -162,7 +175,7 @@ def plot_layer_progression(
     """
     use_style()
     source_tokens = _clean(source_tokens)
-    target_tokens = _clean(target_tokens)
+    target_tokens = predicted_labels(target_tokens)
 
     matrices = []
     for layer in layers:

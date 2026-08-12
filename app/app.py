@@ -339,8 +339,15 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         use_style()
         attention = result.attention.numpy()
         source = [t.replace("\u2581", "") or "_" for t in result.source_tokens]
-        target = [t.replace("\u2581", "") or "_" for t in result.output_tokens]
-        attention = attention[: len(target), : len(source)]
+        # Row i of the cross-attention is the decoder state at position i, which
+        # predicts token i+1 -- attention is captured on the decoder *input*
+        # (output[:-1]), the same teacher-forcing shift the report describes.
+        # Labelling rows with the input tokens is off by one and makes the map
+        # read as nonsense ("<s> attends to today"); labelling them with the
+        # tokens they predict makes the alignment legible.
+        predicted = [t.replace("\u2581", "") or "_" for t in result.output_tokens[1:]]
+        attention = attention[: len(predicted), : len(source)]
+        target = predicted[: attention.shape[0]]
 
         fig, ax = plt.subplots(
             figsize=(max(6.0, 0.52 * len(source) + 2.2),
@@ -354,7 +361,7 @@ def build_interface(translator: Translator, checkpoint: Path) -> gr.Blocks:
         ax.set_yticks(range(len(target)))
         ax.set_yticklabels(target, fontsize=11, color=INK_SECONDARY)
         ax.set_xlabel("source token", fontsize=11, color=INK_MUTED, labelpad=8)
-        ax.set_ylabel("generated token", fontsize=11, color=INK_MUTED, labelpad=8)
+        ax.set_ylabel("token being generated", fontsize=11, color=INK_MUTED, labelpad=8)
         ax.tick_params(colors=INK_MUTED, length=0)
         ax.grid(False)
         for spine in ax.spines.values():

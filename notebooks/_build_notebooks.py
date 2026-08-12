@@ -824,7 +824,7 @@ print(f"{len(cross)} decoder layers, each {tuple(cross[0].shape)} "
 
 out = ROOT / "reports" / "figures" / "attention_heads"
 plot_head_grid(
-    cross[-1][0], result.source_tokens, result.output_tokens[:-1], out,
+    cross[-1][0], result.source_tokens, result.output_tokens, out,
     title="Cross-attention per head, final decoder layer",
 )
 Image(str(out.with_suffix(".png")), width=900)"""),
@@ -834,7 +834,7 @@ Image(str(out.with_suffix(".png")), width=900)"""),
 out = ROOT / "reports" / "figures" / "attention_layers"
 plot_layer_progression(
     [layer[0] for layer in cross],
-    result.source_tokens, result.output_tokens[:-1], out,
+    result.source_tokens, result.output_tokens, out,
 )
 Image(str(out.with_suffix(".png")), width=900)"""),
     markdown("""The mean entropy printed under each panel quantifies it: a lower value means
